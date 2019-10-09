@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   namespace :admin do
     get 'items/index'
     get 'items/create'
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
     get 'items/search'
   end
   namespace :user do
+    root 'items#index'
     get 'items/show'
     get 'items/search'
   end
@@ -16,7 +18,7 @@ Rails.application.routes.draw do
   scope :user do
   	resources :items
   end
- 
+  
  scope :admin do
  	resources :items
  end
