@@ -9,6 +9,8 @@ class Admin::ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
+
   end
 
   def update
@@ -19,4 +21,10 @@ class Admin::ItemsController < ApplicationController
 
   def search
   end
+end
+
+private
+ def item_params
+   params_require(:item).permit(:item_image, :price, :introduction), discs_attributes[:id, :item_id, :disc_number :drstroy, songs_attributes[:id, :disc_id, :song_title, :song_nuber]]
+ end
 end
