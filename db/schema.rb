@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_09_054312) do
+ActiveRecord::Schema.define(version: 2019_10_09_094732) do
+
+  create_table "artists", force: :cascade do |t|
+    t.string "artist_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "discs", force: :cascade do |t|
+    t.integer "disc_id"
+    t.integer "disc_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "genre_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "items", force: :cascade do |t|
     t.integer "artist_id"
@@ -22,6 +41,19 @@ ActiveRecord::Schema.define(version: 2019_10_09_054312) do
     t.text "introduction"
     t.integer "stock"
     t.string "is_item_deletable"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "labels", force: :cascade do |t|
+    t.string "label_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "songs", force: :cascade do |t|
+    t.string "song_name"
+    t.integer "song_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
