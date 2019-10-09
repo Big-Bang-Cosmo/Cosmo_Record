@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get 'items/search'
   end
   namespace :user do
+  	
     get 'items/show'
     get 'items/search'
   end
