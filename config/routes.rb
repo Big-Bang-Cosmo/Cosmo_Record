@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'genres/genre_items'
+  get 'artists/artist_item'
+  namespace :user do
+    get 'genres/genres_items'
+  end
+  namespace :user do
+    get 'artists/artists_item'
+  end
   namespace :admin do
     get 'items/index'
     get 'items/create'
