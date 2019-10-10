@@ -3,9 +3,14 @@ class Admin::ItemsController < ApplicationController
   end
 
   def new
+     @item = Item.new
+     @disc = @item.discs.build
+     @song = @disc.songs.build
   end
 
   def create
+     @item = Item.new(item_params)
+     @item.save
   end
 
   def edit
