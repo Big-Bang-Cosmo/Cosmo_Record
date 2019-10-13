@@ -1,0 +1,9 @@
+<h2>ジャンル登録ページ</h2>
+
+<%= form_for(@genre, url: admin_genres_create_path) do |f|%>
+	<label>ジャンル</label>
+	<br>
+		<%= f.text_field :genre_name %>
+	<%= f.submit "ジャンルを登録する"%>
+
+<% end %>
