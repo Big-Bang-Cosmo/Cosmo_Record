@@ -1,4 +1,6 @@
 class User::ItemsController < ApplicationController
+
+
   def show
   	@item = Item.find(params[:id])
     @tax_price = @item.price * 1.1

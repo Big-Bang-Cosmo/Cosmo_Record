@@ -1,0 +1,8 @@
+<h2>アーティスト登録ページ</h2>
+
+<%= form_for(@artist, url: admin_artists_create_path) do |f| %>
+	<label>アーティスト</label>
+	<br>
+	<%= f.text_field :artist_name %>
+	<%= f.submit "アーティストを登録する"%>
+<% end %>
