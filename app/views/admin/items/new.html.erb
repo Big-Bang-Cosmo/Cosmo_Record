@@ -1,61 +1,6 @@
-<%= form_width(model: @item, local: ture) do |s|%>
+<div class="container">
+	<h2>（管理者）商品新規追加</h2>
 
-	<div>
-	 <div class="user-edit-image">
-	        <%= attachment_image_tag @item, :item_image, :fill, 60, 60, fallback: "no_image.jpg"%>
-	     </div>
-		 	<%= f.attachment_field :profile_image, placeholder: "ジャケット画像" %>
-	</div>
+	<%= render 'form', item: @item %>
 
-	<div>
-		<label>シングル/アルバム名</label>
-		<%= f.text_feild :item_name %>
-	</div>
-
-	<div>
-		<label>アーティスト名</label>
-		<%= f.text_feild :artist_id %>
-    </div>
-
-    <div>
-		<label>レーベル</label>
-		<%= f.text_feild :label_id %>
-    </div>
-
-    <div>
-		<label>ジャンル</label>
-		<%= f.text_feild :genre_id %>
-	</div>
-
-	<div>
-		<label>商品価格(税抜)</label>
-		<%= f.text_feild :price %>
-	</div>
-
-	<div>
-		<label>商品説明</label>
-		<%= f.text_area :introduction %>
-    </div>
-
-    <div>
-    	<label>曲名一覧</label>
-
-    </div>
-
-
-    <div class="items">
-		<%= s.fields_for :discs do |t| %>
-			<%= render "disc_fields", f: %>
-		<% end %>
-		<div class="discs">
-			<%= link_to_add_association "ディスクを追加", s, :discs %>
-		</div>
-	</div>
-
-
-	<div class="actions">
-		<%= s.submit %>
-	</div>
-
-<% end %>
-
+</div><!-- container_end -->

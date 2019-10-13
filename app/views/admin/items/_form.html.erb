@@ -1,0 +1,72 @@
+	<%= form_for(@item, url: admin_items_create_path) do |f|%>
+
+	 <!-- エラー文　英語でいい？-->
+		<% if item.errors.any? %>
+			<div id="error_explanation">
+				<h2><%= pluralize(item.errors.count, "error") %> prohibited this post from being saved:</h2>
+				<ul>
+					<% item.errors.full_messages.each do |message| %>
+					 <il><%= message %></il>
+					 <% end %>
+				</ul>
+			</div>
+		<% end %>
+
+		<!--レイアウト通りにできる？？-->
+		<div>
+			<%= attachment_image_tag @item, :item_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+			<label>ジャケット画像の登録</label>
+			 <%= f.attachment_field :item_image %>
+		</div>
+
+
+		<div>
+			<table>
+				<tr>
+					<td><%= f.label :item_name, "シングル/アルバム名" %></td>
+					<td><%= f.text_field :item_name, size:30 %></td>
+				</tr>
+				<tr>
+					<td><%= f.label :artist_name, "アーティスト名" %></td>
+					<td><%= f.collection_select :artist_id, Artist.all, :id, :artist_name, size:20 %></td>
+				</tr>
+				<tr>
+					<td><%= f.label :label_name, "ラベル名" %></td>
+					<td><%= f.collection_select :label_id, Label.all, :id, :label_name, size:20 %></td>
+				</tr>
+				<tr>
+					<td><%= f.label :genre_name, "ジャンル名" %></td>
+					<td><%= f.collection_select :genre_id, Genre.all, :id, :genre_name, size:20 %></td>
+				</tr>
+				<tr>
+					<td><%= f.label :price, "商品価格(税抜)" %></td>
+					<td><span>¥</span><%= f.text_field :price, size:10 %></td>
+				</tr>
+		</table>
+
+		<div>
+			<%= f.label :introduction, "商品説明" %>
+			<br>
+			<%= f.text_area :introduction, size:"50x3" %>
+	    </div>
+
+
+	    <div>
+	      <h4>曲名一覧</h4>
+
+		    <div class="items">
+					<%= f.fields_for :discs do |disc| %>
+						<%= render "disc_fields", f: disc %>
+					<% end %>
+				<div class="links">
+					<%= link_to_add_association "ディスクを追加", f, :discs %>
+				</div>
+			</div>
+
+			<div class="actions">
+				<%= f.submit "商品情報を新規登録する" %>
+			</div>
+		</div>
+
+	<% end %>
+
