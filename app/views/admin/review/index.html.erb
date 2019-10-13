@@ -1,0 +1,50 @@
+<h1>Admin::Reviews#index</h1>
+<h2>レビュー一覧</h2>
+<table class="table table-striped">
+	<%= @reviews.each |review| do %> %>
+		<thead>
+			<tr>
+				<th>
+					<%= link_to user_reviews_path(review.user_id) do %>
+						<%= review.user.last_name %> <%= review.user.first_name %>
+					<% end %>
+						<p>さんのレビュー</p>
+				</th>
+				<th>
+					<%= link_to "編集する", edit_review_path(review.id) %>
+				</th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<%= review.review_body %>
+				</td>
+			</tr>
+			<% end %>
+			<%=paginate @books, class: "paginate" %>
+		</tbody>
+	<% end %>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%= paginate @post_images, class: "paginate" %>

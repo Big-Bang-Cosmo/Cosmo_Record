@@ -1,0 +1,28 @@
+<h1>User::Reviews#item_reviews</h1>
+<h1><%= @review.item_id.item_name %></h1><h2>レビュー一覧</h2>
+<table class="table table-striped">
+	<%= @reviews.each |review| do %> 
+		<thead>
+			<tr>
+				<th>
+					<p>10月10日など</p>
+				</th>
+				<th>
+					<%= link_to user_reviews_path(user.id) do %>
+					<h3><%= review.user_id.user_name %>さんのレビュー</h3>
+					<% end %>
+				</th>
+				<th><%= link_to "編集する", edit_user_path(user.id)%></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<%= review.review_body %>
+				</td>
+			</tr>
+			<%=paginate @reviews, class: "paginate" %>
+		</tbody>
+	<% end %>
+</table>

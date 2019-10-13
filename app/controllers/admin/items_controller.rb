@@ -1,5 +1,8 @@
 class Admin::ItemsController < ApplicationController
+
   def index
+     items = Item.all
+     user = current_user
   end
 
   def new
@@ -14,6 +17,11 @@ class Admin::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @artist = Artist.find(params[:artist_id])
+    @genre = Genre.find(params[:genre_id])
+    @label = Label.find(params[:label_id])
+    @review = Review.new
+
 
   end
 
