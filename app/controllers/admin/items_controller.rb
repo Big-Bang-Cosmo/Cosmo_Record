@@ -14,17 +14,18 @@ class Admin::ItemsController < ApplicationController
   def create
      @item = Item.new(item_params)
      if @item.save
-      redirect_to item_path,notice: "#{@item.item_name}を登録しました"
+      redirect_to  admin_items_index_path, notice: "#{@item.item_name}を登録しました"
      else
       render :new
      end
   end
 
   def edit
-    @item = Item.find(paramas[:id])
+    @item = Item.find(params[:id])
   end
 
   def show
+    @item = Item.find(params[:id])
   end
 
   def update
@@ -36,8 +37,9 @@ class Admin::ItemsController < ApplicationController
   end
 
   def destroy
+    @item = Item.find(params[:id])
     Item.find(params[:id]).destroy
-    redirect_to item_path, notice: "#{@item.item_name}を削除しました"
+    redirect_to  admin_items_index_path, notice: "#{@item.item_name}を削除しました"
   end
 
   def search

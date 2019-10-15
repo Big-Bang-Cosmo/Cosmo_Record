@@ -51,6 +51,14 @@ ActiveRecord::Schema.define(version: 2019_10_13_063348) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "item_id"
+    t.text "review_body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "songs", force: :cascade do |t|
     t.string "song_name"
     t.integer "song_number"

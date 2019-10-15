@@ -3,6 +3,10 @@ class Item < ApplicationRecord
 	belongs_to :label
 	belongs_to :genre
 
+	has_many  :reviews, dependent: :destroy
+
+
+
 	has_many :discs, dependent: :destroy, inverse_of: :item
 	accepts_nested_attributes_for :discs, allow_destroy: true
 

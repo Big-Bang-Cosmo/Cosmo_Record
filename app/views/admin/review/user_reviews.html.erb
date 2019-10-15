@@ -1,0 +1,28 @@
+<h1>Admin::Reviews#user_reviews</h1>
+<h1><%= review.user.user_name %></h1><h2>さんの</h2><h2>レビュー一覧</h2>
+<table class="table table-striped">
+	<%= @reviews.each |review| do %> 
+		<thead>
+			<tr>
+				<th>
+					<p><%= review.create_at.strftime('%y/%m/%d') %></p>
+				</th>
+				<th>
+					<%= link_to item_path(item.id) do %>
+					<%= review.item_id.item_name %>
+					<% end %>
+				</th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<%= review.review_body %>
+				</td>
+			</tr>
+			<%=paginate @reviews, class: "paginate" %>
+		</tbody>
+	<% end %>
+</table>

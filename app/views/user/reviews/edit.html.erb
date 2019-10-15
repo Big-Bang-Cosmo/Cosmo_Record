@@ -1,0 +1,28 @@
+<h1>User::Reviews#edit</h1>
+
+<h2><%= review.item.item_name %></h2>
+<h2><%= review.user.user_name %>さんのレビュー編集</h2>
+
+<%= form_for [@user, @review] do |f| %>
+	<table>
+		<thead>
+			<tr>
+				<th><h1>レビュアー</h1></th>
+				<th></th>
+				<th>
+					<h1><%= f.text_field :user_name %></h1>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<tr><h1>レビュー内容</h1></tr>
+				<th></th>
+				<th>
+					<h3><%= review.body %></h3>
+				</th>
+			</tr>
+		</tbody>
+	</table>
+	<% f.submit "更新", class: "btn btn-lg btn-primary" %>
+<% end %>
