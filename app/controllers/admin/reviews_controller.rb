@@ -4,10 +4,18 @@ class Admin::ReviewsController < ApplicationController
     @reviews = Review.page(params[:page]).per(10)
   end
 
+  # def create
+  #   review = Review.new(review_params)
+  #   item = Item.find(params[:item_id])
+  #   review.item_id = item.id
+  #   review.user_id = current_user.id
+  #   review.save!
+  #   redirect_to admin_path(item.id)
+  # end
+
   def edit
-  	@user = User.find(params[:user_id])
+  	@user = User.find(params[:id])
   	@review = Review.find(params[:id])
-  	end
   end
 
   def update
@@ -23,9 +31,9 @@ class Admin::ReviewsController < ApplicationController
     @reviews = Review.page(params[:page]).per(10)
   	@item = Item.find(params[:item_id])
   end
-end
 
-private
+  private
   def review_params
     params.require(:review).permit(:review, :body)
   end
+end

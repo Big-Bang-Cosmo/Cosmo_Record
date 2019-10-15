@@ -14,24 +14,18 @@ class Admin::ItemsController < ApplicationController
   def create
      @item = Item.new(item_params)
      if @item.save
-      redirect_to item_path,notice: "#{@item.item_name}を登録しました"
+      redirect_to  admin_items_index_path, notice: "#{@item.item_name}を登録しました"
      else
       render :new
      end
   end
 
   def edit
-    @item = Item.find(paramas[:id])
+    @item = Item.find(params[:id])
   end
 
   def show
     @item = Item.find(params[:id])
-    @artist = Artist.find(params[:artist_id])
-    @genre = Genre.find(params[:genre_id])
-    @label = Label.find(params[:label_id])
-    @review = Review.new
-
-
   end
 
   def update
@@ -41,8 +35,9 @@ class Admin::ItemsController < ApplicationController
   end
 
   def destroy
+    @item = Item.find(params[:id])
     Item.find(params[:id]).destroy
-    redirect_to item_path, notice: "#{@item.item_name}を削除しました"
+    redirect_to  admin_items_index_path, notice: "#{@item.item_name}を削除しました"
   end
 
   def search
@@ -51,7 +46,7 @@ class Admin::ItemsController < ApplicationController
   private
 
   def item_params
-   params.require(:item).permit(:item_name, :item_image_id, :price, :introduction, :artist_id, :label_id, :genre_id,discs_attributes: [:id, :item_id, :disc_number, :_destroy, songs_attributes: [:id, :disc_id, :song_title, :song_number, :_destroy]])
+   params.require(:item).permit(:item_name, :item_image, :price, :introduction, :artist_id, :label_id, :genre_id,discs_attributes: [:id, :item_id, :disc_number, :_destroy, songs_attributes: [:id, :disc_id, :song_name, :song_number, :_destroy]])
   end
 
 end
