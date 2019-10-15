@@ -15,8 +15,6 @@ Rails.application.routes.draw do
     post 'items/create'
     get 'items/edit'
     get 'items/show'
-    get 'items/update'
-    get 'items/destroy'
     get 'items/search'
     get 'artists/new'
     post 'artists/create'
@@ -33,7 +31,7 @@ Rails.application.routes.draw do
   scope :user do
   	resources :items
   end
-  
+
  scope :admin do
  	resources :items
  end

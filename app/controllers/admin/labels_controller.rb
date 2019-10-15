@@ -1,5 +1,5 @@
 class Admin::LabelsController < ApplicationController
-	 
+
 	def new
         @label = Label.new
     end

@@ -29,7 +29,9 @@ class Admin::ItemsController < ApplicationController
 
   def update
     if @item.update_attributes(item_params)
-      redirect_to item_path, notice: "#{@item.item_name}を更新しました"
+       redirect_to item_path, notice: "#{@item.item_name}を更新しました"
+    else
+      render :edit
     end
   end
 
