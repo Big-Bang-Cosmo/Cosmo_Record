@@ -1,2 +1,43 @@
-<h1>User::Artists#artists_item</h1>
-<p>Find me in app/views/user/artists/artists_item.html.erb</p>
+
+<h1><%= @artist.aritist_name %>の商品一覧</h1>
+
+<div class="sidebar">
+	<div class="genre-item">
+		<p>ジャンル</p>
+		<ul>
+			<li><%=link_to "J-pop", "" %></li>
+			<li><%=link_to "ロック", "" %></li>
+			<li><%=link_to "ジャズ", "" %></li>
+			<li><%=link_to "アニメ/ゲーム", "" %></li>
+			<li><%=link_to "洋楽", "" %></li>
+			<li><%=link_to "サウンドトラック", "" %></li>
+		</ul>
+	</div>
+</div>
+
+<div class="ranking">
+	<div class="ranking-item">
+		<p>売上ランキング</p>
+		<ol>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ol>
+	</div>
+</div>
+
+<% @items.each do |item| %>
+	<table border="1">
+			<tr>
+				<td><%= attachment_image_tag item.artist, :item_iamge, fill, 60, 60, class: "pull-left", fallback: "no_image.jpg" %></td>
+				<td><%= item.item_name %></td>
+				<td><%= item.artist_id.artist_name %></td>
+				<td><p>価格（税抜）：</p><%= item.price * 1.1 %></td>
+				<td>ハート<%= item.@favorites.count %></td>
+			</tr>
+	</table>
+<% end %>
+
+<%= paginate @post_images, class: "paginate" %>

@@ -1,5 +1,35 @@
 Rails.application.routes.draw do
 
+  namespace :user do
+    get 'user/new'
+    get 'user/edit'
+    get 'user/favorites'
+  end
+  namespace :admin do
+    get 'user/index'
+    get 'user/edit'
+  end
+  namespace :admin do
+    get 'home/top'
+  end
+  namespace :user do
+    get 'contacts/new'
+  end
+  namespace :admin do
+    get 'contacts/index'
+    get 'contacts/show'
+  end
+  devise_for :admins, controllers: {
+  sessions:      'admins/sessions',
+  passwords:     'admins/passwords',
+  registrations: 'admins/registrations'
+}
+devise_for :users, controllers: {
+  sessions:      'users/sessions',
+  passwords:     'users/passwords',
+  registrations: 'users/registrations'
+}
+
  namespace :user do
    get 'reviews/item_reviews'
    get 'reviews/:id/edit' => 'reviews#edit'
@@ -39,7 +69,6 @@ Rails.application.routes.draw do
    get 'items/:id/show' => 'items#show'
    get 'items/:id/search' => 'items#search'
  end
- devise_for :users
  scope :user do
      resources :items
  end
