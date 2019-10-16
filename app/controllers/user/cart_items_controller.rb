@@ -4,6 +4,12 @@ class User::CartItemsController < ApplicationController
   	@total_price = @cart_items.sum(:item_price)
   end
 
+  def show
+    @tax_price = @item.price * 1.1
+    @review = @Review.new
+    redirect_to
+
+
   def add_item
   	@item = Item.find(params[:id])
     @cart_item = current_user.cart_item.new(item_id: item.id)
