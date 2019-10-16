@@ -1,8 +1,8 @@
 class Admin::ItemsController < ApplicationController
 
   def index
-     items = Item.all
-     user = current_user
+     @items = Item.all
+     @user = current_user
   end
 
   def new
@@ -26,6 +26,8 @@ class Admin::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @cart_item = current_user.cart_item.new
+    @cart_item.item.id = @item.id
   end
 
   def update

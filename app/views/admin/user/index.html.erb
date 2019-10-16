@@ -1,0 +1,25 @@
+
+<table class="user-index">
+    <thead>
+	    <tr>
+	    	<th>お名前</th>
+	    	<th>郵便番号</th>
+	    	<th>住所</th>
+	    	<th>電話番号</th>
+	    	<th>メールアドレス</th>
+	    	<th>パスワード</th>
+	    </tr>
+	</thead>
+	<tbody>
+    <% @users.each do |user| %>
+        <tr>
+        	<td><%= user.first_name + user.last_name %></td>
+			<td><%= user.deliveries.delivery_postal_code %></td>
+    		<td><%= user.deliveries.delivery_address %></td>
+    		<td><%= user.deliveries.delivery_phone_number %></td>
+    		<td><%= user.email %></td>
+    		<td><%= user.encrypted_password %></td>
+    	</tr>
+    </tbody>
+	<% end %>
+</table>
