@@ -9,12 +9,14 @@ class Admin::ItemsController < ApplicationController
      @item = Item.new
      @disc = @item.discs.build
      @song = @disc.songs.build
+     @moji = "商品を追加する"
+     @url = admin_items_path
   end
 
   def create
      @item = Item.new(item_params)
      if @item.save
-      redirect_to  admin_items_index_path, notice: "#{@item.item_name}を登録しました"
+      redirect_to  admin_items_path, notice: "#{@item.item_name}を登録しました"
      else
       render :new
      end
@@ -22,17 +24,18 @@ class Admin::ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    @moji = "商品を編集する"
+    @url = admin_item_path
   end
 
   def show
     @item = Item.find(params[:id])
-    @cart_item = current_user.cart_item.new
-    @cart_item.item.id = @item.id
   end
 
   def update
-    if @item.update_attributes(item_params)
-       redirect_to item_path, notice: "#{@item.item_name}を更新しました"
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+       redirect_to admin_items_path, notice: "#{@item.item_name}を更新しました"
     else
       render :edit
     end
@@ -41,7 +44,7 @@ class Admin::ItemsController < ApplicationController
   def destroy
     @item = Item.find(params[:id])
     Item.find(params[:id]).destroy
-    redirect_to  admin_items_index_path, notice: "#{@item.item_name}を削除しました"
+    redirect_to  admin_items_path, notice: "#{@item.item_name}を削除しました"
   end
 
   def search
