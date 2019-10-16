@@ -1,2 +1,21 @@
 <h1>User::Items#search</h1>
-<p>Find me in app/views/user/items/search.html.erb</p>
+
+<% @items.each do |item| %>
+	<div>
+		<div>
+			<%= attachment_image_tag @item, :item_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+		</div>
+		<div>
+			<%= @item.item_name %>
+			<%= @item.artist.artist_name %>
+	    </div>
+	    <div>
+			価格（税込）
+			¥<%= @tax_price %>
+	    </div>
+	    <div>
+			お気に入り
+			ハート
+	    </div>
+	</div>
+<% end %>

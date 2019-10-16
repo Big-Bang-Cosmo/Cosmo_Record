@@ -11,5 +11,6 @@ class User::ItemsController < ApplicationController
   end
 
   def search
+    @items = Item.search(params[:search])
   end
 end
