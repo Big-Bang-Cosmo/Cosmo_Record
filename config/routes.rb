@@ -1,5 +1,33 @@
 Rails.application.routes.draw do
- devise_for :users
+  namespace :user do
+    get 'user/new'
+    get 'user/edit'
+    get 'user/favorites'
+  end
+  namespace :admin do
+    get 'user/index'
+    get 'user/edit'
+  end
+  namespace :admin do
+    get 'home/top'
+  end
+  namespace :user do
+    get 'contacts/new'
+  end
+  namespace :admin do
+    get 'contacts/index'
+    get 'contacts/show'
+  end
+  devise_for :admins, controllers: {
+  sessions:      'admins/sessions',
+  passwords:     'admins/passwords',
+  registrations: 'admins/registrations'
+}
+devise_for :users, controllers: {
+  sessions:      'users/sessions',
+  passwords:     'users/passwords',
+  registrations: 'users/registrations'
+}
 
  namespace :user do
    resources :items
@@ -46,5 +74,7 @@ Rails.application.routes.draw do
 #   resources :items
 #     resources :reviews, only: [:create, :edit, :update, :destroy]
 # end
+    # resources :items
+   # resources :reviews, only: [:create, :edit, :update, :destroy]
  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

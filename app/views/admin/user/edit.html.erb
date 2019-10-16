@@ -1,0 +1,42 @@
+<h1><%= current_user.name %>さん編集ページ</h1>
+<%= form_for(@user) do |f| %>
+	<table>
+		<thead>
+			<tr>
+				<th>名前</th>
+				<th><%= f.text_field :current_user.name %></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>メールアドレス</td>
+				<td><%= f.email_field :email %></td>
+			</tr>
+			<tr>
+				<td>パスワード</td>
+				<td><%= f.number_field :encrypted_password %></td>
+			</tr>
+			<tr>
+				<td>電話番号</td>
+				<td><%= f.number_field :delivery_phone_number %></td>
+			</tr>
+			<tr>
+				<td>郵便番号</td>
+				<td><%= f.number_field :delivery_postal_code %></td>
+			</tr>
+			<tr>
+				<td>住所</td>
+				<td>f.text_area</td>
+			</tr>
+			<tr>
+				<td>配送先の郵便番号</td>
+				<td>f.number_field</td>
+			</tr>
+			<tr>
+				<td>配送先の住所</td>
+				<td>f.text_area</td>
+			</tr>
+		</tbody>
+	</table>
+<% end %>
+<%= f.submit "保存" %>

@@ -1,0 +1,16 @@
+
+<h1>お問い合わせ一覧</h1>
+
+<% @contacts.each do |contact| %>
+	<table border="1">
+			<tr>
+				<td><%= contact.created_at.strftime('%Y/%m/%d') %></td>
+				<td><%= contact.last_name + contact.first_name %></td>
+				<td><%= contact.email %></td>
+				<td><%= contact.phone_number %></td>
+				<td><!--応対済み--></td>
+			</tr>
+	</table>
+<% end %>
+
+<%= paginate @post_images, class: "paginate" %>
