@@ -1,4 +1,4 @@
-	<%= form_for(@item, url: admin_items_create_path) do |f|%>
+	<%= form_for(@item, url: @url) do |f|%>
 
 	 <!-- エラー文　英語でいい？-->
 		<% if item.errors.any? %>
@@ -12,7 +12,6 @@
 			</div>
 		<% end %>
 
-		<!--レイアウト通りにできる？？-->
 		<div>
 			<%= attachment_image_tag @item, :item_image, :fill, 60, 60, fallback: "no_image.jpg" %>
 			<label>ジャケット画像の登録</label>
@@ -64,7 +63,8 @@
 			</div>
 
 			<div class="actions">
-				<%= f.submit "商品情報を新規登録する" %>
+
+				<%= f.submit @moji %>
 			</div>
 		</div>
 

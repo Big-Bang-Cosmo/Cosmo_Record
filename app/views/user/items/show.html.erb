@@ -19,14 +19,21 @@
 	<% else %>
 		<h3>在庫僅か</h3>
 	<% end %>
-<<<<<<< HEAD
+
+
 	<%= form_for @cart_item do |f| %>
         <%= f.hiddin_field :quantity, value: 1 %>
         <%= f.submit ‘カートに入れる’ %>
     <% end %>
-=======
+
 	<h3>カートに入れる</h3>
->>>>>>> b3929e532b7ba2906ebd271bea9cf82334691810
+
+
+	<%= form_for @cart_item do |f| %>
+		<%= f.hiddin_field :quantity, value: 1 %>
+		<%= f.submit 'カートに入れる' %>
+	<% end %>
+
 	<h4>お気に入りに追加</h4>
 </div>
 

@@ -37,6 +37,33 @@
 			<% end %>
 		</table>
 	</div>
+
+	<%= @tax_price %>
+
+	<h3>販売中</h3>
+	<h3>在庫数：<%= @item.stock %></h3>
+	<h3><%= link_to "商品を編集する", edit_admin_item_path(@item.id) %></h3>
+	<h3><%= link_to "商品を削除する", admin_item_path(@item.id), method: :delete %></h3>
+</div>
+
+<div class = "item_introduction">
+	<h3>商品説明：</h3><br>
+	<%= @item.introduction %>
+</div>
+<div class = "item_songs">
+	<table>
+		<% @item.discs.each  do |disc| %>
+			<tr>
+				<td>Disc<%= disc.disc_number %></td>
+					<% disc.songs.each  do |song| %>
+						<tr>
+							<td><%= song.song_number%></td>
+							<td><%= song.song_name %></td>
+						</tr>
+					<% end %>
+			</tr>
+		<% end %>
+	</table>
 </div>
 
 
