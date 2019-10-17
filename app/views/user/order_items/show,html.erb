@@ -1,0 +1,44 @@
+<h2>決済確定ページ</h2>
+
+<%= form_for() do || %>
+
+<div>
+     <%= f.submit ,'注文を確定する' %>
+</div>
+
+<div>
+	<div>
+		<p>お届け先</p>
+		<%= %>
+		<%= link_to 'お届け先を変更する' %>
+	</div>
+	<div>
+		<p>商品の小計:<%= %></p>
+		<p>配送料:<%= %></p>
+		<p>ご請求額:<%= %></p>
+	</div>
+</div>
+
+<div>
+	<h3>支払い情報</h3>
+	<p>クレジットカード　visa下4桁 XXXX</p>
+</div>
+
+
+<div>
+	<p><%= attachment_image_tag @item, :item_image, size:"200x200", format:"jpeg", fallback: "no_image.jpag" %></p>
+	<p><%= %></p>
+	<p><%= %></p>
+	<p>価格(税込)¥<%= %></p>
+	<p>数量:</p>
+	<p>削除</p>
+</div>
+
+<div>
+	<h3>お支払い方法</h3>
+	<p></p>
+</div>
+
+
+<% end %>
+

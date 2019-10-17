@@ -14,6 +14,7 @@ class Admin::ArrivalsController < ApplicationController
 		item = Item.find(params[:item_id])
 		arrival = Arrival.new(arrival_params)
 		arrival.item_id = item.id
+		item.stock += arrival.arrival_quantity(params[:id])
 		arrival.save
 		redirect_to admin_arrivals_index_path
 	end
