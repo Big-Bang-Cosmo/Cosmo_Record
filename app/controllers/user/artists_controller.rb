@@ -1,7 +1,7 @@
-class ArtistsController < ApplicationController
+class User::ArtistsController < ApplicationController
   def show
-  	@artist = Artist.find(params[:aritist_id])
-  	@items = artist.item.page(params[:page]).reverse_order
+  	@artist = Artist.find(params[:id])
+  	@items = @artist.items.page(params[:page]).reverse_order
     @genres = Genre.all
     @user = current_user
   end

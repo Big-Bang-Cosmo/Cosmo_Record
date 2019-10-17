@@ -4,7 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :reviews, dependent: :destroy
+  has_many :cart_items, dependent: :destroy
   has_many :deliveries, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :order_items, dependent: :destroy
   accepts_nested_attributes_for :deliveries, allow_destroy: true
 end
