@@ -43,7 +43,11 @@ devise_for :users, controllers: {
 
 
  namespace :admin do
-  resources :items
+  resources :items do
+   resources :arrivals,only: [:new, :create, :edit, :update, :destroy]
+  end
+   get 'arrivals/index' => 'arrivals#index'
+
    get 'artists/new'
    post 'artists/create' => 'artists#create'
    get 'labels/new'
