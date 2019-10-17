@@ -32,6 +32,7 @@ devise_for :users, controllers: {
 
 
  namespace :user do
+
    resources :items
    resources :cart_item
    get 'cart_items' => 'cart_items#user_cart_items'
@@ -42,6 +43,20 @@ devise_for :users, controllers: {
    get 'genres/genres_items'
    get 'artists/artists_items'
    get 'items/:id/search' => 'items#search'
+
+  resources :items do
+    resource :favorites, only: [:create, :destroy]
+  end
+  resources :cart_item
+  get 'reviews/item_reviews'
+  get 'reviews/:id/edit' => 'reviews#edit'
+  get 'reviews/:id/update' => 'reviews#update'
+  get 'genres/genres_items'
+  get 'artists/artists_items'
+  get 'items/:id/show' => 'items#show'
+  get 'items/:id/search' => 'items#search'
+end
+
 
  end
 
