@@ -3,6 +3,7 @@ class Item < ApplicationRecord
 	belongs_to :label
 	belongs_to :genre
 
+	has_many :cart_items, dependent: :destroy
 	has_many  :reviews, dependent: :destroy
 	has_many  :ariivals, dependent: :destroy
 
@@ -14,7 +15,6 @@ class Item < ApplicationRecord
     #引数で渡されたユーザidがFavoritesテーブル内に存在（exists?）するかどうかを調べます。
     #存在していればtrue、存在していなければfalseを返すようにしています。
 	accepts_nested_attributes_for :discs, allow_destroy: true
-
 	attachment :item_image
 
 	validates :artist_id, presence: :true
@@ -30,7 +30,8 @@ class Item < ApplicationRecord
 		if search
 			Item.where(['item_name LIKE?', "%#{search}%"])
 		else
-			Book.all
+			Item.all
 		end
 	end
 end
+	
