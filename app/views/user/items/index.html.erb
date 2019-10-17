@@ -5,14 +5,9 @@
 	<div class="genre-item">
 		<p>ジャンル</p>
 		<ul>
-			<%= @genres.each do |genre| %>
+			<% @genres.each do |genre| %>
+			<li><%= genre.genre_name %></li>
 			<% end %>
-			<!-- <li><%=link_to "J-pop", "" %></li>
-			<li><%=link_to "ロック", "" %></li>
-			<li><%=link_to "ジャズ", "" %></li>
-			<li><%=link_to "アニメ/ゲーム", "" %></li>
-			<li><%=link_to "洋楽", "" %></li>
-			<li><%=link_to "サウンドトラック", "" %></li> -->
 		</ul>
 	</div>
 </div>
@@ -33,14 +28,27 @@
 <% @items.each do |item| %>
 	<table border="1">
 			<tr>
-				<td><%= attachment_image_tag item.artist, :item_iamge, fill, 60, 60, class: "pull-left", fallback: "no_image.jpg" %></td>
+				<td><%= attachment_image_tag item, :item_image, :fill, 60, 60, fallback: "no_image.jpg" %></td>
 				<td><%= item.item_name %></td>
-				<td><%= item.artist_id.artist_name %></td>
-				<td><p>価格（税抜）：</p><%= item.price * 1.1 %></td>
-				<td>ハート<%= item.favorites.count %></td>
+				<td><%= item.artist.artist_name %></td>
+				<td><p>価格（税込）：</p><%= item.price * 1.1 %></td>
+                <td>
+					<% if item.favorited_by?(current_user) %>
+					    <%= link_to user_item_favorites_path(item), method: :delete do %>
+					      <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
+					      <%= item.favorites.count %>
+					    <% end %>
+					<% else %>
+					    <%= link_to user_item_favorites_path(item), method: :post do %>
+					      <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+					      <%= item.favorites.count %>
+					    <% end %>
+					<% end %>
+                </td>
 			</tr>
 	</table>
 <% end %>
 
 <%= paginate @items, class: "paginate" %>
+
 

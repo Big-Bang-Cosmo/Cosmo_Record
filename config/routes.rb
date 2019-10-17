@@ -30,16 +30,18 @@ devise_for :users, controllers: {
 }
 
  namespace :user do
-   resources :items
-   resources :cart_item
-   get 'reviews/item_reviews'
-   get 'reviews/:id/edit' => 'reviews#edit'
-   get 'reviews/:id/update' => 'reviews#update'
-   get 'genres/genres_items'
-   get 'artists/artists_items'
-   get 'items/:id/show' => 'items#show'
-   get 'items/:id/search' => 'items#search'
- end
+  resources :items do
+    resource :favorites, only: [:create, :destroy]
+  end
+  resources :cart_item
+  get 'reviews/item_reviews'
+  get 'reviews/:id/edit' => 'reviews#edit'
+  get 'reviews/:id/update' => 'reviews#update'
+  get 'genres/genres_items'
+  get 'artists/artists_items'
+  get 'items/:id/show' => 'items#show'
+  get 'items/:id/search' => 'items#search'
+end
 
 
  namespace :admin do
@@ -82,3 +84,4 @@ devise_for :users, controllers: {
    # resources :reviews, only: [:create, :edit, :update, :destroy]
  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
+

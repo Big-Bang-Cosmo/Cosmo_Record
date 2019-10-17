@@ -7,6 +7,12 @@ class Item < ApplicationRecord
 	has_many  :ariivals, dependent: :destroy
 
 	has_many :discs, dependent: :destroy, inverse_of: :item
+	has_many :favorites, dependent: :destroy
+    def favorited_by?(user)
+      favorites.where(user_id: user.id).exists?
+    end
+    #引数で渡されたユーザidがFavoritesテーブル内に存在（exists?）するかどうかを調べます。
+    #存在していればtrue、存在していなければfalseを返すようにしています。
 	accepts_nested_attributes_for :discs, allow_destroy: true
 
 	attachment :item_image
