@@ -44,18 +44,22 @@ devise_for :users, controllers: {
 end
 
 
-  namespace :admin do
-   resources :items
-    get 'artists/new'
-    post 'artists/create' => 'artists#create'
-    get 'labels/new'
-    post 'labels/create' => 'labels#create'
-    get 'genres/new'
-    post 'genres/create' => 'genres#create'
-    get 'reviews/index'
-    get 'reviews/:id/edit' => 'reviews#edit'
-    get 'reviews/user_reviews'
+ namespace :admin do
+  resources :items do
+   resources :arrivals,only: [:new, :create, :edit, :update, :destroy]
   end
+   get 'arrivals/index' => 'arrivals#index'
+
+   get 'artists/new'
+   post 'artists/create' => 'artists#create'
+   get 'labels/new'
+   post 'labels/create' => 'labels#create'
+   get 'genres/new'
+   post 'genres/create' => 'genres#create'
+   get 'reviews/index'
+   get 'reviews/:id/edit' => 'reviews#edit'
+   get 'reviews/user_reviews'
+ end
 
 
 # get 'genres/genre_items'

@@ -1,0 +1,17 @@
+<h2>入荷数を入力</h2>
+
+<div>
+	<%= attachment_image_tag @item, :item_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+	<%= @item.item_name %>
+	<%= @item.artist.artist_name %>
+	価格(税抜):¥<%= @item.price %>
+
+
+	<%= form_for(@arrival, url:admin_item_arrivals_path, method: :post) do |f| %>
+			<label>入荷枚数</label>
+			<%= f.number_field :arrival_number,min:1 %>
+			<%= f.submit %>
+	<% end %>
+
+</div>
+
