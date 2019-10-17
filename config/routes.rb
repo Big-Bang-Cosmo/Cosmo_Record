@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   namespace :user do
     get 'user/new'
     get 'user/edit'
@@ -29,7 +30,20 @@ devise_for :users, controllers: {
   registrations: 'users/registrations'
 }
 
+
  namespace :user do
+
+   resources :items
+   resources :cart_item
+   get 'cart_items' => 'cart_items#user_cart_items'
+   post 'cart_items/:id' => 'cart_items#add_items', as:'add_item'
+   get 'reviews/item_reviews'
+   get 'reviews/:id/edit' => 'reviews#edit'
+   get 'reviews/:id/update' => 'reviews#update'
+   get 'genres/genres_items'
+   get 'artists/artists_items'
+   get 'items/:id/search' => 'items#search'
+
   resources :items do
     resource :favorites, only: [:create, :destroy]
   end
@@ -42,6 +56,7 @@ devise_for :users, controllers: {
   get 'items/:id/show' => 'items#show'
   get 'items/:id/search' => 'items#search'
 end
+
 
 
  namespace :admin do
@@ -59,7 +74,7 @@ end
    get 'reviews/index'
    get 'reviews/:id/edit' => 'reviews#edit'
    get 'reviews/user_reviews'
- end
+end
 
 
 # get 'genres/genre_items'

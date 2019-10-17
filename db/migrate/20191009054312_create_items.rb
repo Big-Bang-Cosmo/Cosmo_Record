@@ -8,7 +8,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.string :item_image
       t.integer :price
       t.text :introduction
-      t.integer :stock
+      t.integer :stock, null: false, default: "0"
       t.string :is_item_deletable
 
       t.timestamps

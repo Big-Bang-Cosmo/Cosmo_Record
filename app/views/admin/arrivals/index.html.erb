@@ -7,7 +7,7 @@
 		    <li><%= attachment_image_tag arrival.item, :item_image, :fill, 60, 60, fallback: "no_image.jpg" %></li>
 		    <li><%= arrival.item.item_name %></li>
 			<li><%= arrival.item.artist.artist_name %></li>
-			<li>数量:<%= arrival.arrival_number %></li>
+			<li>数量:<%= arrival.arrival_quantity %></li>
 			<li>価格(税抜):¥<%= arrival.item.price %></li>
 		<ul>
 	</div>
