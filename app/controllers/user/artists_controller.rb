@@ -1,8 +1,8 @@
 class ArtistsController < ApplicationController
-  def artist_items
-  	　@artist = Artist.find(params[:id])
-  	　@items = @artist.items.page(params[:page]).reverse_order
-     @favorite = Favorite.where(item_id: item.id)
-     @user = current_user
+  def show
+  	@artist = Artist.find(params[:aritist_id])
+  	@items = artist.item.page(params[:page]).reverse_order
+    @genres = Genre.all
+    @user = current_user
   end
 end

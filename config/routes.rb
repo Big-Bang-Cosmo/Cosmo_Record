@@ -33,12 +33,12 @@ devise_for :users, controllers: {
   resources :items do
     resource :favorites, only: [:create, :destroy]
   end
+  resources :artists, only: [:show]
   resources :cart_item
   get 'reviews/item_reviews'
   get 'reviews/:id/edit' => 'reviews#edit'
   get 'reviews/:id/update' => 'reviews#update'
   get 'genres/genres_items'
-  get 'artists/artists_items'
   get 'items/:id/show' => 'items#show'
   get 'items/:id/search' => 'items#search'
 end
