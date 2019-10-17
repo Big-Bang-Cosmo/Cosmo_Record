@@ -1,8 +1,8 @@
 <h1>Admin::Items#show</h1>
 
-<%= attachment_image_tag @item, :item_image, size:"200x200", format:"jpeg", fallback: "no_image.jpag" %>
+<%= attachment_image_tag @item, :item_image, :fill, 250, 250, fallback: "no_image.jpg" %>
 <div = item_box>
-	<h1><%= item.item_name %></h1>
+	<h1><%= @item.item_name %></h1>
 
 	<div = item_info>
 		<%= @item.artist.artist_name %>
@@ -12,24 +12,11 @@
 
 	<%= @tax_price %>
 
-	<% if @item.stock >= 10 %>
-		<h3>在庫あり</h3>
-	<% elsif @item.stock == 0%>
-		<h3>在庫なし</h3>
-	<% else %>
-		<h3>在庫僅か</h3>
-	<% end %>
+	<!-- SLACKの自分のチャンネルにstokの記述を貼ってます -->
 
 
-	<%= form_for @cart_item do |f| %>
-        <%= f.hiddin_field :quantity, value: 1 %>
-        <%= f.submit ‘カートに入れる’ %>
-    <% end %>
 
-	<h3>カートに入れる</h3>
-
-
-	<%= form_for @cart_item do |f| %>
+	<%= form_for(@item, url:user_add_item_path ) do |f| %>
 		<%= f.hiddin_field :quantity, value: 1 %>
 		<%= f.submit 'カートに入れる' %>
 	<% end %>
@@ -37,15 +24,15 @@
 	<h4>お気に入りに追加</h4>
 </div>
 
-<div = item_introduction>
+<div class = "item_introduction">
 	<h3>商品説明：</h3><br>
 	<%= @item.introduction %>
 </div>
-<div = item_songs>
+<div class = "item_songs">
 	<table>
-		<% @item.disc.each |disc| do %>
+		<%= @item.discs.each do |disc| %>
 			<td>
-				<% disc.songs.each |song| do %>
+				<%= disc.songs.each do |song| %>
 				<% end %>
 			</td>
 		<% end %>
@@ -55,3 +42,4 @@
 <%= form_for [@item, @review] do |f| %>
 <%= f.text_area :review_body %>
 <%= f.submit '送信' %>
+<% end %>

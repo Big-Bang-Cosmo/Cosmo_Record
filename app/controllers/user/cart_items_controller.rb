@@ -1,13 +1,10 @@
 class User::CartItemsController < ApplicationController
   def user_cart_items
-  	@cart_items = current_user.cart_item.where(item_id: item.id)
+    @user = User.find(params[:user_id])
+  	@cart_items = @user.cart_item.all
   	@total_price = @cart_items.sum(:item_price)
   end
 
-  def show
-    @tax_price = @item.price * 1.1
-    @review = @Review.new
-    redirect_to
 
 
   def add_item
@@ -19,7 +16,7 @@ class User::CartItemsController < ApplicationController
   def create
   	@cart_item = CartItem.find
   	@cart_item.save
-  	redirect_to
+  	redirect_to user_cart_items_path
   end
 
   def update
