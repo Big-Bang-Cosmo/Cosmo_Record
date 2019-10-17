@@ -16,7 +16,7 @@ class Admin::ItemsController < ApplicationController
   def create
      @item = Item.new(item_params)
      if @item.save
-      # redirect_to  admin_items_path, notice: "#{@item.item_name}を登録しました"
+      redirect_to  admin_items_path notice: "#{@item.item_name}を登録しました"
      else
       render :new
      end

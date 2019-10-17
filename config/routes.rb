@@ -58,7 +58,6 @@ devise_for :users, controllers: {
 end
 
 
- end
 
  namespace :admin do
   resources :items do
