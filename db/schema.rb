@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2019_10_15_071758) do
 
   create_table "arrivals", force: :cascade do |t|
     t.integer "item_id"
-    t.integer "arrival_number"
+    t.integer "arrival_quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

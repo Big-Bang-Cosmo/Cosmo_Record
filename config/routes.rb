@@ -51,7 +51,6 @@ devise_for :users, controllers: {
   end
    get 'arrivals/index' => 'arrivals#index'
 
-
    get 'artists/new'
    post 'artists/create' => 'artists#create'
    get 'labels/new'
