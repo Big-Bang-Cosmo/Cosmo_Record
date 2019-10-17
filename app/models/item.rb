@@ -5,6 +5,7 @@ class Item < ApplicationRecord
 
 	has_many :cart_items, dependent: :destroy
 	has_many  :reviews, dependent: :destroy
+	has_many  :ariivals, dependent: :destroy
 
 	has_many :discs, dependent: :destroy, inverse_of: :item
 	accepts_nested_attributes_for :discs, allow_destroy: true

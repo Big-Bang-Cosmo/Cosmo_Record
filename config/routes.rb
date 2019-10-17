@@ -44,10 +44,14 @@ devise_for :users, controllers: {
    get 'items/:id/search' => 'items#search'
 
  end
- 
 
-namespace :admin do
-   resources :items
+ namespace :admin do
+  resources :items do
+   resources :arrivals,only: [:new, :create, :edit, :update, :destroy]
+  end
+   get 'arrivals/index' => 'arrivals#index'
+
+
    get 'artists/new'
    post 'artists/create' => 'artists#create'
    get 'labels/new'

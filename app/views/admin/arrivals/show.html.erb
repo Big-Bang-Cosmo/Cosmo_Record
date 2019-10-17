@@ -1,0 +1,9 @@
+<h2>入荷数</h2>
+
+<div>
+	<%= attachment_image_tag @item, :item_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+	<%= @item.item_name %>
+	<%= @item.artist.artist_name %>
+	価格(税抜):¥<%= @item.price %>
+	<%= link_to "入荷枚数を入力する", %>
+</div>

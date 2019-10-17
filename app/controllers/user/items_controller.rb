@@ -6,7 +6,6 @@ def show
     @review = Review.new
 end
 
-
   def search
     @items = Item.search(params[:search])
   end
