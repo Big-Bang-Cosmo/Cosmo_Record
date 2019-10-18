@@ -1,7 +1,9 @@
 
-<p><%=link_to "商品の一覧", "" %></p>
-<p><%=link_to "商品新規追加", "admin_items_new_path" %></p>
-<p><%=link_to "入荷履歴", "" %></p>
-<p><%=link_to "ユーザー一覧", "" %></p>
-<p><%=link_to "アーティスト、レーベル、ジャンル登録", "" %></p>
-<p><%=link_to "お問い合わせ一覧", "" %></p>
+<p><%=link_to "商品の一覧", admin_items_path %></p>
+<p><%=link_to "商品新規追加", new_admin_item_path %></p>
+<p><%=link_to "入荷履歴", admin_arrivals_index_path %></p>
+<p><%=link_to "ユーザー一覧", admin_user_index_path %></p>
+<p><%=link_to "アーティスト登録", admin_artists_new_path %></p>
+<p><%=link_to "レーベル登録", admin_labels_new_path %></p>
+<p><%=link_to "ジャンル登録", admin_genres_new_path %></p>
+<p><%=link_to "お問い合わせ一覧", admin_contacts_path %></p>
