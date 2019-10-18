@@ -3,8 +3,8 @@
 
 	<table border="1">
 			<tr>
-				<td><%= @contact.created_at %></td>
-				<td><%= @contact.last_name + contact.first_name %></td>
+				<td><%= l @contact.created_at, format: :short %></td>
+				<td><%= @contact.last_name + @contact.first_name %></td>
 				<td><%= @contact.email %></td>
 				<td><%= @contact.phone_number %></td>
 			</tr>

@@ -12,13 +12,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'home/top'
   end
-  namespace :user do
-    get 'contacts/new'
-  end
-  namespace :admin do
-    get 'contacts/index'
-    get 'contacts/show'
-  end
+
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
   passwords:     'admins/passwords',
@@ -47,11 +41,12 @@ devise_for :users, controllers: {
     resource :favorites, only: [:create, :destroy]
   end
   resources :artists, only: [:show]
+  resources :genres, only: [:show]
+  resources :contacts, only: [:new, :create]
   resources :cart_item
   get 'reviews/item_reviews'
   get 'reviews/:id/edit' => 'reviews#edit'
   get 'reviews/:id/update' => 'reviews#update'
-  get 'genres/genres_items'
   get 'items/:id/show' => 'items#show'
   get 'items/:id/search' => 'items#search'
 end
@@ -62,8 +57,8 @@ end
   resources :items do
    resources :arrivals,only: [:new, :create, :edit, :update, :destroy]
   end
+   resources :contacts, only: [:index, :show]
    get 'arrivals/index' => 'arrivals#index'
-
    get 'artists/new'
    post 'artists/create' => 'artists#create'
    get 'labels/new'
