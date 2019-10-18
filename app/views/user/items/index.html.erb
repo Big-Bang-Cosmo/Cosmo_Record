@@ -31,7 +31,7 @@
 				<td><%= attachment_image_tag item, :item_image, :fill, 60, 60, fallback: "no_image.jpg" %></td>
 				<td><%= item.item_name %></td>
 				<td><%= item.artist.artist_name %></td>
-				<td><p>価格（税込）：</p><%= item.price * 1.1 %></td>
+				<td><p>価格（税込）：</p><%= (item.price * 1.1).floor %></td><!--(item.price * 1.1).floorで小数点切り捨て出来る-->
                 <td>
                 	<% if user_signed_in? %>
 						<% if item.favorited_by?(current_user) %>

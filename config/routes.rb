@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'orders/index'
+    get 'orders/bought_items'
+    get 'orders/day_bought_items'
+  end
   namespace :user do
     get 'user/new'
     get 'user/edit'
@@ -57,7 +62,7 @@ end
   resources :items do
    resources :arrivals,only: [:new, :create, :edit, :update, :destroy]
   end
-   resources :contacts, only: [:index, :show]
+   resources :contacts, only: [:index, :show, :update]
    get 'arrivals/index' => 'arrivals#index'
    get 'artists/new'
    post 'artists/create' => 'artists#create'
