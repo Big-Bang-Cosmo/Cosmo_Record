@@ -44,10 +44,15 @@ devise_for :users, controllers: {
    get 'artists/artists_items'
    get 'items/:id/search' => 'items#search'
 
+   resources :order_items,only: [:show, :create, :edit, :update, :destroy]
+   resources :orders
+
+
   resources :items do
     resource :favorites, only: [:create, :destroy]
   end
   resources :cart_item
+
   get 'reviews/item_reviews'
   get 'reviews/:id/edit' => 'reviews#edit'
   get 'reviews/:id/update' => 'reviews#update'
@@ -56,7 +61,6 @@ devise_for :users, controllers: {
   get 'items/:id/show' => 'items#show'
   get 'items/:id/search' => 'items#search'
 end
-
 
 
  namespace :admin do
@@ -75,7 +79,6 @@ end
    get 'reviews/:id/edit' => 'reviews#edit'
    get 'reviews/user_reviews'
 end
-
 
 # get 'genres/genre_items'
 # get 'artists/artist_items'

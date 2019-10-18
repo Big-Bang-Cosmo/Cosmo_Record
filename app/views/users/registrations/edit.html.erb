@@ -1,7 +1,44 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container">
+  <h2><%= resource_name.to_s.humanize %>さんの編集ページ</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+
+  <p class="registrations-headline">お名前</p>
+  <div class="field">
+  <%= f.label :姓 %><br />
+  <%= f.text_field :last_name, autofocus: true, autocomplete: "name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :名 %><br />
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "name" %>
+  </div>
+
+  <p class="registrations-headline">お名前(カタカナ)</p>
+  <div class="field">
+    <%= f.label :姓 %><br />
+    <%= f.text_field :last_name_ruby, autofocus: true, autocomplete: "name" %>
+  </div>
+  <div class="field">
+    <%= f.label :名 %><br />
+    <%= f.text_field :first_name_ruby, autofocus: true, autocomplete: "name" %>
+  </div>
+
+  <p class="registrations-headline">性別</p>
+  <%= f.label :gender, :男性 %>
+  <%= f.radio_button :gender, 1 %>
+  <%= f.label :gender, :女性 %>
+  <%= f.radio_button :gender, 2 %>
+
+    <div class="field">
+          <%= f.fields_for :deliveries do |u| %>
+            <%= render "delivery_fields", f: u %>
+          <% end %>
+        <div class="links">
+          <%= link_to_add_association "配送先を追加", f, :deliveries %>
+        </div>
+     </div>
 
   <div class="field">
     <%= f.label :email %><br />
@@ -32,7 +69,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "編集" %>
   </div>
 <% end %>
 
@@ -41,3 +78,5 @@
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+
+</div>
