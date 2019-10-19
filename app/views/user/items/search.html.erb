@@ -1,4 +1,4 @@
-<h1>User::Items#search</h1>
+<h1>（ユーザー側）User::Items#search</h1>
 
 <% @items.each do |item| %>
 	<div>
@@ -14,8 +14,22 @@
 			¥<%= (item.price * 1.1).floor %>
 	    </div>
 	    <div>
-			お気に入り
-			ハート
+	    	<% if user_signed_in? %>
+						<% if item.favorited_by?(current_user) %>
+						    <%= link_to user_item_favorites_path(item), method: :delete do %>
+						      <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
+						      <%= item.favorites.count %>
+						    <% end %>
+						<% else %>
+						    <%= link_to user_item_favorites_path(item), method: :post do %>
+						      <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+						      <%= item.favorites.count %>
+						    <% end %>
+						<% end %>
+					<% else %>
+						<span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
+				        <%= item.favorites.count %>
+					<% end %>
 	    </div>
 	</div>
 <% end %>
