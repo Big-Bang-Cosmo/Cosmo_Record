@@ -1,14 +1,14 @@
-<div class=“nested-fields”>
-    <tr>
-        <td><%= f.label '郵便番号' %></td>
-        <td><%= f.text_field :delivery_postal_code, size:20 %></td>
-    </tr>
-    <tr>
-        <td><%= f.label '住所' %></td>
-        <td><%= f.text_field :delivery_address, size:20 %></td>
-    </tr>
-    <tr>
-        <td><%= f.label '電話番号' %></td>
-        <td><%= f.text_field :delivery_phone_number, size:20 %></td>
-    </tr>
+<div class="nested-fields disc_field">
+        <p>配送先<%= %></p>
+          <p class="registrations-headline">郵便番号</p>
+            <%= f.text_field :delivery_postal_code %>
+              <!-- <input type="text" name="delivery_postal_code"> -->
+          <p class="registrations-headline">住所</p>
+            <%= f.text_field :delivery_address %>
+              <!-- <input type="text" name="delivery_address"> -->
+          <p class="registrations-headline">電話番号</p>
+            <%= f.text_field :delivery_phone_number %>
+              <!-- <input type="text" name="delivery_phone_number"> -->
+         <br>
+         <%= link_to_remove_association "配送先を削除", f %>
 </div>

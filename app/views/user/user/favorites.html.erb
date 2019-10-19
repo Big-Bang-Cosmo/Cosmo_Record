@@ -1,2 +1,12 @@
 <h1>User::User#favorites</h1>
-<p>Find me in app/views/user/user/favorites.html.erb</p>
+<p><%= @user.last_name + @user.last_name  %>さんのマイページ</p>
+<p>お気に入り商品</p>
+
+<%  @item.favorites.each do |favorite| %>
+	<p><%= attachment_image_tag arrival.item, :item_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
+	<p></p>
+	<%=  %>
+	<p>カートに入れる</p>
+</div>
+
+<% end %>

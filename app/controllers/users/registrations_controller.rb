@@ -20,9 +20,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
+  def update
+    user = current_user
+    user.update(user_params)
+    redirect_to user_user_favorites_path
+    # user.id = current_user.id
+    # delivery = user.deliveries.find_by(user_id: current_user.id)
+    # delivery.update(user_params)
+
   #   super
-  # end
+  end
 
   # DELETE /resource
   # def destroy
@@ -90,5 +97,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       respond_with resource
     end
   end
+
+    private
+   def user_params
+      params.require(:user).permit(:last_name, :first_name, :last_name_ruby, :first_name_ruby, :gender, deliveries_attributes: [:id, :user_id, :delivery_postal_code, :delivery_address, :delivery_phone_number, :_destroy])
+   end
 
 end
