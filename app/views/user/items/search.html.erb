@@ -3,15 +3,15 @@
 <% @items.each do |item| %>
 	<div>
 		<div>
-			<%= attachment_image_tag @item, :item_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+			<%= attachment_image_tag item, :item_image, :fill, 60, 60, fallback: "no_image.jpg" %>
 		</div>
 		<div>
-			<%= @item.item_name %>
-			<%= @item.artist.artist_name %>
+			<%= item.item_name %>
+			<%= item.artist.artist_name %>
 	    </div>
 	    <div>
 			価格（税込）
-			¥<%= @tax_price %>
+			¥<%= tax_price %>
 	    </div>
 	    <div>
 			お気に入り

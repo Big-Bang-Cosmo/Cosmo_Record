@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2019_10_18_123841) do
     t.string "contact_body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", default: "未対応"
   end
 
   create_table "deliveries", force: :cascade do |t|

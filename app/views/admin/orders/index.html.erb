@@ -1,0 +1,18 @@
+
+<h1>ユーザーの注文一覧</h1>
+
+<% @orders.each do |order| %>
+    <%= link_to "" do %>
+		<table border="1">
+				<tr>
+					<td><%= l order.created_at, format: :short %></td>
+					<td><%= order.last_name + order.first_name %></td>
+					<td><%= order.email %></td>
+					<td><%= order.phone_number %></td>
+					<td><!--応対済み--></td>
+				</tr>
+		</table>
+    <% end %>
+<% end %>
+
+<%= paginate @orders, class: "paginate" %>

@@ -30,6 +30,8 @@ class Admin::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @user = User.all
+    @reviews = Review.all
   end
 
   def update

@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'orders/index'
+    get 'orders/bought_items'
+    get 'orders/day_bought_items'
+  end
   namespace :user do
     get 'user/new'
     get 'user/edit'
@@ -35,7 +40,7 @@ devise_for :users, controllers: {
    get 'reviews/:id/update' => 'reviews#update'
    get 'genres/genres_items'
    get 'artists/artists_items'
-   get 'items/:id/search' => 'items#search'
+   # get 'items/:id/search' => 'items#search'
 
    resources :order_items,only: [:show, :create, :edit, :update, :destroy]
    resources :orders
@@ -62,7 +67,7 @@ end
   resources :items do
    resources :arrivals,only: [:new, :create, :edit, :update, :destroy]
   end
-   resources :contacts, only: [:index, :show]
+   resources :contacts, only: [:index, :show, :update]
    get 'arrivals/index' => 'arrivals#index'
    get 'artists/new'
    post 'artists/create' => 'artists#create'

@@ -10,7 +10,9 @@
 		<% @deliveries.each do |f| %>
 			<label>
 				<%= f.radio_button :delivery_id, :f.id, checked: "checked" %>
-			    <%= f.deliveries %>
+			    <%= f.deliveries.delivery_postal_code %>
+			    <%= f.deliveries.delivery_address %>
+			    <%= f.deliveries.delivery_phone_number%>
 			<label>
 		<% end %>
 

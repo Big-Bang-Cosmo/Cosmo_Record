@@ -9,4 +9,11 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :order_items, dependent: :destroy
   accepts_nested_attributes_for :deliveries, allow_destroy: true
+
+  validates :last_name, presence: :true
+  validates :first_name, presence: :true
+  validates :last_name_ruby, presence: :true
+  validates :first_name_ruby, presence: :true
+  validates :gender, presence: :true
+
 end
