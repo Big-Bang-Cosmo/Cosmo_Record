@@ -1,13 +1,17 @@
 class User::ItemsController < ApplicationController
 
 
-def show
+ def show
     @item = Item.find(params[:id])
+    @cart_item = CartItem.new
     @tax_price = @item.price * 1.1
     @review = Review.new
-end
+    @reviews = @item.reviews
+ end
 
-  def index
+
+
+ def index
     @items = Item.page(params[:page]).reverse_order
     @genres = Genre.all
     @user = current_user

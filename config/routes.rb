@@ -32,31 +32,32 @@ devise_for :users, controllers: {
 
  namespace :user do
 
-   resources :cart_item
-   get 'cart_items' => 'cart_items#user_cart_items'
-   post 'cart_items/:id' => 'cart_items#add_items', as:'add_item'
+   resources :cart_items, only: [:create, :update, :destroy]
+   # get 'cart_items' => 'cart_items#user_cart_items'
    get 'reviews/item_reviews'
-   get 'reviews/:id/edit' => 'reviews#edit'
-   get 'reviews/:id/update' => 'reviews#update'
    get 'genres/genres_items'
    get 'artists/artists_items'
    get 'items/:id/search' => 'items#search'
 
   resources :items do
     resource :favorites, only: [:create, :destroy]
+    resource :reviews, only: [:create, :edit, :update, :destroy]
   end
   resources :artists, only: [:show]
+
   resources :genres, only: [:show]
   resources :contacts, only: [:new, :create]
   resources :cart_item
   get 'reviews/item_reviews'
   get 'reviews/:id/edit' => 'reviews#edit'
   get 'reviews/:id/update' => 'reviews#update'
+
   get 'items/:id/show' => 'items#show'
   get 'items/:id/search' => 'items#search'
 end
 
-
+post '/user/items/:item_id/reviews' => 'reviews#create', as: 'create_review'
+get '/user/:user_id/cart_items' => 'user/cart_items#user_cart_item_list', as:'user_cart_item_list'
 
  namespace :admin do
   resources :items do

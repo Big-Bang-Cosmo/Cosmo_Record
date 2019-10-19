@@ -5,6 +5,14 @@ class User::ReviewsController < ApplicationController
   	@user = User.find(params[:item_id])
   end
 
+  def create
+    item = Item.find(params[:item_id])
+    review = current_user.reviews.new(review_params)
+    review.item_id = item.id
+    review.save
+    redirect_to user_item_path(item.id)
+  end
+
   def edit
   	@user = User.find(params[:user_id])
   	@review = Review.find(prams[:id])
@@ -19,3 +27,9 @@ class User::ReviewsController < ApplicationController
     redirect_to user_reviews_path(@review.id)
   end
 end
+
+private
+  def review_params
+    params.require(:review).permit(:review_body)
+  end
+

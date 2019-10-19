@@ -1,49 +1,65 @@
 <h1>Admin::Items#show</h1>
+<div class = "container" >
+	<%= attachment_image_tag @item, :item_image, :fill, 250, 250, fallback: "no_image.jpg" %>
+	<div = item_box>
+		<h1><%= @item.item_name %></h1>
 
-<%= attachment_image_tag @item, :item_image, :fill, 250, 250, fallback: "no_image.jpg" %>
-<div = item_box>
-	<h1><%= @item.item_name %></h1>
+		<div = item_info>
+			<%= @item.artist.artist_name %>
+			<%= @item.genre.genre_name %>
+			<%= @item.label.label_name %>
+		</div>
 
-	<div = item_info>
-		<%= @item.artist.artist_name %>
-		<%= @item.genre.genre_name %>
-		<%= @item.label.label_name %>
+		<%= @tax_price %>
+
+	<% if @item.stock >= 10 %>
+	        <h3>在庫あり</h3>
+	    <% elsif @item.stock == 0%>
+	        <h3>在庫なし</h3>
+	    <% else %>
+	        <h3>在庫僅か</h3>
+	    <% end %>
+
+		<%= form_for(@cart_item, url: user_cart_items_path, method: :post) do |f| %>
+			<%= f.hidden_field :quantity, value: 1 %>
+			<%= f.hidden_field :id, value: @item.id %>
+			<%= f.submit 'カートに入れる' %>
+		<% end %>
+
+		<h4>お気に入りに追加</h4>
 	</div>
 
-	<%= @tax_price %>
+	<div class = "item_introduction">
+			<h3>商品説明：</h3><br>
+			<%= @item.introduction %>
+	</div>
+	<div class = "item_songs">
+		<table>
+			<% @item.discs.each  do |disc| %>
+				<tr>
+					<td>Disc<%= disc.disc_number %></td>
+						<% disc.songs.each  do |song| %>
+							<tr>
+								<td><%= song.song_number%></td>
+								<td><%= song.song_name %></td>
+							</tr>
+						<% end %>
+				</tr>
+			<% end %>
+		</table>
+	</div>
 
-<% if @item.stock >= 10 %>
-        <h3>在庫あり</h3>
-    <% elsif @item.stock == 0%>
-        <h3>在庫なし</h3>
-    <% else %>
-        <h3>在庫僅か</h3>
-    <% end %>
-
-	<%= form_for(@item, url:user_add_item_path ) do |f| %>
-		<%= f.hiddin_field :quantity, value: 1 %>
-		<%= f.submit 'カートに入れる' %>
+	<h3>レビューフォーム</h3>
+	<%= form_for [@item, @review], url: create_review_path(item_id: @item.id) do |f| %>
+	<%= f.text_area :review_body %>
+	<%= f.submit '送信' %>
 	<% end %>
 
-	<h4>お気に入りに追加</h4>
-</div>
-
-<div class = "item_introduction">
-	<h3>商品説明：</h3><br>
-	<%= @item.introduction %>
-</div>
-<div class = "item_songs">
-	<table>
-		<%= @item.discs.each do |disc| %>
-			<td>
-				<%= disc.songs.each do |song| %>
-				<% end %>
-			</td>
+	<% @reviews.each do |review| %>
+		<h3><%= review.user.last_name %><%= review.user.first_name %>さんのレビュー</h3>
+		<% if review.user == current_user %>
+			<% link_to "編集", edit_user_item_reviews_path(@item.id) %>
 		<% end %>
-	</table>
+		<%= review.review_body %>
+	<% end %>
 </div>
-<h3>レビューフォーム</h3>
-<%= form_for [@item, @review] do |f| %>
-<%= f.text_area :review_body %>
-<%= f.submit '送信' %>
-<% end %>
