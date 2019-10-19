@@ -38,4 +38,12 @@
 		</table>
 	</div>
 
-	
+<h3>レビューフォーム</h3>
+<% @item.reviews.each do |review| %>
+	<%= 
+	<%= form_for [@item, @review] do |f| %>
+	<%= f.text_area :review_body %>
+	<%= f.submit '送信' %>
+	<% end %>
+<% end %>
+
