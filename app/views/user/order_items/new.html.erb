@@ -18,10 +18,10 @@
 
 	</div>
 	<div>
-		<% @cart_item.each do |u| %>
-			<p>商品の小計:¥<%= order_item.cart_item.price %>(税込)</p>
+		<% @cart_item.each do |cart_item| %>
+			<p>商品の小計:¥<%= cart_item.price %>(税込)</p>
 		<% end %>
-		<p>配送料:¥<%= order_item.order.shipping_fee %></p>
+		<p>配送料:¥<%= @shipping_fee %></p>
 		<p>ご請求額:<%= %></p>
 	</div>
 </div>

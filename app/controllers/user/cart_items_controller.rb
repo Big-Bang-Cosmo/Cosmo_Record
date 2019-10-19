@@ -1,35 +1,27 @@
 class User::CartItemsController < ApplicationController
-  def user_cart_items
+  def user_cart_item_list
     @user = User.find(params[:user_id])
-  	@cart_items = @user.cart_item.all
-  	@total_price = @cart_items.sum(:item_price)
-  end
-
-
-
-  def add_item
-  	@item = Item.find(params[:id])
-    @cart_item = current_user.cart_item.new(item_id: item.id)
-    @cart_item.save
+  	@cart_items = @user.cart_items
   end
 
   def create
-  	@cart_item = CartItem.find
-  	@cart_item.save
-  	redirect_to user_cart_items_path
+  	@item = Item.find(params[:cart_item][:id])
+    @cart_item = current_user.cart_items.new(item_id: @item.id)
+    @cart_item.save
+    redirect_to user_cart_item_list_path(current_user.id)
   end
 
   def update
-  	@cart_item = CartItem.find
-  	@cart_item.update(quantity: params[:quantity].to_i)
-  	redirect_to 
+  	@cart_item = CartItem.find(params[:id])
+  	@cart_item.update(quantity: params[:quantity])
+  	redirect_to user_cart_item_list_path(current_user.id)
 
   end
 
   def destroy
   	@cart_item = CartItem.find(params[:id])
     @cart_item.destroy
-    redirect_to user_cart_items_index_path
+    redirect_to  user_cart_items_path
   end
 end
 
