@@ -27,7 +27,7 @@
 
 <h4>お気に入り商品</h4>
 
-<% @items.favorites.each do |favorite| %>
+<% @items.each do |favorite| %>
 	<table border="1">
 			<tr>
 				<td><%= attachment_image_tag favorite.item, :item_image, :fill, 60, 60, fallback: "no_image.jpg" %></td>
@@ -52,12 +52,3 @@
 <% end %>
 
 <%= paginate @items, class: "paginate" %>
-
-
-
-
-
-
-
-
-
