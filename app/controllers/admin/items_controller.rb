@@ -1,7 +1,7 @@
 class Admin::ItemsController < ApplicationController
 
   def index
-     @items = Item.all
+     @items = Item.page(params[:page]).reverse_order
      @user = current_user
   end
 
@@ -30,8 +30,7 @@ class Admin::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @user = User.all
-    @reviews = Review.all
+    @reviews = @item.reviews
   end
 
   def update

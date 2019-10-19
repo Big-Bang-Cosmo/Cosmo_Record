@@ -8,10 +8,10 @@
 				<td><%= item.item_name %></td>
 				<td><%= item.artist.artist_name %></td>
 				<td><p>価格（税抜）：</p><%= item.price %></td>
-				<td>ハート</td>
+				<td><span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
+				<%= item.favorites.count %></td>
 			</tr>
 	</table>
 <% end %>
 
-
-
+<%= paginate @items, class: "paginate" %>
