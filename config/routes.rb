@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'user/index'
     get 'user/edit'
+    get 'user/:id/delivery_index' => 'user#delivery_index'
   end
   namespace :admin do
     get 'home/top'
