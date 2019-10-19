@@ -37,7 +37,13 @@ devise_for :users, controllers: {
    get 'reviews/item_reviews'
    get 'genres/genres_items'
    get 'artists/artists_items'
-   get 'items/:id/search' => 'items#search'
+   # get 'items/:id/search' => 'items#search'
+
+   resources :order_items,only: [:show, :create, :edit, :update, :destroy]
+   resources :orders
+
+  get 'items/search' => 'items#search', as: 'item_search'
+  get 'items/:id/show' => 'items#show'
 
   resources :items do
     resource :favorites, only: [:create, :destroy]
@@ -48,12 +54,13 @@ devise_for :users, controllers: {
   resources :genres, only: [:show]
   resources :contacts, only: [:new, :create]
   resources :cart_item
+
   get 'reviews/item_reviews'
   get 'reviews/:id/edit' => 'reviews#edit'
   get 'reviews/:id/update' => 'reviews#update'
 
-  get 'items/:id/show' => 'items#show'
-  get 'items/:id/search' => 'items#search'
+  # get 'items/:id/search' => 'items#search'
+
 end
 
 post '/user/items/:item_id/reviews' => 'reviews#create', as: 'create_review'
@@ -75,7 +82,6 @@ get '/user/:user_id/cart_items' => 'user/cart_items#user_cart_item_list', as:'us
    get 'reviews/:id/edit' => 'reviews#edit'
    get 'reviews/user_reviews'
 end
-
 
 # get 'genres/genre_items'
 # get 'artists/artist_items'

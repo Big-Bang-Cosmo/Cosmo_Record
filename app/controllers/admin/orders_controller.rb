@@ -8,4 +8,6 @@ class Admin::OrdersController < ApplicationController
 
   def day_bought_items
   end
+
+  
 end
