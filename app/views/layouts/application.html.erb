@@ -10,6 +10,7 @@
   </head>
 
   <body>
+   <heder>
 
     <ul class="nav-list clearfix">
           <% if user_signed_in? %>
@@ -32,6 +33,13 @@
             <li class="nav-list-item"><a href="/users/sign_in"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>login</a></li>
           <% end %>
         </ul>
+
+        <%= form_tag(user_item_search_path, :method => "get") do %>
+          <%= text_field_tag :search, params[:search], placeholder: "商品名" %>
+          <%= submit_tag "検索", :name => nil %>
+        <% end %>
+
+      </heder>
     <%= yield %>
   </body>
 </html>

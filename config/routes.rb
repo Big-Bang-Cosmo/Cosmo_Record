@@ -53,7 +53,8 @@ devise_for :users, controllers: {
   get 'reviews/:id/edit' => 'reviews#edit'
   get 'reviews/:id/update' => 'reviews#update'
   get 'items/:id/show' => 'items#show'
-  get 'items/:id/search' => 'items#search'
+  # get 'items/:id/search' => 'items#search'
+  get 'items/search' => 'items#search', as: 'item_search'
 end
 
 

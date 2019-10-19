@@ -32,8 +32,8 @@
   <%= f.radio_button :gender, 2 %>
 
     <div class="field">
-          <%= f.fields_for :deliveries do |u| %>
-            <%= render "delivery_fields", f: u %>
+          <%= f.fields_for :deliveries do |delivery| %>
+            <%= render "delivery_fields", f: delivery %>
           <% end %>
         <div class="links">
           <%= link_to_add_association "配送先を追加", f, :deliveries %>
