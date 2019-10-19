@@ -13,19 +13,6 @@
    <heder>
     <ul class="nav-list clearfix">
 
-      <% if params[:admin] %>
-         <li class="nav-list-item">
-
-          <%= form_tag({controller: :items, action: :search},{method: :get}) do %>
-            <%= text_field_tag :search, params[:search], placeholder: "商品名" %>
-            <%= submit_tag "検索", :name => nil %>
-          <% end %>
-
-        </li>
-
-
-      <% else %>
-
           <% if user_signed_in? %>
             <li class="nav-list-item">
               <span class="glyphicon glyphicon-home" aria-hidden="true"></span>   <%= link_to "Home", "" %> <!--どのユーザーか指定する必要があるからcurrentつけてる？-->
@@ -39,6 +26,14 @@
             <li class="nav-list-item">
               <span class="glyphicon glyphicon-share" aria-hidden="true"></span>  <%= link_to "logout", destroy_user_session_path, method: :delete %>
             </li>
+
+
+            <%= form_tag({controller: :items, action: :search},{method: :get}) do %>
+              <%= text_field_tag :search, params[:search], placeholder: "商品名" %>
+            <%= submit_tag "検索", :name => nil %>
+
+          <% end %>
+
           <% else %>
             <li class="nav-list-item"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><%= link_to "Home", "" %></li>
             <li class="nav-list-item"><span class="glyphicon glyphicon-barcode" aria-hidden="true"></span><%= link_to "About", "" %></li>
@@ -51,8 +46,6 @@
               <%= text_field_tag :search, params[:search], placeholder: "商品名" %>
               <%= submit_tag "検索", :name => nil %>
           <% end %>
-
-       <% end %>
 
       </heder>
     <%= yield %>

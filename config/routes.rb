@@ -39,7 +39,8 @@ devise_for :users, controllers: {
    get 'artists/artists_items'
    # get 'items/:id/search' => 'items#search'
 
-   resources :order_items,only: [:show, :create, :edit, :update, :destroy]
+   get '/user/:user_id/order_items' => 'user/order_items#new', as:'user_order_items'
+   resources :order_items,only: [:create, :edit, :update, :destroy]
    resources :orders
 
   get 'items/search' => 'items#search', as: 'item_search'
@@ -66,7 +67,11 @@ end
 post '/user/items/:item_id/reviews' => 'reviews#create', as: 'create_review'
 get '/user/:user_id/cart_items' => 'user/cart_items#user_cart_item_list', as:'user_cart_item_list'
 
+
  namespace :admin do
+
+  get 'items/search' => 'items#search', as: 'item_search'
+
   resources :items do
    resources :arrivals,only: [:new, :create, :edit, :update, :destroy]
   end

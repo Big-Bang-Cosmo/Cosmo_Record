@@ -1,18 +1,18 @@
 <h2>決済確定ページ</h2>
 
-<%= form_for(@order_item) do |u| %>
+<%= form_for(@order_item, url:user_order_items_path, method: :post ) do |u| %>
 
-<%= u.submit ,'注文を確定する' %>
+<%= u.submit %>
 
 <div>
 	<div>
 		<p>お届け先</p>
-		<% @deliveries.each do |f| %>
+		<% @user.deliveries.each do |f| %>
 			<label>
 				<%= f.radio_button :delivery_id, :f.id, checked: "checked" %>
-			    <%= f.deliveries.delivery_postal_code %>
-			    <%= f.deliveries.delivery_address %>
-			    <%= f.deliveries.delivery_phone_number%>
+			    <%= deliveries.delivery_postal_code %>
+			    <%= deliveries.delivery_address %>
+			    <%= deliveries.delivery_phone_number %>
 			<label>
 		<% end %>
 
@@ -22,7 +22,7 @@
 			<p>商品の小計:¥<%= cart_item.price %>(税込)</p>
 		<% end %>
 		<p>配送料:¥<%= @shipping_fee %></p>
-		<p>ご請求額:<%= @total_price %></p>
+		<p>ご請求額:<%= cart_item.price * cart_item.quantity + @shipping_fee %></p>
 	</div>
 </div>
 
