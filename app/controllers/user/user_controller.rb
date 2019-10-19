@@ -4,6 +4,9 @@ class User::UserController < ApplicationController
   end
 
   def edit
+  	  @user = User.find(params[:id])
+  	  # @delivery = Delivery.find(params[:id])
+  	  # deliveries = Delivery.new(user_params)
   end
 
   def favorites
@@ -12,4 +15,6 @@ class User::UserController < ApplicationController
       @genres = Genre.all
       @user = current_user
   end
+
+
 end

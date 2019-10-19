@@ -10,8 +10,22 @@
   </head>
 
   <body>
-
+   <heder>
     <ul class="nav-list clearfix">
+
+      <% if params[:admin] %>
+         <li class="nav-list-item">
+
+          <%= form_tag({controller: :items, action: :search},{method: :get}) do %>
+            <%= text_field_tag :search, params[:search], placeholder: "商品名" %>
+            <%= submit_tag "検索", :name => nil %>
+          <% end %>
+
+        </li>
+
+
+      <% else %>
+
           <% if user_signed_in? %>
               <li class="nav-list-item">
                 <%= link_to "logo", user_items_path %>
@@ -47,8 +61,16 @@
             <li class="nav-list-item"><a href="/users/sign_up"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>sign up</a></li>
             <li class="nav-list-item"><a href="/users/sign_in"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>login</a></li>
           <% end %>
-          <% end %>
         </ul>
+
+          <%= form_tag({controller: :items, action: :search},{method: :get}) do %>
+              <%= text_field_tag :search, params[:search], placeholder: "商品名" %>
+              <%= submit_tag "検索", :name => nil %>
+          <% end %>
+
+       <% end %>
+
+      </heder>
     <%= yield %>
   </body>
-  </html>
+</html>
