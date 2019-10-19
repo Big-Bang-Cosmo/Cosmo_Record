@@ -3,9 +3,9 @@ class User::OrderItemsController < ApplicationController
 		@order_item = Order_item.new
 		@deliveries = current_user.deliveries.all
 		@cart_item = CartItem.find_by(user_id: current_user.id)
+		@cart_items = @cart_item.all
 		@shipping_fee = 500
-		@total_price = 
-		# @total_price = order_item.cart_item.item.price
+		@total_price = @cart_item.quantity + @shipping_fee
 	end
 
 	def create

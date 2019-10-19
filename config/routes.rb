@@ -42,6 +42,8 @@ devise_for :users, controllers: {
    resources :order_items,only: [:show, :create, :edit, :update, :destroy]
    resources :orders
 
+  get 'items/search' => 'items#search', as: 'item_search'
+  get 'items/:id/show' => 'items#show'
 
   resources :items do
     resource :favorites, only: [:create, :destroy]
@@ -57,9 +59,8 @@ devise_for :users, controllers: {
   get 'reviews/:id/edit' => 'reviews#edit'
   get 'reviews/:id/update' => 'reviews#update'
 
-  get 'items/:id/show' => 'items#show'
   # get 'items/:id/search' => 'items#search'
-  get 'items/search' => 'items#search', as: 'item_search'
+
 end
 
 post '/user/items/:item_id/reviews' => 'reviews#create', as: 'create_review'

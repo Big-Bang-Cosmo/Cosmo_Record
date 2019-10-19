@@ -18,11 +18,11 @@
 
 	</div>
 	<div>
-		<% @cart_item.each do |cart_item| %>
+		<% @cart_items.each do |cart_item| %>
 			<p>商品の小計:¥<%= cart_item.price %>(税込)</p>
 		<% end %>
 		<p>配送料:¥<%= @shipping_fee %></p>
-		<p>ご請求額:<%= %></p>
+		<p>ご請求額:<%= @total_price %></p>
 	</div>
 </div>
 
@@ -37,7 +37,7 @@
 	 	<p><%= attachment_image_tag cart_item.item, :item_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
 		<p><%= cart_item.item.item_name %></p>
 		<p><%= cart_item.item.artist.artist_name %></p>
-		<p>価格(税込)¥<%= order_items.cart_items.items.price %></p>
+		<p>価格(税込)¥<%= cart_items.items.price %></p>
 		<p>数量:<%= cart_item.quantity %></p>
 		<p>削除</p>
 	<% end %>

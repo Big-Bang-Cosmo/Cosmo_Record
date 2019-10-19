@@ -1,9 +1,10 @@
 <h1>User::User#favorites</h1>
-<p>〇〇さんのマイページ</p>
+<p><%= @user.last_name + @user.last_name  %>さんのマイページ</p>
 <p>お気に入り商品</p>
 
-<%  each do |f| %>
-<div>
+<%  @item.favorites.each do |favorite| %>
+	<p><%= attachment_image_tag arrival.item, :item_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
+	<p></p>
 	<%=  %>
 	<p>カートに入れる</p>
 </div>

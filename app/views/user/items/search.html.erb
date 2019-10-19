@@ -6,12 +6,12 @@
 			<%= attachment_image_tag item, :item_image, :fill, 60, 60, fallback: "no_image.jpg" %>
 		</div>
 		<div>
-			<%= item.item_name %>
-			<%= item.artist.artist_name %>
+			<%= link_to item.item_name, user_item_path(item.id) %>
+			<%= link_to item.artist.artist_name, user_artists_artists_items_path %>
 	    </div>
 	    <div>
 			価格（税込）
-			¥<%= tax_price %>
+			¥<%= (item.price * 1.1).floor %>
 	    </div>
 	    <div>
 			お気に入り
