@@ -1,7 +1,18 @@
 class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  
+
+  def after_sign_in_path_for(resource) #ログイン時にadminじゃなければuser_items_pathへ。そうでなければadmin_items_pathへ。
+    if params[:admin] == nil
+       user_items_path
+    else
+       admin_items_path
+    end
+  end
+
+  def after_sign_out_path_for(resource)
+    user_items_path
+  end
 
   protected
   def configure_permitted_parameters

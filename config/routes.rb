@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'orders/index'
+    get 'orders/bought_items'
+    get 'orders/day_bought_items'
+  end
   namespace :user do
     get 'user/new'
     get 'user/edit'
@@ -12,13 +17,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'home/top'
   end
-  namespace :user do
-    get 'contacts/new'
-  end
-  namespace :admin do
-    get 'contacts/index'
-    get 'contacts/show'
-  end
+
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
   passwords:     'admins/passwords',
@@ -45,8 +44,14 @@ devise_for :users, controllers: {
     resource :reviews, only: [:create, :edit, :update, :destroy]
   end
   resources :artists, only: [:show]
+
+  resources :genres, only: [:show]
+  resources :contacts, only: [:new, :create]
+  resources :cart_item
   get 'reviews/item_reviews'
-  get 'genres/genres_items'
+  get 'reviews/:id/edit' => 'reviews#edit'
+  get 'reviews/:id/update' => 'reviews#update'
+
   get 'items/:id/show' => 'items#show'
   get 'items/:id/search' => 'items#search'
 end
@@ -58,8 +63,8 @@ get '/user/:user_id/cart_items' => 'user/cart_items#user_cart_item_list', as:'us
   resources :items do
    resources :arrivals,only: [:new, :create, :edit, :update, :destroy]
   end
+   resources :contacts, only: [:index, :show, :update]
    get 'arrivals/index' => 'arrivals#index'
-
    get 'artists/new'
    post 'artists/create' => 'artists#create'
    get 'labels/new'

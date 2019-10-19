@@ -3,8 +3,8 @@
 
 	<table border="1">
 			<tr>
-				<td><%= @contact.created_at %></td>
-				<td><%= @contact.last_name + contact.first_name %></td>
+				<td><%= l @contact.created_at, format: :short %></td>
+				<td><%= @contact.last_name + @contact.first_name %></td>
 				<td><%= @contact.email %></td>
 				<td><%= @contact.phone_number %></td>
 			</tr>
@@ -13,4 +13,8 @@
 			</tr>
 	</table>
 
-<a>応対完了済み</a>
+  <% if @contact.status == "processing"  %>
+	<%= button_to "未対応", {controller: 'admin/contacts', action: 'update'}, {method: :patch} %>
+  <% else %>
+	<%= button_to "応対完了", {controller: 'admin/contacts', action: 'update'}, {method: :patch} %>
+  <% end %>
