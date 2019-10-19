@@ -8,11 +8,11 @@ Rails.application.routes.draw do
   namespace :user do
     get 'user/new'
     get 'user/edit'
-    get 'user/favorites'
   end
   namespace :admin do
     get 'user/index'
     get 'user/edit'
+    get 'user/:id/delivery_index' => 'user#delivery_index'
   end
   namespace :admin do
     get 'home/top'
@@ -37,6 +37,7 @@ devise_for :users, controllers: {
    get 'reviews/item_reviews'
    get 'genres/genres_items'
    get 'artists/artists_items'
+   get ':id/favorites' => 'user#favorites'
    # get 'items/:id/search' => 'items#search'
 
    get '/user/:user_id/order_items' => 'user/order_items#new', as:'user_order_items'
@@ -44,7 +45,7 @@ devise_for :users, controllers: {
    resources :orders
 
   get 'items/search' => 'items#search', as: 'item_search'
-  get 'items/:id/show' => 'items#show'
+  get 'items/:id/show' => 'items#show',as: 'item_show'
 
   resources :items do
     resource :favorites, only: [:create, :destroy]
