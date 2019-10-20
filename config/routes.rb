@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
+
   namespace :user do
     get '/' => "items#index"
     get 'items/search' => 'items#search', as:'item_search'
-    get 'users/:id/favorites' => 'user#favorites'
+    get 'users/:id/favorites' => 'users#favorites'
     get 'users/:user_id/cart_items' => 'cart_items#user_cart_item_list', as:'user_cart_item_list'
-    get 'users/:id/unsubsribe' => 'users#unsubsribe', as:'user_unsubsribe'
+    get 'users/:id/unsubscribe' => 'users#unsubscribe', as:'user_unsubscribe'
     get 'users/:id/user_reviews' => 'users#user_reviews', as: 'user_reviews'
 
     get 'order_items/:user_id/order_item_completed' => 'order_items#order_item_completed', as:'order_item_completed'
@@ -22,9 +23,8 @@ Rails.application.routes.draw do
 
     resources :items, only: [:index, :show] do
       resource :favorites, only: [:create, :destroy]
-      resource :reviews, only: [:create, :edit, :update, :destroy]
+      resources :reviews, only: [:create, :edit, :update, :destroy]
     end
-
   end
 
 
@@ -62,4 +62,5 @@ Rails.application.routes.draw do
 
  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
+
 

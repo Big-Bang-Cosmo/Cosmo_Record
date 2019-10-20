@@ -13,19 +13,20 @@
    <heder>
 
  <% if request.path_info.include?('user') %>
+   <%= link_to 'logo', user_path %>
    <ul class="nav-list clearfix">
          <% if user_signed_in? %>
            <li class="nav-list-item">
-             <span class="glyphicon glyphicon-home" aria-hidden="true"></span>   <%= link_to "Home", "" %> <!--どのユーザーか指定する必要があるからcurrentつけてる？-->
+             <%= link_to "ユーザー名: #{current_user.last_name} #{current_user.first_name}", "" %>
            </li>
            <li class="nav-list-item">
-             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>  <%= link_to "Users", "" %>
+             <%= link_to "ログアウト", destroy_user_session_path, method: :delete  %>
            </li>
            <li class="nav-list-item">
-             <span class="glyphicon glyphicon-book" aria-hidden="true"></span>  <%= link_to "Books", "" %>
+             <%= link_to "お問い合わせ", new_user_contact_path %>
            </li>
            <li class="nav-list-item">
-             <span class="glyphicon glyphicon-share" aria-hidden="true"></span>  <%= link_to "logout", destroy_user_session_path, method: :delete %>
+             <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> ショッピングカート</a>
            </li>
          <% else %>
            <li class="nav-list-item"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><%= link_to "Home", "" %></li>
