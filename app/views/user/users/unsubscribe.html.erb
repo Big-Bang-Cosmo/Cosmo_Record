@@ -1,0 +1,11 @@
+
+<h4>退会手続き</h4>
+
+<p>退会されますと、以下の情報が削除されます。</p>
+<ul>
+	<li>登録情報</li>
+	<li>お気に入り</li>
+	<li>購入履歴</li>
+</ul>
+
+<%= link_to '退会する', user_registration_path(current_user), method: :delete, "data-confirm" => "本当に退会しますか？" %>

@@ -13,13 +13,11 @@ class User::UsersController < ApplicationController
   end
 
   def favorites
-  	  @user = User.find(params[:id])
-  	  @items = @user.favorites.page(params[:page]).reverse_order
-      @genres = Genre.all
-      @user = current_user
+  	  @user = current_user
+  	  @genres = Genre.all
   end
 
-  def unsubsribe
+  def unsubscribe
   end
 
   def user_destroy_completed
@@ -27,3 +25,4 @@ class User::UsersController < ApplicationController
 
 
 end
+

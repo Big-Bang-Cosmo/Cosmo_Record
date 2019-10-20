@@ -8,6 +8,7 @@ class Admin::OrdersController < ApplicationController
   end
 
   def day_bought_items
+  	　　@user = User.find(params[:id])
   end
 
   

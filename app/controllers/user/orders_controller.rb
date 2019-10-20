@@ -22,4 +22,11 @@ class User::OrdersController < ApplicationController
 	def order_params
 		params.require(:order).permit(:)
 	end
+
+	def bought_items
+	end
+
+	def day_bought_items
+	end
+
 end

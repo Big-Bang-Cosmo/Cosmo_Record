@@ -14,7 +14,7 @@
         	<td><%= l user.created_at, format: :short %></td>
         	<td><%= user.last_name %></td>
     		<td><%= user.email %></td>
-    		<td><%= link_to '登録住所一覧', admin_path(user.id) %></td>
+    		<td><%= link_to '登録住所一覧', admin_user_path(user) %></td>
     	</tr>
 	<% end %>
 	</tbody>
