@@ -1,4 +1,4 @@
-class User::UserController < ApplicationController
+class User::UsersController < ApplicationController
   def new
   	  deliveries = Delivery.new(user_params)
   end

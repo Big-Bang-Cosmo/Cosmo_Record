@@ -3,7 +3,8 @@ class Admin::OrdersController < ApplicationController
   	  @orders = Order.page(params[:page]).reverse_order
   end
 
-  def bought_items
+#元は　bought_items
+  def show
   end
 
   def day_bought_items
