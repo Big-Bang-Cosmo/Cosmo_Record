@@ -30,7 +30,7 @@ class Admin::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @reviews = @item.reviews
+    @reviews = @item.reviews.page(params[:page]).reverse_order
   end
 
   def update

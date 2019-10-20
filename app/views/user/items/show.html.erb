@@ -1,4 +1,4 @@
-<h1>Admin::Items#show</h1>
+<h1>ユーザーの::Items#show</h1>
 <div class = "container" >
 	<%= attachment_image_tag @item, :item_image, :fill, 250, 250, fallback: "no_image.jpg" %>
 	<div = item_box>
@@ -56,10 +56,14 @@
 	<% end %>
 
 	<% @reviews.each do |review| %>
-		<h3><%= review.user.last_name %><%= review.user.first_name %>さんのレビュー</h3>
+		<%= link_to user_user_reviews_path(review.user.id) do %>
+			<p><%= review.user.last_name %><%= review.user.first_name %>さんのレビュー</p>
+		<% end %>
 		<% if review.user == current_user %>
-			<% link_to "編集", edit_user_item_reviews_path(@item.id) %>
+			<% link_to "編集", edit_user_item_review_path(@item.id) %>
 		<% end %>
 		<%= review.review_body %>
 	<% end %>
+	<h1>レビューをもっと読む</h1>
+	<%= paginate @reviews, class: "paginate" %>
 </div>

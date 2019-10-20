@@ -1,28 +1,27 @@
-<h1>User::Reviews#edit</h1>
+<h1>ユーザーNO!!!レビュー編集ページDESU!!!</h1>
 
-<h2><%= review.item.item_name %></h2>
-<h2><%= review.user.user_name %>さんのレビュー編集</h2>
+<h2><%= @review.item.item_name %>のレビュー編集</h2>
 
-<%= form_for [@user, @review] do |f| %>
+<%= form_for [@item, @review], url: user_item_review_path, method: :patch do |f| %>
 	<table>
 		<thead>
 			<tr>
-				<th><h1>レビュアー</h1></th>
+				<th>レビュアー</th>
 				<th></th>
 				<th>
-					<h1><%= f.text_field :user_name %></h1>
+					<%= @review.user.last_name %><%= @review.user.first_name %>
 				</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<tr><h1>レビュー内容</h1></tr>
-				<th></th>
-				<th>
-					<h3><%= review.body %></h3>
-				</th>
+				<td>レビュー内容</td>
+				<td></td>
+				<td>
+					<%= f.text_area :review_body %>
+				</td>
 			</tr>
 		</tbody>
 	</table>
-	<% f.submit "更新", class: "btn btn-lg btn-primary" %>
+	<%= f.submit "更新", class: "btn btn-lg btn-primary" %>
 <% end %>
