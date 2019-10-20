@@ -3,6 +3,7 @@ class User::ItemsController < ApplicationController
 
  def show
     @item = Item.find(params[:id])
+    @user = User.find(params[:user_id])
     @cart_item = CartItem.new
     @tax_price = @item.price * 1.1
     @review = Review.new

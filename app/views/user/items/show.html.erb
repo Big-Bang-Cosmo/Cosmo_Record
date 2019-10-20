@@ -56,10 +56,13 @@
 	<% end %>
 
 	<% @reviews.each do |review| %>
-		<h3><%= review.user.last_name %><%= review.user.first_name %>さんのレビュー</h3>
+		<%= link_to  user_user_reviews_user_reviews(@user.id) do %>
+			<p><%= review.user.last_name %><%= review.user.first_name %>さんのレビュー</p>
+		<% end %>
 		<% if review.user == current_user %>
 			<% link_to "編集", edit_user_item_reviews_path(@item.id) %>
 		<% end %>
 		<%= review.review_body %>
 	<% end %>
+	<% link_to "レビューをもっと読む", user_item_reviews_item_reviews_path(@item.id) %>
 </div>

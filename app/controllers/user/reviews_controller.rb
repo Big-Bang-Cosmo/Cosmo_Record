@@ -2,9 +2,12 @@ class User::ReviewsController < ApplicationController
   def item_reviews
   	@item = Item.find(params[:item_id])
   	@reviews = @item.reviews
-  	@user = User.find(params[:item_id])
+  	@user = User.find(params[:user_id])
   end
 
+  def user_reviews
+    @user = User.find(params[:user_id])
+    @reviews = @user.reviews
   def create
     item = Item.find(params[:item_id])
     review = current_user.reviews.new(review_params)
@@ -32,4 +35,5 @@ private
   def review_params
     params.require(:review).permit(:review_body)
   end
+end
 
