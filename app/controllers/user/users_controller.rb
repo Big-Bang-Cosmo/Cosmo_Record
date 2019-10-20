@@ -1,4 +1,4 @@
-class User::UserController < ApplicationController
+class User::UsersController < ApplicationController
   def new
   	  deliveries = Delivery.new(user_params)
   end
@@ -9,14 +9,18 @@ class User::UserController < ApplicationController
   	  # deliveries = Delivery.new(user_params)
   end
 
+  def user_reviews
+  end
+
   def favorites
   	  @user = current_user
   	  @genres = Genre.all
-      @items = @user.items
-  	  @favorites = Favorite.where(item_id: item.id)
   end
 
   def unsubscribe
+  end
+
+  def user_destroy_completed
   end
 
 

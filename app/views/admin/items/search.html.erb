@@ -6,30 +6,12 @@
 			<%= attachment_image_tag item, :item_image, :fill, 60, 60, fallback: "no_image.jpg" %>
 		</div>
 		<div>
-			<%= link_to item.item_name, user_item_path(item.id) %>
-			<%= link_to item.artist.artist_name, user_artists_artists_items_path %>
+			<%= link_to item.item_name, admin_item_path(item.id) %>
+			<%= item.artist.artist_name %>
 	    </div>
 	    <div>
-			価格（税込）
-			¥<%= (item.price * 1.1).floor %>
-	    </div>
-	    <div>
-	    	<% if user_signed_in? %>
-						<% if item.favorited_by?(current_user) %>
-						    <%= link_to user_item_favorites_path(item), method: :delete do %>
-						      <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
-						      <%= item.favorites.count %>
-						    <% end %>
-						<% else %>
-						    <%= link_to user_item_favorites_path(item), method: :post do %>
-						      <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
-						      <%= item.favorites.count %>
-						    <% end %>
-						<% end %>
-					<% else %>
-						<span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
-				        <%= item.favorites.count %>
-					<% end %>
+			価格（税抜き）
+			¥<%= item.price  %>
 	    </div>
 	</div>
 <% end %>

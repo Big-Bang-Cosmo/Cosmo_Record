@@ -50,7 +50,7 @@
 	</div>
 
 	<h3>レビューフォーム</h3>
-	<%= form_for [@item, @review], url: create_review_path(item_id: @item.id) do |f| %>
+	<%= form_for [@item, @review], url: user_item_reviews_path(item_id: @item.id) do |f| %>
 	<%= f.text_area :review_body %>
 	<%= f.submit '送信' %>
 	<% end %>

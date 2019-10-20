@@ -1,6 +1,10 @@
 
 <h1><%= @user.last_name + @user.first_name %>さんのマイページ</h1>
 
+<%= link_to "ユーザー情報の編集", edit_user_user_path %>
+<%= link_to "マイレビュー一覧", user_user_reviews_path %>
+<%= link_to "購入履歴一覧", user_user_reviews_path %>
+
 <div class="sidebar">
 	<div class="genre-item">
 		<p>ジャンル</p>
@@ -27,23 +31,23 @@
 
 <h4>お気に入り商品</h4>
 
-<% @item.favorites.each do |favorite| %>
+<% @user.favorites.each do |favorite| %>
 	<table border="1">
 			<tr>
-				<td><%= attachment_image_tag favorite.item, :item_image, :fill, 60, 60, fallback: "no_image.jpg" %></td>
+				<td><%= attachment_image_tag favorite.item, :item_image, :fill, 170, 170, fallback: "no_image.jpg", size:'170x170' %></td>
 				<td><%= favorite.item.item_name %></td>
-				<td><%= favorite.artist.artist_name %></td>
-				<td><p>価格（税込）：</p><%= favorite.item.price * 1.1 %></td>
+				<td><%= favorite.item.artist.artist_name %></td>
+				<td><p>価格（税込）：¥</p><%= (favorite.item.price * 1.1).floor %></td>
                 <td>
-					<% if item.favorited_by?(current_user) %>
-					    <%= link_to user_item_favorites_path(item), method: :delete do %>
+					<% if favorite.item.favorited_by?(current_user) %>
+					    <%= link_to user_item_favorites_path(favorite.item), method: :delete do %>
 					      <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
-					      <%= item.favorites.count %>
+					      <%= favorite.item.favorites.count %>
 					    <% end %>
 					<% else %>
-					    <%= link_to user_item_favorites_path(item), method: :post do %>
+					    <%= link_to user_item_favorites_path(favorite.item), method: :post do %>
 					      <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
-					      <%= item.favorites.count %>
+					      <%= favorite.item.favorites.count %>
 					    <% end %>
 					<% end %>
                 </td>

@@ -1,21 +1,24 @@
 class User::OrderItemsController < ApplicationController
 	def new
-		@order_item = Order_item.new
-		@deliveries = current_user.deliveries.all
+		@order_item = OrderItem.new
+		@user = current_user
 		@cart_item = CartItem.find_by(user_id: current_user.id)
-		@cart_items = @cart_item.all
 		@shipping_fee = 500
-		@total_price = @cart_item.quantity + @shipping_fee
 	end
 
 	def create
-
+		@order_item = OrderItem.find(params[:order_item][:id])
+		@order_item.save
+		redirect_to user_order_item_completed_path
 	end
 
 	def update
 	end
 
 	def destroy
+	end
+
+	def order_item_completed
 	end
 
 end

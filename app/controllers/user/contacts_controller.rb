@@ -7,6 +7,10 @@ class User::ContactsController < ApplicationController
   	  contact.save
   	  redirect_to user_items_path
   end
+
+  def contact_completed
+  end
+
   private
   def contact_params
   	  params.require(:contact).permit(:last_name, :first_name, :last_name_ruby,

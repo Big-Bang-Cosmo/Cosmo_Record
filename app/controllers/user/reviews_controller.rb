@@ -1,5 +1,7 @@
 class User::ReviewsController < ApplicationController
-  def item_reviews
+
+  # 元は item_reviews
+  def show
   	@item = Item.find(params[:item_id])
   	@reviews = @item.reviews
   	@user = User.find(params[:item_id])
@@ -26,6 +28,10 @@ class User::ReviewsController < ApplicationController
   	@review.update(review_params)
     redirect_to user_reviews_path(@review.id)
   end
+
+  def destroy
+  end
+
 end
 
 private
