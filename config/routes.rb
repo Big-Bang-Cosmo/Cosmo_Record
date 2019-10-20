@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :user do
+    get 'orders/bought_items'
+    get 'orders/day_bought_items'
+  end
   namespace :admin do
     get 'orders/index'
     get 'orders/bought_items'
@@ -28,7 +32,6 @@ devise_for :users, controllers: {
   passwords:     'users/passwords',
   registrations: 'users/registrations'
 }
-
 
  namespace :user do
 
@@ -106,4 +109,5 @@ end
    # resources :reviews, only: [:create, :edit, :update, :destroy]
  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
+
 
