@@ -1,2 +1,17 @@
-<h1>Admin::Orders#day_bought_items</h1>
-<p>Find me in app/views/admin/orders/day_bought_items.html.erb</p>
+
+<h1><%= @user.last_name + @user.first_name %>さんの<%= order.created_at %>日の注文一覧</h1>
+
+<% @orders.each do |order| %>
+    <%= link_to "" do %>
+		<table border="1">
+				<tr>
+					<td><%= l order.created_at, format: :short %></td>
+					<td><%= order.last_name + order.first_name %></td>
+					<td><%= order.email %></td>
+					<td><%= order.phone_number %></td>
+				</tr>
+		</table>
+    <% end %>
+<% end %>
+
+<%= paginate @orders, class: "paginate" %>
