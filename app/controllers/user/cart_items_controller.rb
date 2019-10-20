@@ -9,7 +9,7 @@ class User::CartItemsController < ApplicationController
     @cart_item = current_user.cart_items.new(item_id: @item.id)
     @cart_item.quantity = 1
     @cart_item.save
-    redirect_to user_cart_item_list_path(current_user.id)
+    redirect_to user_user_cart_item_list_path(current_user.id)
   end
 
   def update
@@ -22,7 +22,7 @@ class User::CartItemsController < ApplicationController
   def destroy
   	@cart_item = CartItem.find(params[:id])
     @cart_item.destroy
-    redirect_to user_cart_item_list_path(current_user.id)
+    redirect_to user_user_cart_item_list_path(current_user.id)
   end
 end
 
