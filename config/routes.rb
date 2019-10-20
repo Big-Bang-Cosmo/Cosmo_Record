@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get 'users/:id/favorites' => 'user#favorites'
     get 'users/:user_id/cart_items' => 'cart_items#user_cart_item_list', as:'user_cart_item_list'
     get 'users/:id/unsubsribe' => 'users#unsubsribe', as:'user_unsubsribe'
+    get 'users/:id/user_reviews' => 'users#user_reviews', as: 'user_reviews'
 
     get 'order_items/:user_id/order_item_completed' => 'order_items#order_item_completed', as:'order_item_completed'
     get 'contacts/:user_id/contact_completed' => 'contacts#contact_completed', as: 'contact_completed'
@@ -31,6 +32,7 @@ Rails.application.routes.draw do
     get 'home/top'
     get 'items/search' => 'items#search', as: 'item_search'
     get 'arrivals/index' => 'arrivals#index'
+    get 'users/:id/user_reviews' => 'users#user_reviews', as: 'user_reviews'
 
     resources :contacts, only: [:index, :show, :update]
     resources :artists, only: [:new, :create]
