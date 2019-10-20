@@ -1,36 +1,37 @@
 <h2>決済確定ページ</h2>
 
-<%= form_for(@order_item, url:user_order_items_path, method: :post ) do |f| %>
+<%= form_for(@order, url:user_order_items_path, method: :post ) do |f| %>
 
 <%= f.submit '注文を確定する' %>
 
 	<div>
 		<h3>お届け先</h3>
 			<% current_user.deliveries.each do |u| %>
-				<%= f.radio_button :delivery_id, u.delivery_address %>
-				<%= u.delivery_postal_code %>
-				<%= u.delivery_address %>
+			<%= f.radio_button :delivery_id, u.id %>
+			<%= u.delivery_postal_code %>
+			<%= u.delivery_address %>
 			<% end %>
-			<p>商品の合計金額(税込):¥</p>¥<%= (@total_price).floor %></p>
+			<p>商品の合計金額(税込):¥</p>¥<%= @total_price %></p>
 			<p>配送料：¥<%= @shipping_fee %></p>
-			<p>ご請求額：¥<%= @total_price + @shipping_fee  %></p>
+			<p>ご請求額：¥<%= @total_price.to_i + @shipping_fee.to_i  %></p>
 	</div>
 
 
 	<div>
-	   <% @total_price = 0 %>
-	   <% @cart_items.each do |cart_item| %>
+	   <% @all_total_price = 0 %>
+	   <% @user.cart_items.each do |cart_item| %>
 			<div>
-				<%= attachment_image_tag cart_item, :item_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+				<%= attachment_image_tag cart_item.item, :item_image, :fill, 60, 60, fallback: "no_image.jpg" %>
 				<p>商品名<%= cart_item.item.item_name %></p>
 				<p>アーティスト名<%= cart_item.item.artist.artist_name %></p>
-				<p>価格(税込)¥<%= item.item.price %></p>
+				<p>価格(税込)¥<%= cart_item.item.price %></p>
 			    <%= form_for(cart_item, url: user_cart_item_path(cart_item.id), method: :patch) do |f| %>
 			    <p>数量:</p>
 			    <%= f.number_field :quantity, value: cart_item.quantity, min:1, max:100 %>
 			    	<%= f.submit "数量変更" %>
 				<%= link_to '削除',user_cart_item_path(cart_item.id), method: :delete %>
-				<% @all_item_price += cart_item.item.price * cart_item.quantity.to_i * 1.1 %>
+				<% @all_total_price += cart_item.item.price * cart_item.quantity.to_i * 1.1 %>
+				<h2>商品小計（税込）¥<%= (@all_total_price).floor %></h2>
 				<% end %>
 			</div>
 		<% end %>
