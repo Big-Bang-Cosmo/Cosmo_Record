@@ -9,8 +9,6 @@ class User::ItemsController < ApplicationController
     @reviews = @item.reviews
  end
 
-
-
   def index
     @items = Item.page(params[:page]).reverse_order
     @genres = Genre.all

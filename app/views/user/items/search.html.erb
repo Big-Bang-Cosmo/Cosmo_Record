@@ -7,7 +7,7 @@
 		</div>
 		<div>
 			<%= link_to item.item_name, user_item_path(item.id) %>
-			<%= link_to item.artist.artist_name, user_artists_artists_items_path %>
+			<%= item.artist.artist_name %>
 	    </div>
 	    <div>
 			価格（税込）

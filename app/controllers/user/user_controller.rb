@@ -16,5 +16,11 @@ class User::UserController < ApplicationController
       @user = current_user
   end
 
+  def unsubsribe
+  end
+
+  def user_destroy_completed
+  end
+
 
 end

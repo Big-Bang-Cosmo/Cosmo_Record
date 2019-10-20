@@ -6,8 +6,8 @@
 			<%= attachment_image_tag item, :item_image, :fill, 60, 60, fallback: "no_image.jpg" %>
 		</div>
 		<div>
-			<%= link_to item.item_name, user_item_path(item.id) %>
-			<%= link_to item.artist.artist_name, user_artists_artists_items_path %>
+			<%= link_to item.item_name, admin_item_path(item.id) %>
+			<%= item.artist.artist_name %>
 	    </div>
 	    <div>
 			価格（税抜き）

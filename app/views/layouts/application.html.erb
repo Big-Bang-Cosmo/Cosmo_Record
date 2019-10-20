@@ -11,6 +11,8 @@
 
   <body>
    <heder>
+
+ <% if request.path_info.include?('user') %>
    <ul class="nav-list clearfix">
          <% if user_signed_in? %>
            <li class="nav-list-item">
@@ -36,6 +38,21 @@
              <%= text_field_tag :search, params[:search], placeholder: "商品名" %>
              <%= submit_tag "検索", :name => nil %>
          <% end %>
+
+  <% elsif request.path_info.include?('admin') %>
+        <% if user_signed_in? %>
+             <li class="nav-list-item">
+             <span class="glyphicon glyphicon-share" aria-hidden="true"></span>  <%= link_to "logout", destroy_admin_session_path, method: :delete %>
+           </li>
+        <% else %>
+              <li class="nav-list-item"><a href="/admins/sign_in"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>login</a></li>
+        <% end %>
+
+          <%= form_tag admin_item_search_path , method: 'get' do %>
+             <%= text_field_tag :search, params[:search], placeholder: "商品名" %>
+          <%= submit_tag "検索", :name => nil %>
+          <% end %>
+  <% end %>
      </heder>
 
     <%= yield %>
