@@ -19,6 +19,12 @@ class Admin::ArrivalsController < ApplicationController
 		redirect_to admin_arrivals_index_path
 	end
 
+	def update
+	end
+
+	def destroy
+	end
+
 
 private
 	def arrival_params

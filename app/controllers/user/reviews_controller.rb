@@ -1,13 +1,14 @@
 class User::ReviewsController < ApplicationController
-  def item_reviews
+
+  # 元は item_reviews
+  def show
   	@item = Item.find(params[:item_id])
-  	@reviews = @item.reviews
+  	@reviews = @item.reviews.page(params[:page]).reverse_order
   	@user = User.find(params[:user_id])
   end
 
-  def user_reviews
-    @user = User.find(params[:user_id])
-    @reviews = @user.reviews
+  
+
   def create
     item = Item.find(params[:item_id])
     review = current_user.reviews.new(review_params)
@@ -17,23 +18,24 @@ class User::ReviewsController < ApplicationController
   end
 
   def edit
-  	@user = User.find(params[:user_id])
-  	@review = Review.find(prams[:id])
-  	if @user != current_user
-  	   redirect_to root_path
-  	end
+  	@item = Item.find(params[:item_id])
+    @review = Review.find(params[:id])
   end
 
   def update
-  	@review = Review.find(prams[:id])
+  	@review = Review.find(params[:id])
   	@review.update(review_params)
-    redirect_to user_reviews_path(@review.id)
+    redirect_to user_item_path(@review.item.id)
   end
-end
+
+  def destroy
+  end
 
 private
   def review_params
     params.require(:review).permit(:review_body)
   end
+
 end
+
 
