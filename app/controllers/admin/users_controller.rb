@@ -8,6 +8,10 @@ class Admin::UsersController < ApplicationController
   	  @user = User.find(params[:id])
   end
 
+  def user_reviews
+    @user = User.find(params[:id])
+    @reviews = @user.reviews
+
   def edit
   end
 

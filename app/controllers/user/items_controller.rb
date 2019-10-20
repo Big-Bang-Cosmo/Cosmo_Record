@@ -6,7 +6,7 @@ class User::ItemsController < ApplicationController
     @cart_item = CartItem.new
     @tax_price = @item.price * 1.1
     @review = Review.new
-    @reviews = @item.reviews
+    @reviews = @item.reviews.page(params[:page]).reverse_order
  end
 
   def index
