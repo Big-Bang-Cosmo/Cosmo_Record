@@ -11,6 +11,7 @@ class Admin::UsersController < ApplicationController
   def user_reviews
     @user = User.find(params[:id])
     @reviews = @user.reviews
+  end
 
   def edit
   end
