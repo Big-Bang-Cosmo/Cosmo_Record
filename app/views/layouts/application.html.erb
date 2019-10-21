@@ -17,7 +17,7 @@
    <ul class="nav-list clearfix">
          <% if user_signed_in? %>
            <li class="nav-list-item">
-             <%= link_to "ユーザー名: #{current_user.last_name} #{current_user.first_name}", "" %>
+             <%= link_to "ユーザー名: #{current_user.last_name} #{current_user.first_name}", user_users_favorites_path(current_user) %>
            </li>
            <li class="nav-list-item">
              <%= link_to "ログアウト", destroy_user_session_path, method: :delete  %>
@@ -26,7 +26,9 @@
              <%= link_to "お問い合わせ", new_user_contact_path %>
            </li>
            <li class="nav-list-item">
-             <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> ショッピングカート</a>
+             <a><%= link_to user_user_cart_item_list_path(current_user) do %>
+             <span class="glyphicon glyphicon-shopping-cart"></span> ショッピングカート
+             <% end %></a>
            </li>
          <% else %>
            <li class="nav-list-item"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><%= link_to "Home", "" %></li>

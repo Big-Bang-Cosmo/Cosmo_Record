@@ -17,6 +17,7 @@ class User::UsersController < ApplicationController
   def favorites
   	  @user = current_user
   	  @genres = Genre.all
+      @items = @user.favorites.page(params[:page]).reverse_order
   end
 
   def unsubscribe
