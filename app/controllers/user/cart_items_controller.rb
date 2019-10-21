@@ -15,7 +15,7 @@ class User::CartItemsController < ApplicationController
   def update
   	@cart_item = CartItem.find(params[:id])
   	@cart_item.update(cart_item_params)
-  	redirect_to user_cart_item_list_path(current_user.id)
+  	redirect_to user_user_cart_item_list_path(current_user.id)
 
   end
 

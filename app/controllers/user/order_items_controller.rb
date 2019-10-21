@@ -1,24 +1,22 @@
 class User::OrderItemsController < ApplicationController
-	def new
-		@order_item = OrderItem.new
-		@user = current_user
-		@cart_item = CartItem.find_by(user_id: current_user.id)
-		@shipping_fee = 500
-	end
+
 
 	def create
-		@order_item = OrderItem.find(params[:order_item][:id])
-		@order_item.save
+		user = current_user
+		order_item = OrderItem.new(order_item_params)
+		order_item.order_id = order.id
+		order_item.save
 		redirect_to user_order_item_completed_path
 	end
 
 	def update
-	end
+    end
 
 	def destroy
-	end
 
-	def order_item_completed
+	private
+	def order_item_params
+	 	params.require(:order_item).permit(:user_id, :order_id, :item_name, :item_image, :artist_name, :quantity, :price)
 	end
 
 end

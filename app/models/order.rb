@@ -1,4 +1,4 @@
 class Order < ApplicationRecord
-	belongs_to :user, through: :deliveries
+	belongs_to :deliveries
 
 end
