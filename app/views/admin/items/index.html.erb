@@ -5,12 +5,12 @@
 	<table border="1">
 			<tr>
 				<td><%= link_to admin_item_path(item) do %>
-					<%= attachment_image_tag item, :item_image, :fill, 170, 170, fallback: "no_image.jpg", size:'170x170' %>
+					<%= attachment_image_tag item, :item_image, :fill, 100, 100, fallback: "no_image.jpg", size:'100x100' %>
 					<% end %>
 				</td>
 				<td><%= link_to "#{item.item_name}", admin_item_path(item) %></td></td>
 				<td><%= item.artist.artist_name %></td>
-				<td><p>価格（税抜）：</p><%= item.price %></td>
+				<td><p>価格（税抜）：</p><%= number_to_currency(item.price) %></td>
 				<td><span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
 				<%= item.favorites.count %></td>
 			</tr>
