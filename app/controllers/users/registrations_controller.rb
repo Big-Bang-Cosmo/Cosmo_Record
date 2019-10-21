@@ -23,7 +23,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update
     user = current_user
     user.update(user_params)
-    redirect_to user_user_favorites_path
+    redirect_to user_users_favorites_path(user.id)
     # user.id = current_user.id
     # delivery = user.deliveries.find_by(user_id: current_user.id)
     # delivery.update(user_params)
