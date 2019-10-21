@@ -3,13 +3,17 @@ Rails.application.routes.draw do
   namespace :user do
     get '/' => "items#index"
     get 'items/search' => 'items#search', as:'item_search'
-    get 'users/:id/favorites' => 'users#favorites'
+
+    get 'users/:id/favorites' => 'users#favorites', as:'users_favorites'
     get 'users/:user_id/cart_items' => 'cart_items#user_cart_item_list', as:'user_cart_item_list'
     get 'users/:id/unsubscribe' => 'users#unsubscribe', as:'user_unsubscribe'
-
     get 'users/:id/user_reviews' => 'users#user_reviews', as: 'user_reviews'
 
-    get 'order_items/:user_id/order_item_completed' => 'order_items#order_item_completed', as:'order_item_completed'
+    get 'orders/:id/new' => 'orders#new', as: 'orders_new'
+    get 'orders/:id/bought_items' => 'orders#bought_items', as: 'bought_items'
+    get 'orders/:id/day_bought_items' => 'orders#day_bought_items', as: 'day_bought_items'
+
+    get 'orders/order_completed' => 'order_items#order_completed', as:'order_completed'
     get 'contacts/:user_id/contact_completed' => 'contacts#contact_completed', as: 'contact_completed'
     get 'users/user_destroy_completed' => 'users#user_destroy_completed', as: 'user_destroy_completed'
 
@@ -18,9 +22,9 @@ Rails.application.routes.draw do
     resources :artists, only: [:show]
     resources :genres, only: [:show]
     resources :deliveries, only: [:index]
-    resources :orders, only: [:index, :new, :show]
-    resources :order_items,only: [:new, :create, :edit, :update, :destroy]
     resources :users, only: [:new, :edit]
+    resources :orders, only: [:index, :create]
+    resources :order_items, only: [:create]
 
     resources :items, only: [:index, :show] do
       resource :favorites, only: [:create, :destroy]
@@ -34,6 +38,8 @@ Rails.application.routes.draw do
     get 'items/search' => 'items#search', as: 'item_search'
     get 'arrivals/index' => 'arrivals#index'
     get 'users/:id/user_reviews' => 'users#user_reviews', as: 'user_reviews'
+    get 'orders/:id/bought_items' => 'orders#bought_items', as: 'bought_items'
+    get 'orders/:id/day_bought_items' => 'orders#day_bought_items', as: 'day_bought_items'
 
     resources :contacts, only: [:index, :show, :update]
     resources :artists, only: [:new, :create]
