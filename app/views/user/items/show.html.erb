@@ -10,7 +10,7 @@
 			<%= @item.label.label_name %>
 		</div>
 
-		<%= @tax_price %>
+		<%= number_to_currency(@tax_price) %>
 
 	<% if @item.stock >= 10 %>
 	        <h3>在庫あり</h3>

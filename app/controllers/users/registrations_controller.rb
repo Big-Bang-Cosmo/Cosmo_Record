@@ -100,6 +100,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def delete
     super
+    redirect_to user_user_destroy_completed
   end
 
     private

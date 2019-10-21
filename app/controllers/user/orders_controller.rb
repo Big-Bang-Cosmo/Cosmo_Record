@@ -8,6 +8,13 @@ class User::OrdersController < ApplicationController
 	    @cart_items = CartItem.where(active: true)
 	    @cart_item = CartItem.find_by(user_id: current_user.id)
 	    @shipping_fee = 500
+	    
+	    @user_cart_items = @user.cart_items
+	    @total_price = 0
+	    @user_cart_items.each do |cart_item|
+	    	@total_price += cart_item.item.price * cart_item.quantity.to_i * 1.1
+	    end
+
 	end
 
 	def create
