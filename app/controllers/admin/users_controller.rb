@@ -3,6 +3,9 @@ class Admin::UsersController < ApplicationController
   	  @users = User.page(params[:page]).reverse_order
   end
 
+  def user_reviews
+  end
+
 # 元は　delivery_index
   def show
   	  @user = User.find(params[:id])
