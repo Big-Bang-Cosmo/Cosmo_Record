@@ -42,8 +42,7 @@
 		<%= link_to admin_user_reviews_path(review.user.id) do %>
 			<p><%= review.user.last_name %><%= review.user.first_name %>さんのレビュー</p>
 		<% end %>
-		<% link_to "編集", edit_admin_item_review(@item.id) %>
-		<% end %>
+		<% link_to "編集", edit_admin_item_review_path(@item.id) %>
 		<%= review.review_body %>
 	<% end %>
 	<h1>レビューをもっと読む</h1>
