@@ -1,7 +1,7 @@
 class Admin::ReviewsController < ApplicationController
 
   def edit
-  	@user = User.find(params[:id])
+  	@item = Item.find(params[:item_id])
   	@review = Review.find(params[:id])
   end
 
@@ -13,6 +13,6 @@ class Admin::ReviewsController < ApplicationController
 
   private
   def review_params
-    params.require(:review).permit(:review, :body)
+    params.require(:review).permit(:review_body)
   end
 end
