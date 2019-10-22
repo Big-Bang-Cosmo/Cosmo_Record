@@ -3,10 +3,10 @@ class Item < ApplicationRecord
 	belongs_to :label
 	belongs_to :genre
 
+	has_many :order_items, dependent: :destroy
 	has_many :cart_items, dependent: :destroy
 	has_many  :reviews, dependent: :destroy
 	has_many  :arrivals, dependent: :destroy
-
 	has_many :discs, dependent: :destroy, inverse_of: :item
 	has_many :favorites, dependent: :destroy
     def favorited_by?(user)
