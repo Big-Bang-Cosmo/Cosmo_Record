@@ -54,6 +54,12 @@
 					    <% end %>
 					<% end %>
                 </td>
+                <td><%= form_for(@cart_item, url: user_cart_items_path, method: :post) do |f| %>
+					<%= f.hidden_field :quantity, value: 1 %>
+					<%= f.hidden_field :id, value: favorite.item.id %>
+					<%= f.submit 'カートに入れる' %>
+				    <% end %>
+				</td>
 			</tr>
 	</table>
 <% end %>
