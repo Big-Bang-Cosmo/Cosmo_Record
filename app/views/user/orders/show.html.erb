@@ -3,21 +3,42 @@
 
 <%= link_to "購入履歴一覧に戻る", admin_orders_path %>
 
-<div class="order-show-content">
-	<p>お届け先住所</p>
-	<%= @order.user.last_name + @order.user.first_name %>
-	<%= @order.delivery_postal_code %>
-	<%= @order.delivery_adress %>
+<div class="order-item-history clearfix">
+
+	<div class="order-show-content">
+		<p>お届け先住所</p>
+		<%= @orders.user.last_name + @orders.user.first_name %>
+		<%= @orders.delivery_postal_code %>
+		<%= @orders.delivery_adress %>
+	</div>
+
+	<div class="order-show-content">
+		<p>支払方法</p>
+		<%= @orders.payment_methods %>
+	</div>
+
+	<div class="order-show-content">
+		<p>購入明細</p>
+		<p>商品の小計:</p><%= number_to_currency(@orders.total_price - @orders.shipping_fee) %>
+		<p>配送料:</p><%= number_to_currency(@orders.shipping_fee) %>
+		<p>ご請求額:</p><%= number_to_currency(@orders.total_price) %>
+	</div>
+
 </div>
 
-<div class="order-show-content">
-	<p>支払方法</p>
-	<%= @order.payment_methods %>
-</div>
-
-<div class="order-show-content">
-	<p>購入明細</p>
-	<p>商品の小計:</p><%= number_to_currency(@order.total_price - @order.shipping_fee) %>
-	<p>配送料:</p><%= number_to_currency(@order.shipping_fee) %>
-	<p>ご請求額:</p><%= number_to_currency(@order.total_price) %>
-</div>
+<%= l @orders.created_at, format: :short %>
+<% @orders.order_items.each do |order_item| %>
+	<table border="1">
+			<tr>
+				<td><%= link_to user_item_path(order_item) do %>
+					<%= attachment_image_tag order_item.item, :item_image, :fill, 100, 100, fallback: "no_image.jpg", size:'100x100' %>
+					<% end %>
+				</td>
+				<td><%= link_to "#{order_item.item.item_name}", admin_item_path(order_item.item) %></td></td>
+				<td><%= order_item.item.artist.artist_name %></td>
+				<td><p>価格（税抜）：</p><%= number_to_currency(order_item.item.price) %></td>
+				<td>数量:<%= order_item.quantity %></td>
+				<td><%= order_item.order.delivery_status %></td>
+			</tr>
+	</table>
+<% end %>

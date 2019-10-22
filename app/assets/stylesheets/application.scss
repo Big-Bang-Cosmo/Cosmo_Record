@@ -17,10 +17,21 @@
     @import "bootstrap-sprockets";
     @import "bootstrap";
 
+.clearfix::after{
+	content: "";
+	display: block;
+	clear: both;
+}
+
 .user-header{
 	width: 100%;
 	height: 150px;
 	background: image-url('header.png');
+}
+
+.order-show-content{
+	float: left;
+	padding-right: 50px;
 }
 
 .disc_field {

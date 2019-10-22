@@ -4,12 +4,12 @@ class Admin::OrdersController < ApplicationController
   	  
   end
 
-#元は　bought_items
+#元はbought_items
   def show
   end
 
   def day_bought_items
-  	　　@user = User.find(params[:id])
+  	  @orders = Order.find(params[:id])
   end
 
   
