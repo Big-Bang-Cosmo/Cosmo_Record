@@ -83,7 +83,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)
-        delivery = Delivery.new(delivery_postal_code: params[:delivery_postal_code] ,delivery_address: params[:delivery_address] ,delivery_phone_number: params[:delivery_phone_number], user_id: current_user.id)
+        delivery = Delivery.new(delivery_postal_code: params[:delivery_postal_code] ,delivery_address: params[:delivery_address], user_id: current_user.id)
         delivery.save
         respond_with resource, location: after_sign_up_path_for(resource)
       else

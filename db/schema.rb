@@ -112,7 +112,6 @@ ActiveRecord::Schema.define(version: 2019_10_22_081910) do
     t.string "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "first_name"
     t.integer "item_id"
   end
 
