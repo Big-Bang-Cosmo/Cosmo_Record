@@ -3,9 +3,13 @@ class User::ContactsController < ApplicationController
   	  @contact = Contact.new
   end
   def create
-  	  contact = Contact.new(contact_params)
-  	  contact.save
-  	  redirect_to user_items_path
+  	  @contact = Contact.new(contact_params)
+      #バリデーションをつける場合newページで得た情報（ここなら@contact = Contact.new）をcreateアクションでも定義する必要がある
+  	  if @contact.save
+  	    redirect_to user_items_path
+      else
+        render :new
+      end
   end
 
   def contact_completed

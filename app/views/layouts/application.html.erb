@@ -10,9 +10,10 @@
   </head>
 
   <body>
-   <heder>
+   <header>
 
  <% if request.path_info.include?('user') %>
+ <div class="user-header">
    <%= link_to 'logo', user_path %>
    <ul class="nav-list clearfix">
          <% if user_signed_in? %>
@@ -31,16 +32,22 @@
              <% end %></a>
            </li>
          <% else %>
-           <li class="nav-list-item"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><%= link_to "Home", "" %></li>
-           <li class="nav-list-item"><span class="glyphicon glyphicon-barcode" aria-hidden="true"></span><%= link_to "About", "" %></li>
-           <li class="nav-list-item"><a href="/users/sign_up"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>sign up</a></li>
-           <li class="nav-list-item"><a href="/users/sign_in"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>login</a></li>
+           <li class="nav-list-item">
+             <%= link_to "ログイン", new_user_session_path %>
+           </li>
+           <li class="nav-list-item">
+             <%= link_to "新規会員登録", new_user_registration_path %>
+           </li>
+           <li class="nav-list-item">
+            <%= link_to "お問い合わせ", new_user_contact_path %>
+           </li>
          <% end %>
        </ul>
          <%= form_tag user_item_search_path, method: 'get' do %>
              <%= text_field_tag :search, params[:search], placeholder: "商品名" %>
              <%= submit_tag "検索", :name => nil %>
          <% end %>
+  </div>
 
   <% elsif request.path_info.include?('admin') %>
         <% if user_signed_in? %>
@@ -56,7 +63,7 @@
           <%= submit_tag "検索", :name => nil %>
           <% end %>
   <% end %>
-     </heder>
+     </header>
 
     <%= yield %>
   </body>
