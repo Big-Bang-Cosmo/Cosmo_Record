@@ -15,6 +15,8 @@
         	<td><%= user.last_name %></td>
     		<td><%= user.email %></td>
     		<td><%= link_to '登録住所一覧', admin_user_path(user) %></td>
+    		<td><%= link_to '編集', edit_admin_user_path(user) %></td>
+    		<td><%= link_to '削除', admin_user_path(user), method: :delete %></td>
     	</tr>
 	<% end %>
 	</tbody>
