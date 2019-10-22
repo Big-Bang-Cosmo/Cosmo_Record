@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     get 'orders/:id/bought_items' => 'orders#bought_items', as: 'bought_items'
     get 'orders/:id/day_bought_items' => 'orders#day_bought_items', as: 'day_bought_items'
 
-    get 'orders/order_completed' => 'order_items#order_completed', as:'order_completed'
+    get 'orders/order_completed' => 'orders#order_completed', as:'order_completed'
     get 'contacts/:user_id/contact_completed' => 'contacts#contact_completed', as: 'contact_completed'
     get 'users/user_destroy_completed' => 'users#user_destroy_completed', as: 'user_destroy_completed'
 
@@ -21,9 +21,9 @@ Rails.application.routes.draw do
     resources :contacts, only: [:new, :create]
     resources :artists, only: [:show]
     resources :genres, only: [:show]
-    resources :deliveries, only: [:index]
+    resources :deliveries
     resources :users, only: [:new, :edit]
-    resources :orders, only: [:index, :create]
+    resources :orders, only: [:index, :create, :show]
     resources :order_items, only: [:create]
 
     resources :items, only: [:index, :show] do

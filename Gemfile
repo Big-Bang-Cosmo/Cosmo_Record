@@ -76,3 +76,4 @@ gem 'pry-byebug'
 gem 'rails-i18n'
 
 gem 'autonumeric-rails'
+

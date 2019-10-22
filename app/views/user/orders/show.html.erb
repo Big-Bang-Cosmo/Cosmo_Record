@@ -1,0 +1,23 @@
+
+<h4>注文の詳細</h4>
+
+<%= link_to "購入履歴一覧に戻る", admin_orders_path %>
+
+<div class="order-show-content">
+	<p>お届け先住所</p>
+	<%= @order.user.last_name + @order.user.first_name %>
+	<%= @order.delivery_postal_code %>
+	<%= @order.delivery_adress %>
+</div>
+
+<div class="order-show-content">
+	<p>支払方法</p>
+	<%= @order.payment_methods %>
+</div>
+
+<div class="order-show-content">
+	<p>購入明細</p>
+	<p>商品の小計:</p><%= number_to_currency(@order.total_price - @order.shipping_fee) %>
+	<p>配送料:</p><%= number_to_currency(@order.shipping_fee) %>
+	<p>ご請求額:</p><%= number_to_currency(@order.total_price) %>
+</div>
