@@ -25,6 +25,7 @@ class User::OrdersController < ApplicationController
 
 #購入履歴一覧
 	def index
+		@users = User.orders.page(params[:page]).reverse_order
 	end
 # 決済が完了しましたのページ
 	def order_completed
