@@ -1,0 +1,12 @@
+<div class="nested-fields disc_field">
+        <p>配送先</p>
+          <p class="registrations-headline">郵便番号</p>
+            <%= f.text_field :delivery_postal_code %>
+              <!-- <input type="text" name="delivery_postal_code"> -->
+          <p class="registrations-headline">住所</p>
+            <%= f.text_field :delivery_address %>
+              <!-- <input type="text" name="delivery_address"> -->
+              <!-- <input type="text" name="delivery_phone_number"> -->
+         <br>
+         <%= link_to_remove_association "配送先を削除", f %>
+</div>
