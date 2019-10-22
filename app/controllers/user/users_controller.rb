@@ -23,6 +23,7 @@ class User::UsersController < ApplicationController
   	  @user = current_user
   	  @genres = Genre.all
       @items = @user.favorites.page(params[:page]).reverse_order
+      @cart_item = CartItem.new
   end
 
   def unsubscribe

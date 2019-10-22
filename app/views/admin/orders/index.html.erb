@@ -1,8 +1,8 @@
 
 <h1>ユーザーの注文一覧</h1>
 
-<% @orders.each do |order| %>
-    <%= link_to "" do %>
+<% @users.each do |order| %>
+    <%= link_to "ユーザーの注文詳細画面のリンク" do %>
 		<table border="1">
 				<tr>
 					<td><%= l order.created_at, format: :short %></td>
@@ -14,4 +14,4 @@
     <% end %>
 <% end %>
 
-<%= paginate @orders, class: "paginate" %>
+<%= paginate @users, class: "paginate" %>
