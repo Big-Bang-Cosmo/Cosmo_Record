@@ -1,4 +1,15 @@
 <h1>ユーザーの::Items#show</h1>
+<% if @review.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@review.errors.count, "error") %> prohibited this post from being saved:</h2>
+		<ul>
+			<% @review.errors.full_messages.each do |message| %>
+			 <il><%= message %></il>
+			 <% end %>
+		</ul>
+	</div>
+<% end %>
+
 <div class = "container" >
 	<%= attachment_image_tag @item, :item_image, :fill, 250, 250, fallback: "no_image.jpg" %>
 	<div = item_box>
@@ -20,13 +31,29 @@
 	        <h3>在庫僅か</h3>
 	    <% end %>
 
+	<% if @item.stock > 0 && current_user %>
 		<%= form_for(@cart_item, url: user_cart_items_path, method: :post) do |f| %>
 			<%= f.hidden_field :quantity, value: 1 %>
 			<%= f.hidden_field :id, value: @item.id %>
 			<%= f.submit 'カートに入れる' %>
 		<% end %>
-
-		<h4>お気に入りに追加</h4>
+	<% end %>
+		<% if user_signed_in? %>
+						<% if @item.favorited_by?(current_user) %>
+						    <%= link_to user_item_favorites_path(@item), method: :delete do %>
+						      <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
+						      <%= @item.favorites.count %>
+						    <% end %>
+						<% else %>
+						    <%= link_to user_item_favorites_path(@item), method: :post do %>
+						      <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+						      <%= @item.favorites.count %>
+						    <% end %>
+						<% end %>
+					<% else %>
+						<span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
+				        <%= @item.favorites.count %>
+					<% end %>
 	</div>
 
 	<div class = "item_introduction">
@@ -60,10 +87,9 @@
 			<p><%= review.user.last_name %><%= review.user.first_name %>さんのレビュー</p>
 		<% end %>
 		<% if review.user == current_user %>
-			<% link_to "編集", edit_user_item_review_path(@item.id) %>
+			<% link_to "編集", edit_user_item_review_path(@item.id, review.id) %>
 		<% end %>
 		<%= review.review_body %>
 	<% end %>
-	<h1>レビューをもっと読む</h1>
 	<%= paginate @reviews, class: "paginate" %>
 </div>

@@ -3,10 +3,10 @@ class User::OrdersController < ApplicationController
 		@order = Order.new
 		@order_item = OrderItem.new
 		@user = current_user
-		@delivery = Delivery.where(active: true)
+		# @delivery = Delivery.where(active: true)
 		@deliveries = current_user.deliveries.all
-	    @cart_items = CartItem.where(active: true)
-	    @cart_item = CartItem.find_by(user_id: current_user.id)
+	    @cart_items = CartItem.all
+	    # @cart_item = CartItem.find_by(user_id: current_user.id)
 	    @shipping_fee = 500
 	    
 	    @user_cart_items = @user.cart_items
