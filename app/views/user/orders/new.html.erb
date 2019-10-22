@@ -2,49 +2,27 @@
 <h2>決済確定ページ</h2>
 
 <%= form_for(@order, url: user_orders_path, method: :post ) do |f| %>
-
-<%= f.submit '注文を確定する',class:"btn btn-info active col-lg-6" %>
-<br>
-
 	<div>
-		<h3>お届け先</h3>
-		<p>※ご希望のお届け先を選択してください</p>
-			<% current_user.deliveries.each do |u| %>
-			<%= f.radio_button :delivery_id, u.id %>
-			<%= u.delivery_postal_code %>
-			<%= u.delivery_address %>
-			<br>
-			<% end %>
+		<%= f.submit '注文を確定する',class:"btn btn-info active col-lg-6" %>
 	</div>
-<hr>
+<br>
 	<div>
-		
 	    <h4>商品の合計金額(税込):¥<%= number_to_currency(@total_price) %>
 	    <h4>配送料：¥<%= @shipping_fee %></h4>
 		<h4>ご請求額：¥<%= number_to_currency(@total_price.to_i + @shipping_fee.to_i)  %></h4>
 	</div>
 
-<hr>
-
 	<div>
-	   <% @user.cart_items.each do |cart_item| %>
-			<div>
-				<%= attachment_image_tag cart_item.item, :item_image, :fill, 200, 200, fallback: "no_image.jpg" %>
-				<p>商品名<%= cart_item.item.item_name %></p>
-				<p>アーティスト名<%= cart_item.item.artist.artist_name %></p>
-			    <%= form_for(cart_item, url: user_cart_item_path(cart_item.id), method: :patch) do |f| %>
-				    <p>数量:</p>
-				    <%= f.number_field :quantity, value: cart_item.quantity, min:1, max:100 %>
-				    	<%= f.submit "数量変更" %>
-					<%= link_to '削除',user_cart_item_path(cart_item.id), method: :delete %>
-					<p>価格(税込)：¥<%= number_to_currency(cart_item.item.price * cart_item.quantity.to_i * 1.1) %></p>
-				<% end %>
-			</div>
+		<h3>お届け先</h3>
+		<p>※ご希望のお届け先を選択してください</p>
+		<% current_user.deliveries.each do |u| %>
+				<%= f.radio_button :delivery_adress, u.id %>
+				<%= u.delivery_postal_code %>
+				<%= u.delivery_address %>
+		<br>
 		<% end %>
 	</div>
-
 <hr>
-
 	<div>
 		<h3>お支払い方法</h3>
 			<label><%= f.radio_button :payment_methods,:銀行振込, checked: "checked"%>銀行振込</label>
@@ -65,7 +43,22 @@
 		<h4>支払い情報</h4>
 		<p>クレジットカード　visa下4桁 XXXX</p>
 	</div>
-<% end %>
-</div>
 
 <hr>
+
+	<div>
+	   <% @user_cart_items.each do |cart_item| %>
+			<div>
+				<%= attachment_image_tag cart_item.item, :item_image, :fill, 200, 200, fallback: "no_image.jpg" %>
+				<p>商品名<%= cart_item.item.item_name %></p>
+				<p>アーティスト名<%= cart_item.item.artist.artist_name %></p>
+				<p>数量:<%= cart_item.quantity %>
+					<%= link_to '削除',user_cart_item_path(cart_item.id), method: :delete %>
+					<p>価格(税込)：¥<%= number_to_currency(cart_item.item.price * cart_item.quantity.to_i * 1.1) %></p>
+			</div>
+		<% end %>
+	</div>
+ <% end %>
+
+</div>
+

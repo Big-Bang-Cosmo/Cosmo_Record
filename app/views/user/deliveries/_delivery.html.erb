@@ -1,0 +1,20 @@
+<div class="nested-fields disc_field">
+	<p>お名前</p>
+	    <p>姓</p>
+	    	<%= f.text_field :last_name %>
+	    <p>名</p>
+	    	<%= f.text_field :first_name %>
+    <p>お名前(カタカナ)</p>
+	    <p>セイ</p>
+	    	<%= f.text_field :last_name_ruby %>
+	    <p>メイ</p>
+	    	<%= f.text_field :first_name_ruby %>
+	<p>郵便番号</p>
+    	<%= f.text_field :delivery_postal_code %>
+    <p>住所</p>
+    	<%= f.text_field :delivery_address %>
+    <p>電話番号</p>
+    	<%= f.text_field :delivery_phone_number %>
+    <br>
+    <%= link_to_remove_association "配送先を削除", f %>
+</div>

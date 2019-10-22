@@ -1,0 +1,34 @@
+<%= form_for(delivery, url: @url) do |f|%>
+
+		<% if delivery.errors.any? %>
+			<div id="error_explanation">
+				<h2><%= pluralize(delivery.errors.count, "error") %> prohibited this post from being saved:</h2>
+				<ul>
+					<% delivery.errors.full_messages.each do |message| %>
+					 <il><%= message %></il>
+					 <% end %>
+				</ul>
+			</div>
+		<% end %>
+
+		<p>登録済み住所</p>
+		<%= @user.deliveries.delivery_postal_code %>
+		<%= @user.delivery_address %>
+		<%=  @user.delivery_phone_number %>
+
+		<p></p>
+	    <div class="delivery">
+			    <%= f.fields_for :deliveries do |delivery| %>
+						<%= render "delivery_fields", f: delivery %>
+				<% end %>
+				<div class="links">
+					<%= link_to_add_association "お届け先を追加", f, :deliveries %>
+				</div>
+		</div>
+
+			<div class="actions">
+
+				<%= f.submit @moji %>
+			</div>
+
+<% end %>

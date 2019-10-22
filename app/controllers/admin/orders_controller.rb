@@ -1,16 +1,31 @@
 class Admin::OrdersController < ApplicationController
-  def index
-  	  @users = User.orders.page(params[:page]).reverse_order
-  	  
-  end
+	def index
+		@users = User.orders.page(params[:page]).reverse_order
 
-#元は　bought_items
-  def show
-  end
+	end
 
-  def day_bought_items
-  	　　@user = User.find(params[:id])
-  end
+	def update
+		@order = Order.find(params[:id])
+		if  @order.delivery_status == "商品準備中"
+			@order.delivery_status = "出荷済み"
+			@order.save
+			redirect_to admin_bought_items_path(@order.id)
+		else
+			@order.delivery_status == "出荷済み"
+			@order.delivery_status = "商品準備中"
+			@order.save
+			redirect_to admin_bought_items_path(@order.id)
+		end
+	end
 
-  
+
+
+	def show
+	end
+
+	def day_bought_items
+	　　@user = User.find(params[:id])
+	end
+
+
 end

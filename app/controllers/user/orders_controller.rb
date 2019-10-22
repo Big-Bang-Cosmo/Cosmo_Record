@@ -2,25 +2,39 @@ class User::OrdersController < ApplicationController
 	def new
 		@order = Order.new
 		@order_item = OrderItem.new
-		@user = current_user
-		# @delivery = Delivery.where(active: true)
 		@deliveries = current_user.deliveries.all
-	    @cart_items = CartItem.all
-	    # @cart_item = CartItem.find_by(user_id: current_user.id)
+	    @cart_item = CartItem.find_by(user_id: current_user.id)
 	    @shipping_fee = 500
-	    
-	    @user_cart_items = @user.cart_items
+	    @user_cart_items = current_user.cart_items
 	    @total_price = 0
+	    
 	    @user_cart_items.each do |cart_item|
-	    	@total_price += cart_item.item.price * cart_item.quantity.to_i * 1.1
-	    end
-
+	    @total_price += cart_item.item.price * cart_item.quantity.to_i * 1.1
+		end
 	end
 
 	def create
 		@order = Order.new(order_params)
-		@order.save
-		redirect_to user_order_completed_path
+		@order.user_id = current_user.id
+
+		@order.shipping_fee = 500
+		@order.total_price = 0
+		current_user.cart_items.each do |cart_item|
+		@order.total_price += cart_item.item.price * cart_item.quantity.to_i * 1.1
+		end
+		@order.total_price += @order.shipping_fee
+
+		if @order.save
+			current_user.cart_items.each do |cart_item|
+			@order_item = OrderItem.new(order_id: @order.id,item_id: cart_item.item_id, price: cart_item.item.price, quantity: cart_item.quantity)
+			@order_item.save
+			current_user.cart_items.destroy_all
+			redirect_to user_order_completed_path
+			end
+		else
+			render 'user/orders/new'
+			# redirect_to user_orders_new_path(current_user.id)
+		end
 	end
 
 #購入履歴一覧
@@ -31,16 +45,18 @@ class User::OrdersController < ApplicationController
 	end
 
 	def bought_items
+		@orders = Order.all
 	end
+	
+	
 
 	def day_bought_items
 	end
 
 
 	private
-
 	def order_params
-	 	params.require(:order).permit(:total_price, :shipping_fee, :payment_methods)
+	 	params.require(:order).permit(:delivery_adress, :payment_methods, order_items_attributes: [:id, :_destroy])
 	end
 
 end
