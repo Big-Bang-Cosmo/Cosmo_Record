@@ -15,7 +15,9 @@ class User::OrdersController < ApplicationController
 	def create
 		@order = Order.new(order_params)
 		@order.user_id = current_user.id
-
+		delivery = Delivery.find(order_params[:delivery_adress])
+		@order.delivery_adress = delivery.delivery_address
+		@order.delivery_postal_code = delivery.delivery_postal_code
 		@order.shipping_fee = 500
 		@order.total_price = 0
 		current_user.cart_items.each do |cart_item|
@@ -57,7 +59,7 @@ class User::OrdersController < ApplicationController
 
 	private
 	def order_params
-	 	params.require(:order).permit(:delivery_adress, :payment_methods, order_items_attributes: [:id, :_destroy])
+	 	params.require(:order).permit(:delivery_adress, :delivery_postal_code, :payment_methods, order_items_attributes: [:id, :_destroy])
 	end
 
 end
