@@ -1,13 +1,24 @@
 <div class="container">
 <h2>決済確定ページ</h2>
 
+　　　　<% if @order.errors.any? %>
+			<div id="error_explanation">
+				<h2><%= pluralize(order.errors.count, "error") %> prohibited this post from being saved:</h2>
+				<ul>
+					<% order.errors.full_messages.each do |message| %>
+					 <il><%= message %></il>
+					 <% end %>
+				</ul>
+			</div>
+		<% end %>
+
 <%= form_for(@order, url: user_orders_path, method: :post ) do |f| %>
 	<div>
 		<%= f.submit '注文を確定する',class:"btn btn-info active col-lg-6" %>
 	</div>
 <br>
 	<div>
-	    <h4>商品の合計金額(税込):¥<%= number_to_currency(@total_price) %>
+	    <h4>商品の合計金額(税込):<%= number_to_currency(@total_price) %>
 	    <h4>配送料：¥<%= @shipping_fee %></h4>
 		<h4>ご請求額：¥<%= number_to_currency(@total_price.to_i + @shipping_fee.to_i)  %></h4>
 	</div>

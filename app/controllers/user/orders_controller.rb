@@ -16,7 +16,9 @@ class User::OrdersController < ApplicationController
 	def create
 		@order = Order.new(order_params)
 		@order.user_id = current_user.id
-
+		delivery = Delivery.find(order_params[:delivery_adress])
+		@order.delivery_adress = delivery.delivery_address
+		@order.delivery_postal_code = delivery.delivery_postal_code
 		@order.shipping_fee = 500
 		@order.total_price = 0
 		current_user.cart_items.each do |cart_item|
@@ -26,8 +28,12 @@ class User::OrdersController < ApplicationController
 
 		if @order.save
 			current_user.cart_items.each do |cart_item|
+
 			@order_item = OrderItem.new(order_id: @order.id,item_id: cart_item.item_id, price: cart_item.item.price, quantity: cart_item.quantity)
 			@order_item.save
+			@order_item.save
+			end
+
 			current_user.cart_items.destroy_all
 			redirect_to user_order_completed_path
 			end
@@ -39,6 +45,11 @@ class User::OrdersController < ApplicationController
 
 #購入履歴一覧
 	def index
+		@users = User.orders.page(params[:page]).reverse_order
+	end
+#購入履歴詳細
+	def show
+		@order = Order.find(params[:id])
 	end
 # 決済が完了しましたのページ
 	def order_completed
@@ -56,7 +67,7 @@ class User::OrdersController < ApplicationController
 
 	private
 	def order_params
-	 	params.require(:order).permit(:delivery_adress, :payment_methods, order_items_attributes: [:id, :_destroy])
+	 	params.require(:order).permit(:delivery_adress, :delivery_postal_code, :payment_methods, order_items_attributes: [:id, :_destroy])
 	end
 
 end

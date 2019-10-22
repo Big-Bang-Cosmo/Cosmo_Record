@@ -3,17 +3,6 @@ class User::UsersController < ApplicationController
   	  deliveries = Delivery.new(user_params)
   end
 
-  def edit
-  	  @user = User.find(params[:id])
-  	  # @delivery = Delivery.find(params[:id])
-  	  # deliveries = Delivery.new(user_params)
-  end
-
-  def update
-      @user = User.find(params[:id])
-      @user.update
-  end
-
   def user_reviews
      @user = User.find(params[:id])
      @reviews = @user.reviews
@@ -26,11 +15,34 @@ class User::UsersController < ApplicationController
       @cart_item = CartItem.new
   end
 
-  def unsubscribe
+
+  def edit
+      @user = User.find(params[:id])
   end
 
-  def usre_edit_params
-    params.require(:book).permit(:title, :body)
+  def update
+      @user = User.find(params[:id])
+      if @user.update(user_params)
+        redirect_to admin_users_path
+      else
+        render :edit
+      end
+  end
+
+  def destroy
+      @user = User.find(params[:id])
+      User.find(params[:id]).destroy
+      redirect_to admin_users_path
+  end
+
+  # def unsubscribe
+  # end
+
+  # def user_destroy_completed
+  # end
+
+  def user_params
+    params.require(:user).permit(:last_name, :first_name, :last_name_ruby, :first_name_ruby,discs_attributes: [:id, ])
   end
 
 

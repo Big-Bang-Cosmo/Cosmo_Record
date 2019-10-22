@@ -3,5 +3,4 @@ class Delivery < ApplicationRecord
 
 	validates :delivery_postal_code, presence: :true
     validates :delivery_address, presence: :true
-    validates :delivery_phone_number, presence: :true
 end
