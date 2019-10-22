@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 2019_10_22_081910) do
     t.string "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
     t.integer "item_id"
   end
 
@@ -157,6 +158,7 @@ ActiveRecord::Schema.define(version: 2019_10_22_081910) do
     t.string "first_name_ruby"
     t.string "gender"
     t.string "is_user_deletable"
+    t.integer "phone_number"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

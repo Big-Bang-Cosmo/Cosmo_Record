@@ -15,5 +15,6 @@ class User < ApplicationRecord
   validates :last_name_ruby, presence: :true
   validates :first_name_ruby, presence: :true
   validates :gender, presence: :true
+  validates :phone_number, presence: :true
 
 end

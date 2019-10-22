@@ -13,7 +13,7 @@
 			</tr>
 	</table>
 
-  <% if @contact.status == "processing"  %>
+  <% if @contact.status == "未対応" %>
 	<%= button_to "未対応", {controller: 'admin/contacts', action: 'update'}, {method: :patch} %>
   <% else %>
 	<%= button_to "応対完了", {controller: 'admin/contacts', action: 'update'}, {method: :patch} %>
