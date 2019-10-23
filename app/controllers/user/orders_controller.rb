@@ -41,7 +41,7 @@ class User::OrdersController < ApplicationController
 			current_user.cart_items.destroy_all #@orderがsaveできればカート内アイテムを削除
 
 			redirect_to user_order_completed_path
-			end
+			
 		else
 			render 'user/orders/new'
 			# redirect_to user_orders_new_path(current_user.id)
