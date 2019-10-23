@@ -31,5 +31,3 @@ class User::ItemsController < ApplicationController
     @items = Item.search(params[:search])
   end
 end
-
-

@@ -2,8 +2,6 @@ class User::ReviewsController < ApplicationController
 
   # 元は item_reviews
   def show
-  	@item = Item.find(params[:item_id])
-  	@reviews = @item.reviews.page(params[:page]).reverse_order
   	@user = User.find(params[:user_id])
   end
 
