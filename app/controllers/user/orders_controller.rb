@@ -22,7 +22,7 @@ class User::OrdersController < ApplicationController
 		@order.total_price = 0 #注文の合計額の初期値を定義
 		current_user.cart_items.each do |cart_item|
 			@order.total_price += cart_item.item.price * cart_item.quantity.to_i * 1.1
-		end
+		end #order.total_price(この時点で0。ここに)
 		@order.total_price += @order.shipping_fee
 
 		if @order.save
