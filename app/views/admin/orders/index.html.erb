@@ -2,7 +2,7 @@
 <h1>ユーザーの注文一覧</h1>
 
 <% @orders.each do |order| %>
-    <%= link_to "ユーザーの注文詳細画面のリンク" do %>
+    <%= link_to admin_bought_items_path(order.user.id) do %>
 		<table border="1">
 				<tr>
 					<td><%= l order.user.created_at, format: :short %></td>
