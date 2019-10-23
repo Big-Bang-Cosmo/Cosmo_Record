@@ -31,5 +31,12 @@ class Admin::OrdersController < ApplicationController
 	　　@user = User.find(params[:id])
 	end
 
+#元はbought_items
+  def show
+  end
+
+  def day_bought_items
+  	  @orders = Order.find(params[:id])
+  end
 
 end
