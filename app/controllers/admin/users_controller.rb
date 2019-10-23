@@ -15,10 +15,11 @@ class Admin::UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    
+
   end
 
   def update
+    @user = User.find(params[:id])
   end
 
   def destroy
@@ -27,3 +28,4 @@ class Admin::UsersController < ApplicationController
 
 
 end
+
