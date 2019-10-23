@@ -5,11 +5,17 @@ class User::CartItemsController < ApplicationController
   end
 
   def create
-  	@item = Item.find(params[:cart_item][:id])
+    @item = Item.find(params[:cart_item][:id])
+    if @cart_item = CartItem.find_by(item_id: @item.id)
+    @cart_item.quantity += 1
+    @cart_item.save
+    redirect_to user_user_cart_item_list_path(current_user.id)
+    else
     @cart_item = current_user.cart_items.new(item_id: @item.id)
     @cart_item.quantity = 1
     @cart_item.save
     redirect_to user_user_cart_item_list_path(current_user.id)
+  end
   end
 
   def update
