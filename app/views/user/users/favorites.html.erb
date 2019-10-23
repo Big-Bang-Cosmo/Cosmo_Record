@@ -1,9 +1,9 @@
 
 <h1><%= @user.last_name + @user.first_name %>さんのマイページ</h1>
 
-<%= link_to "ユーザー情報の編集" %>
+<%= link_to "ユーザー情報の編集", edit_user_registration_path %>
 <%= link_to "マイレビュー一覧", user_user_reviews_path(current_user) %>
-<%= link_to "購入履歴一覧" %>
+<%= link_to "購入履歴一覧", user_bought_items_path %>
 
 <div class="sidebar">
 	<div class="genre-item">
