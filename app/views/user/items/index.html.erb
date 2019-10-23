@@ -16,7 +16,7 @@
 <div class="ranking">
 	<div class="ranking-item">
 		<p>売上ランキング</p>
-          <% @ item_sales_ranking.each.width_index(1) do |item, i| %>
+          <% @item_sales_rankings.each.with_index(1) do |item, i| %>
 			   第<%= i %>位
 			   <%= item.item_name %>
 			   <%= item.artist.artist_name %>

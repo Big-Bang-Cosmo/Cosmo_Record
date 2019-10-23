@@ -15,7 +15,7 @@ class Admin::ArrivalsController < ApplicationController
 		arrival = Arrival.new(arrival_params) #arrivalに空の変数を代入
 		arrival.item_id = item.id #商品のidをarrivalと結びつける
 		item.stock += arrival.arrival_quantity #itemのstockに入力されたarrival_quantityを+する
-        Item.update(stock: item.stock) #itemのstockカラム(stock)に手に入れた情報(item.stock)を保存する
+        item.update(stock: item.stock) #itemのstockカラム(stock)に手に入れた情報(item.stock)を保存する
 		arrival.save
 		redirect_to admin_arrivals_index_path
 	end
