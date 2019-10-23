@@ -9,11 +9,16 @@
 			<%= @item.genre.genre_name %>
 			<%= @item.label.label_name %>
 		</div>
-
 		<%= number_to_currency(@item.price) %>
 
-		<h3>販売中</h3>
+		<% if @item.stock > 0 %>
+			<h3>販売中</h3>
+		<% else %>
+			<h3>販売停止中</h3>
+		<% end %>
+
 		<h3>在庫数：<%= @item.stock %></h3>
+		<h3><%= link_to "在庫の追加", new_admin_item_arrival_path(@item.id) %></h3>
 		<h3><%= link_to "商品を編集する", edit_admin_item_path(@item.id) %></h3>
 		<h3><%= link_to "商品を削除する", admin_item_path(@item.id), method: :delete %></h3> 
 	</div>

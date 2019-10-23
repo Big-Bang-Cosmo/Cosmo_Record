@@ -8,11 +8,14 @@ class User::ReviewsController < ApplicationController
   end
 
   def create
-    item = Item.find(params[:item_id])
-    review = current_user.reviews.new(review_params)
-    review.item_id = item.id
-    review.save
-    redirect_to user_item_path(item.id)
+    @item = Item.find(params[:item_id])
+    @review = current_user.reviews.new(review_params)
+    @review.item_id = @item.id
+    @review.save
+    @cart_item = CartItem.new
+    @tax_price = @item.price * 1.1
+    @reviews = @item.reviews.page(params[:page]).reverse_order
+    render "user/items/show"
   end
 
   def edit

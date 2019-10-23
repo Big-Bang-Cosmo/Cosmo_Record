@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 2019_10_22_081910) do
 
   create_table "arrivals", force: :cascade do |t|
     t.integer "item_id"
+    t.integer "arrival_quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "arrival_quantity"
   end
 
   create_table "artists", force: :cascade do |t|
@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(version: 2019_10_22_081910) do
     t.integer "total_price"
     t.string "payment_methods"
     t.integer "user_id"
-    t.string "delivery_status"
+    t.string "delivery_status", default: "商品準備中"
     t.string "delivery_adress"
     t.integer "shipping_fee"
     t.integer "delivery_postal_code"
