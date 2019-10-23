@@ -58,7 +58,8 @@ class User::OrdersController < ApplicationController
 	end
 
 	def bought_items
-		@orders = Order.page(params[:page]).reverse_order
+		@user = User.find(params[:id])
+		@orders = @user.orders.page(params[:page]).reverse_order
 	end
 
 	private

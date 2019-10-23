@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     get 'users/:id/user_reviews' => 'users#user_reviews', as: 'user_reviews'
 
     get 'orders/:id/new' => 'orders#new', as: 'orders_new'
-    get 'orders/bought_items' => 'orders#bought_items', as: 'bought_items'
+    get 'orders/:id/bought_items' => 'orders#bought_items', as: 'bought_items'
     get 'orders/:id/day_bought_items' => 'orders#day_bought_items', as: 'day_bought_items'
 
     get 'orders/order_completed' => 'orders#order_completed', as:'order_completed'
@@ -38,7 +38,7 @@ Rails.application.routes.draw do
     get 'items/search' => 'items#search', as: 'item_search'
     get 'arrivals/index' => 'arrivals#index'
     get 'users/:id/user_reviews' => 'users#user_reviews', as: 'user_reviews'
-    get 'orders/bought_items' => 'orders#bought_items', as: 'bought_items'
+    get 'orders/:id/bought_items' => 'orders#bought_items', as: 'bought_items'
     get 'orders/:id/day_bought_items' => 'orders#day_bought_items', as: 'day_bought_items'
 
     resources :contacts, only: [:index, :show, :update]
