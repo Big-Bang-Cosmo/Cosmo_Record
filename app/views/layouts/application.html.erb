@@ -11,26 +11,25 @@
 
   <body>
    <header>
-
  <% if request.path_info.include?('user') %>
  <div class="user-header">
    <%= link_to 'logo', user_path %>
-   <ul class="nav-list clearfix">
+   <ul class="nav-list">
          <% if user_signed_in? %>
            <li class="nav-list-item">
-             <%= link_to "ユーザー名: #{current_user.last_name} #{current_user.first_name}", user_users_favorites_path(current_user), :style=>"color:yellow;" %>
+             <%= link_to "ユーザー名: #{current_user.last_name} #{current_user.first_name}", user_users_favorites_path(current_user), :style=>"color:yellow; " %>
            </li>
            <li class="nav-list-item">
-             <%= link_to "ログアウト", destroy_user_session_path, method: :delete  %>
+             <%= link_to "ログアウト", destroy_user_session_path, method: :delete, :style=>"color:yellow;" %>
            </li>
            <li class="nav-list-item">
-             <%= link_to "お問い合わせ", new_user_contact_path %>
+             <%= link_to "お問い合わせ", new_user_contact_path, :style=>"color:yellow;" %>
            </li>
-           <li class="nav-list-item">
-             <a><%= link_to user_user_cart_item_list_path(current_user) do %>
+           <div class="nav-list-cart">
+             <%= link_to user_user_cart_item_list_path(current_user), class:"btn-square",:style=>"margin-bottom: 50px;" do %>
              <span class="glyphicon glyphicon-shopping-cart"></span> ショッピングカート
-             <% end %></a>
-           </li>
+             <% end %>
+           </div>
          <% else %>
            <li class="nav-list-item">
              <%= link_to "ログイン", new_user_session_path %>
@@ -42,7 +41,7 @@
             <%= link_to "お問い合わせ", new_user_contact_path %>
            </li>
          <% end %>
-       </ul>
+   </ul>
          <%= form_tag user_item_search_path, method: 'get' do %>
              <%= text_field_tag :search, params[:search], placeholder: "商品名" %>
              <%= submit_tag "検索", :name => nil %>
@@ -64,7 +63,6 @@
           <% end %>
   <% end %>
      </header>
-
     <%= yield %>
   </body>
 </html>
