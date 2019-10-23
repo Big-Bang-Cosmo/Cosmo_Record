@@ -22,8 +22,8 @@ class User::OrdersController < ApplicationController
 		@order.shipping_fee = 500 #送料の初期値を定義
 		@order.total_price = 0 #注文の合計額の初期値を定義
 		current_user.cart_items.each do |cart_item|
-		@order.total_price += cart_item.item.price * cart_item.quantity.to_i * 1.1
-		end
+			@order.total_price += cart_item.item.price * cart_item.quantity.to_i * 1.1
+		end #order.total_price(この時点で0。ここにカート内アイテムの値段Xカート内アイテムの個数をしたものを+する)
 		@order.total_price += @order.shipping_fee
 
 		if @order.save
@@ -31,12 +31,8 @@ class User::OrdersController < ApplicationController
 
 			@order_item = OrderItem.new(order_id: @order.id,item_id: cart_item.item_id, price: cart_item.item.price, quantity: cart_item.quantity)
 			@order_item.save
-			current_user.cart_items.destroy_all
-
-				@order_item = OrderItem.new(order_id: @order.id,item_id: cart_item.item_id, price: cart_item.item.price, quantity: cart_item.quantity)
-				@order_item.save
-				@order_item.item.update(stock: @order_item.item.stock - @order_item.quantity.to_i)
-				#@order_item(購入する1種類の商品).item.stockで商品の現総在庫数を特定し、@order_itemの数量分を引き算する
+			@order_item.item.update(stock: @order_item.item.stock - @order_item.quantity.to_i)
+			#@order_item(購入する1種類の商品).item.stockで商品の現総在庫数を特定し、@order_itemの数量分を引き算する
 			end
 			current_user.cart_items.destroy_all #@orderがsaveできればカート内アイテムを削除
 
@@ -50,7 +46,8 @@ class User::OrdersController < ApplicationController
 
 #購入履歴一覧
 	def index
-		@users = User.orders.page(params[:page]).reverse_order
+		@user = current_user
+		@orders = Order.page(params[:page]).reverse_order
 	end
 #購入履歴詳細
 	def show
@@ -63,10 +60,6 @@ class User::OrdersController < ApplicationController
 	def bought_items
 		@orders = Order.page(params[:page]).reverse_order
 	end
-
-	def day_bought_items
-	end
-
 
 	private
 	def order_params

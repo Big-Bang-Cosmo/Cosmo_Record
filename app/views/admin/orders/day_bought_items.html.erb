@@ -1,5 +1,5 @@
 
-<h4><%= @orders.user.last_name + @orders.user.first_name %>さんの<%= l @orders.created_at, format: :short %>日の注文一覧</h4>
+<h4><%= @order.user.last_name + @order.user.first_name %>さんの<%= l @order.created_at, format: :short %>日の注文一覧</h4>
 
 <%= link_to "購入履歴一覧に戻る", admin_orders_path %>
 
@@ -7,27 +7,27 @@
 
 	<div class="order-show-content">
 		<p>お届け先住所</p>
-		<%= @orders.user.last_name + @orders.user.first_name %>
-		<%= @orders.delivery_postal_code %>
-		<%= @orders.delivery_adress %>
+		<%= @order.user.last_name + @order.user.first_name %>
+		<%= @order.delivery_postal_code %>
+		<%= @order.delivery_adress %>
 	</div>
 
 	<div class="order-show-content">
 		<p>支払方法</p>
-		<%= @orders.payment_methods %>
+		<%= @order.payment_methods %>
 	</div>
 
 	<div class="order-show-content">
 		<p>購入明細</p>
-		<p>商品の小計:</p><%= number_to_currency(@orders.total_price - @orders.shipping_fee) %>
-		<p>配送料:</p><%= number_to_currency(@orders.shipping_fee) %>
-		<p>ご請求額:</p><%= number_to_currency(@orders.total_price) %>
+		<p>商品の小計:</p><%= number_to_currency(@order.total_price - @order.shipping_fee) %>
+		<p>配送料:</p><%= number_to_currency(@order.shipping_fee) %>
+		<p>ご請求額:</p><%= number_to_currency(@order.total_price) %>
 	</div>
 
 </div>
 
-<%= l @orders.created_at, format: :short %>
-<% @orders.order_items.each do |order_item| %>
+<%= l @order.created_at, format: :short %>
+<% @orders.each do |order_item| %>
 	<table border="1">
 			<tr>
 				<td><%= link_to user_item_path(order_item) do %>
