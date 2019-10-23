@@ -5,22 +5,23 @@ class Admin::OrdersController < ApplicationController
   	  
   end
 
-	end
-
 	def update
-		@order = Order.find(params[:id])
-		if  @order.delivery_status == "商品準備中"
-			@order.delivery_status = "出荷済み"
-			@order.save
-			redirect_to admin_bought_items_path(@order.id)
+		order = Order.find(params[:id])
+		if  order.delivery_status == "商品準備中"
+			order.delivery_status = "出荷済み"
+			order.save
+			redirect_to admin_bought_items_path(order.id)
 		else
-			@order.delivery_status == "出荷済み"
-			@order.delivery_status = "商品準備中"
-			@order.save
-			redirect_to admin_bought_items_path(@order.id)
+			order.delivery_status == "出荷済み"
+			order.delivery_status = "商品準備中"
+			order.save
+			redirect_to admin_bought_items_path(order.id)
 		end
 	end
-
+	
+	def bought_items
+		@orders = Order.page(params[:page]).reverse_order
+	end
 
 
 	def show

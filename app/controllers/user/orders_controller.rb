@@ -28,12 +28,8 @@ class User::OrdersController < ApplicationController
 
 		if @order.save
 			current_user.cart_items.each do |cart_item|
-
 			@order_item = OrderItem.new(order_id: @order.id,item_id: cart_item.item_id, price: cart_item.item.price, quantity: cart_item.quantity)
 			@order_item.save
-			@order_item.save
-			end
-
 			current_user.cart_items.destroy_all
 			redirect_to user_order_completed_path
 			end
@@ -56,10 +52,8 @@ class User::OrdersController < ApplicationController
 	end
 
 	def bought_items
-		@orders = Order.all
+		@orders = Order.page(params[:page]).reverse_order
 	end
-	
-	
 
 	def day_bought_items
 	end
