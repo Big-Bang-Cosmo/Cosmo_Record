@@ -87,7 +87,8 @@
 			<p><%= review.user.last_name %><%= review.user.first_name %>さんのレビュー</p>
 		<% end %>
 		<% if review.user == current_user %>
-			<% link_to "編集", edit_user_item_review_path(@item.id, review.id) %>
+			<%= link_to "編集", edit_user_item_review_path(@item.id, review.id) %>
+			<%= link_to "削除", user_item_review_path(@item.id, review.id), method: :delete %>
 		<% end %>
 		<%= review.review_body %>
 	<% end %>
