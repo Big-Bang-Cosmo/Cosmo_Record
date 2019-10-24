@@ -14,6 +14,7 @@
 				</th>
 				<th>
 					<%= link_to "編集する", edit_admin_item_review_path(review.item.id, review.id) %>
+					<%= link_to "削除する", admin_item_review_path(review.item.id, review.id), method: :delete %>
 				</th>
 			</tr>
 		</thead>

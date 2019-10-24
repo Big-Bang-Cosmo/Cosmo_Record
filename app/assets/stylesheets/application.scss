@@ -35,11 +35,24 @@
 	background: image-url('header.png');
 }
 
+.nav-list{
+	text-align: right;
+}
 
 .nav-list-item{
+    font-size: 14px;
+    font-weight: bold;
     float: left;
-    margin-right: 20px;
+    text-align: right;
     list-style: none;
+    position: relactive;
+    margin-right: 20px;
+    position: relative;
+    left: 1000px;
+    bottom: 20px;
+}
+.nav-list-cart{
+	padding: 50px 50px 0 0;
 }
 .glyphicon-shopping-cart{
     position: relative;
@@ -52,9 +65,11 @@
   padding: 0.5em 1em;
   text-decoration: none;
   background: #668ad8;/*ボタン色*/
-  color: #FFF;
+  color:#ffd700;
   border-bottom: solid 4px #627295;
   border-radius: 3px;
+  position: relative;
+  bottom: 25px;
 }
 
 .btn-square:active {
