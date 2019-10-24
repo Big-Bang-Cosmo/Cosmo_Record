@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(version: 2019_10_23_082406) do
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
     t.integer "item_id"
     t.integer "quantity"
   end

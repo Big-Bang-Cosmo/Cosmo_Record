@@ -11,93 +11,73 @@
 
   <body>
    <header>
-
- <% if request.path_info.include?('admin') %>
-         <% if user_signed_in? %>
-           <li class="nav-list-item">
-             <%= link_to "ユーザー名: #{current_user.last_name} #{current_user.first_name}", user_users_favorites_path(current_user), :style=>"color:yellow;" %>
-           </li>
-           <li class="nav-list-item">
-             <%= link_to "ログアウト", destroy_user_session_path, method: :delete  %>
-           </li>
-           <li class="nav-list-item">
-             <%= link_to "お問い合わせ", new_user_contact_path %>
-           </li>
-           <li class="nav-list-item">
-             <a><%= link_to user_user_cart_item_list_path(current_user) do %>
-             <span class="glyphicon glyphicon-shopping-cart"></span> ショッピングカート
-             <% end %></a>
-           </li>
-         <% else %>
-           <li class="nav-list-item">
-             <%= link_to "ログイン", new_user_session_path %>
-           </li>
-           <li class="nav-list-item">
-             <%= link_to "新規会員登録", new_user_registration_path %>
-           </li>
-           <li class="nav-list-item">
-            <%= link_to "お問い合わせ", new_user_contact_path %>
-           </li>
-         <% end %>
+ <% if request.path_info.include?('user') %>
+ <div class="user-header">
+   <%= link_to 'Cosmo Record', user_path, :style=>"color:#ffd700; font-size: 40px; text-decoration: none; position: relative; top: 20px; left: 20px; font-family: Segoe Script; " %>
+   <nav>
+       <ul class="nav-list">
+             <% if user_signed_in? %>
+                 <li class="nav-list-item">
+                   <%= link_to "ユーザー名: #{current_user.last_name} #{current_user.first_name}", user_users_favorites_path(current_user), :style=>"color:#ffd700; " %>
+                 </li>
+                 <li class="nav-list-item">
+                   <%= link_to "ログアウト", destroy_user_session_path, method: :delete, :style=>"color:#ffd700;" %>
+                 </li>
+                 <li class="nav-list-item">
+                   <%= link_to "お問い合わせ", new_user_contact_path, :style=>"color:#ffd700;" %>
+                 </li>
+                 <div class="nav-list-cart">
+                   <%= link_to user_user_cart_item_list_path(current_user), class:"btn-square",:style=>"margin-bottom: 50px;" do %>
+                   <span class="glyphicon glyphicon-shopping-cart"></span> ショッピングカート
+             <% end %>
+                 </div>
+               <div class="header-search">
+                 <%= form_tag user_item_search_path, method: 'get',:style=>"position: relative; right: 1100px; bottom: 15px;" do %>
+                 <%= text_field_tag :search, params[:search], placeholder: "商品名" %>
+                 <%= submit_tag "検索", :name => nil %>
+               </div>
+                 <% end %> <!-- 検索フォームのend -->
+             <% else %>
+               <li class="nav-list-item">
+                 <%= link_to "ログイン", new_user_session_path, :style=>"color:#ffd700; position: relative; bottom: 10px; " %>
+               </li>
+               <li class="nav-list-item">
+                 <%= link_to "新規会員登録", new_user_registration_path, :style=>"color:#ffd700; position: relative; bottom: 10px; " %>
+               </li>
+               <li class="nav-list-item">
+                <%= link_to "お問い合わせ", new_user_contact_path, :style=>"color:#ffd700; position: relative; bottom: 10px; " %>
+               </li>
+               <div class="header-search">
+                 <%= form_tag user_item_search_path, method: 'get',:style=>"position: relative; right: 1100px; top: 35px;" do %>
+                 <%= text_field_tag :search, params[:search], placeholder: "商品名" %>
+                 <%= submit_tag "検索", :name => nil %>
+               </div>
+                 <% end %> <!-- 検索フォームのend -->
+             <% end %>
        </ul>
-         <%= form_tag user_item_search_path, method: 'get' do %>
-             <%= text_field_tag :search, params[:search], placeholder: "商品名" %>
-             <%= submit_tag "検索", :name => nil %>
-         <% end %>
+   </nav>
   </div>
 
   <% elsif request.path_info.include?('admin') %>
-        <% if user_signed_in? %>
+    <div class="user-header">
+     <%= link_to 'Cosmo Record', user_path, :style=>"color:#ffd700; font-size: 40px; text-decoration: none; position: relative; right: 238px; top: 20px; font-family: Segoe Script; " %>
+        <% if admin_signed_in? %>
              <li class="nav-list-item">
-             <span class="glyphicon glyphicon-share" aria-hidden="true"></span>  <%= link_to "logout", destroy_admin_session_path, method: :delete %>
-           </li>
+                <%= link_to "管理者としてログイン中　ログアウト", destroy_admin_session_path, method: :delete, :style=>"color:#ffd700; position: relative; left: 30px; top: 47px;" %>
+             </li>
         <% else %>
-              <li class="nav-list-item"><a href="/admins/sign_in"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>login</a></li>
+              <li class="nav-list-item">
+                 <%= link_to "ログイン", new_admin_session_path, :style=>"color:#ffd700; position: relative; left: 50px;　top: 5px; " %>
+               </li>
         <% end %>
 
-          <%= form_tag admin_item_search_path , method: 'get' do %>
+          <%= form_tag admin_item_search_path , method: 'get',:style=>"position: relative; left: 66px; top: 35px;" do %>
              <%= text_field_tag :search, params[:search], placeholder: "商品名" %>
           <%= submit_tag "検索", :name => nil %>
           <% end %>
- <% elsif request.path_info.include?('user') %>
-  <div class="user-header">
-     <%= link_to 'logo', user_path %>
-     <ul class="nav-list clearfix">
-           <% if user_signed_in? %>
-             <li class="nav-list-item">
-               <%= link_to "ユーザー名: #{current_user.last_name} #{current_user.first_name}", user_users_favorites_path(current_user) %>
-             </li>
-             <li class="nav-list-item">
-               <%= link_to "ログアウト", destroy_user_session_path, method: :delete  %>
-             </li>
-             <li class="nav-list-item">
-               <%= link_to "お問い合わせ", new_user_contact_path %>
-             </li>
-             <li class="nav-list-item">
-               <a><%= link_to user_user_cart_item_list_path(current_user) do %>
-               <span class="glyphicon glyphicon-shopping-cart"></span> ショッピングカート
-               <% end %></a>
-             </li>
-           <% else %>
-             <li class="nav-list-item">
-               <%= link_to "ログイン", new_user_session_path %>
-             </li>
-             <li class="nav-list-item">
-               <%= link_to "新規会員登録", new_user_registration_path %>
-             </li>
-             <li class="nav-list-item">
-              <%= link_to "お問い合わせ", new_user_contact_path %>
-             </li>
-           <% end %>
-         </ul>
-           <%= form_tag user_item_search_path, method: 'get' do %>
-               <%= text_field_tag :search, params[:search], placeholder: "商品名" %>
-               <%= submit_tag "検索", :name => nil %>
-           <% end %>
-    </div>
-  <% end %>
+     </div>
+   <% end %>
      </header>
-
     <%= yield %>
   </body>
 </html>
