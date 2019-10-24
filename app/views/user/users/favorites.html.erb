@@ -18,14 +18,16 @@
 
 <div class="ranking">
 	<div class="ranking-item">
-		<p>売上ランキング</p>
-		<ol>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ol>
+		<p>お気に入りランキング</p>
+          <% @all_ranks.each.with_index(1) do |item, i| %>
+			   <p>第<%= i %>位</p>
+			   <p><%= link_to user_item_path(item) do %>
+					<%= attachment_image_tag item, :item_image, :fill, 120, 120, fallback: "no_image.jpg", size:'120x120' %>
+					<% end %></p>
+			   <p><%= item.item_name %></p>
+			   <p><%= item.artist.artist_name %></p>
+			   <p><%= item.favorites.count %></p>
+         <% end %>
 	</div>
 </div>
 

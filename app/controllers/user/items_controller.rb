@@ -13,9 +13,14 @@ class User::ItemsController < ApplicationController
     @items = Item.page(params[:page]).reverse_order
     @genres = Genre.all
     @user = current_user
+
+    @all_ranks = Item.create_all_ranks
+
   end
 
   def search
     @items = Item.search(params[:search])
   end
 end
+
+

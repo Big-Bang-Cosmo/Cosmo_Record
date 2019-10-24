@@ -6,7 +6,6 @@
         <tr>
             <th>郵便番号</th>
             <th>住所</th>
-            <th>電話番号</th>
         </tr>
     </thead>
     <tbody>
@@ -14,8 +13,12 @@
         <tr>
 				<td><%= delivery.delivery_postal_code %></td>
 				<td><%= delivery.delivery_address %></td>
-    			<td><%= delivery.delivery_phone_number %></td>
     	</tr>
         <% end %>
 　　　</tbody>
 <table>
+
+<div>
+    <p>電話番号</p>
+    <p><%= @user.phone_number %></p>
+</div>

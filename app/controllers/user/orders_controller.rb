@@ -7,9 +7,8 @@ class User::OrdersController < ApplicationController
 	    @shipping_fee = 500
 	    @user_cart_items = current_user.cart_items
 	    @total_price = 0
-	    
 	    @user_cart_items.each do |cart_item|
-	    @total_price += cart_item.item.price * cart_item.quantity.to_i * 1.1
+	     @total_price += cart_item.item.price * cart_item.quantity.to_i * 1.1
 		end
 	end
 
@@ -28,16 +27,13 @@ class User::OrdersController < ApplicationController
 
 		if @order.save
 			current_user.cart_items.each do |cart_item|
-
 			@order_item = OrderItem.new(order_id: @order.id,item_id: cart_item.item_id, price: cart_item.item.price, quantity: cart_item.quantity)
 			@order_item.save
 			@order_item.item.update(stock: @order_item.item.stock - @order_item.quantity.to_i)
 			#@order_item(購入する1種類の商品).item.stockで商品の現総在庫数を特定し、@order_itemの数量分を引き算する
 			end
 			current_user.cart_items.destroy_all #@orderがsaveできればカート内アイテムを削除
-
 			redirect_to user_order_completed_path
-			
 		else
 			render 'user/orders/new'
 			# redirect_to user_orders_new_path(current_user.id)
@@ -66,5 +62,4 @@ class User::OrdersController < ApplicationController
 	def order_params
 	 	params.require(:order).permit(:delivery_adress, :delivery_postal_code, :payment_methods, order_items_attributes: [:id, :_destroy])
 	end
-
 end

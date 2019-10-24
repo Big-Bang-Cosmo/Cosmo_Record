@@ -24,10 +24,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     user = current_user
     user.update(user_params)
     redirect_to user_users_favorites_path(user.id)
-    # user.id = current_user.id
-    # delivery = user.deliveries.find_by(user_id: current_user.id)
-    # delivery.update(user_params)
-
+    # if request.path_info.include?('favorites')
+    #   redirect_to user_users_favorites_path(user.id)
+    # elsif request.path_info.include?('orders')
+    #   user_orders_new_path(user.id)
+    # end
   #   super
   end
 
@@ -83,7 +84,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)
-        delivery = Delivery.new(delivery_postal_code: params[:delivery_postal_code] ,delivery_address: params[:delivery_address] ,delivery_phone_number: params[:delivery_phone_number], user_id: current_user.id)
+        delivery = Delivery.new(delivery_postal_code: params[:delivery_postal_code] ,delivery_address: params[:delivery_address], user_id: current_user.id)
         delivery.save
         respond_with resource, location: after_sign_up_path_for(resource)
       else
