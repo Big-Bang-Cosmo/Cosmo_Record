@@ -1,3 +1,25 @@
 // Place all the styles related to the user/items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+ul {
+	list-style: none;
+}
+
+.product {
+	padding: 15px;
+	margin-bottom: 50px;
+	background-color: #eff7ff;
+}
+
+.genre-item {
+	border: solid #FFFFF 1px;
+}
+
+
