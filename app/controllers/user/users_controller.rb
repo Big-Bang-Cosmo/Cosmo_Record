@@ -13,6 +13,8 @@ class User::UsersController < ApplicationController
   	  @genres = Genre.all
       @items = @user.favorites.page(params[:page]).reverse_order
       @cart_item = CartItem.new
+
+      @all_ranks = Item.create_all_ranks
   end
 
 

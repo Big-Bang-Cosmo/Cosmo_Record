@@ -27,10 +27,11 @@
 		<h3>お届け先</h3>
 		<p>※ご希望のお届け先を選択してください</p>
 		<% current_user.deliveries.each do |u| %>
-				<%= f.radio_button :delivery_adress, u.id %>
+				<%= f.radio_button :delivery_adress, u.id, checked: "checked" %>
 				<%= u.delivery_postal_code %>
 				<%= u.delivery_address %>
 		<br>
+		<p><%= link_to "お届け先を追加する", edit_user_registration_path %></p>
 		<% end %>
 	</div>
 <hr>

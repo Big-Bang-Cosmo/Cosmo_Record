@@ -57,12 +57,6 @@ class User::OrdersController < ApplicationController
 		@orders = Order.page(params[:page]).reverse_order
 	end
 
-<<<<<<< HEAD
-	def day_bought_items
-	end
-
-=======
->>>>>>> c70feabe0f2fde146c3208f428d519fff8d2bf8c
 	private
 	def order_params
 	 	params.require(:order).permit(:delivery_adress, :delivery_postal_code, :payment_methods, order_items_attributes: [:id, :_destroy])

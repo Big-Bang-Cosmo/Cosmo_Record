@@ -24,10 +24,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     user = current_user
     user.update(user_params)
     redirect_to user_users_favorites_path(user.id)
-    # user.id = current_user.id
-    # delivery = user.deliveries.find_by(user_id: current_user.id)
-    # delivery.update(user_params)
-
+    # if request.path_info.include?('favorites')
+    #   redirect_to user_users_favorites_path(user.id)
+    # elsif request.path_info.include?('orders')
+    #   user_orders_new_path(user.id)
+    # end
   #   super
   end
 
