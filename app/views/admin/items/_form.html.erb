@@ -1,6 +1,5 @@
 	<%= form_for(@item, url: @url) do |f|%>
 
-	 <!-- エラー文　英語でいい？-->
 		<% if item.errors.any? %>
 			<div id="error_explanation">
 				<h2><%= pluralize(item.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -12,41 +11,27 @@
 			</div>
 		<% end %>
 
-		<div>
-			<%= attachment_image_tag @item, :item_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+	<div class = "row">
+		<div class = "col-lg-5">
+			<%= attachment_image_tag @item, :item_image, :fill, 150, 150, fallback: "no_image.jpg",size: '150x150' %>
 			<label>ジャケット画像の登録</label>
 			 <%= f.attachment_field :item_image %>
 		</div>
 
 
-		<div>
-			<table>
-				<tr>
-					<td><%= f.label :item_name, "シングル/アルバム名" %></td>
-					<td><%= f.text_field :item_name, size:30 %></td>
-				</tr>
-				<tr>
-					<td><%= f.label :artist_name, "アーティスト名" %></td>
-					<td><%= f.collection_select :artist_id, Artist.all, :id, :artist_name, size:20 %></td>
-				</tr>
-				<tr>
-					<td><%= f.label :label_name, "ラベル名" %></td>
-					<td><%= f.collection_select :label_id, Label.all, :id, :label_name, size:20 %></td>
-				</tr>
-				<tr>
-					<td><%= f.label :genre_name, "ジャンル名" %></td>
-					<td><%= f.collection_select :genre_id, Genre.all, :id, :genre_name, size:20 %></td>
-				</tr>
-				<tr>
-					<td><%= f.label :price, "商品価格(税抜)" %></td>
-					<td><span>¥</span><%= f.text_field :price, size:10 %></td>
-				</tr>
-		</table>
+		<div class = "col-lg-5">
+			<p><%= f.label :item_name, "シングル/アルバム名" %>:<%= f.text_field :item_name, size:40 %></p>
+			<p><%= f.label :artist_name, "アーティスト名" %>:<%= f.collection_select :artist_id, Artist.all, :id, :artist_name, size:50 %></p>
+			<p><%= f.label :label_name, "レーベル名" %>:<%= f.collection_select :label_id, Label.all, :id, :label_name, size:50 %></p>
+			<p><%= f.label :genre_name, "ジャンル名" %>:<%= f.collection_select :genre_id, Genre.all, :id, :genre_name, size:50 %></p>
+			<p><%= f.label :price, "商品価格(税抜)" %>:<span>¥</span><%= f.text_field :price, size:10 %></p>
+	  </div>
+	</div><!-- row_end -->
 
 		<div>
 			<%= f.label :introduction, "商品説明" %>
 			<br>
-			<%= f.text_area :introduction, size:"50x3" %>
+			<%= f.text_area :introduction, size:"100x3" %>
 	    </div>
 
 
