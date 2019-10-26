@@ -1,7 +1,8 @@
 class Admin::ArrivalsController < ApplicationController
 
 	def index
-		@arrivals = Arrival.all
+		@arrivals = Arrival.page(params[:page]).reverse_order
+		@item = Item.all
 	end
 
 	def new

@@ -1,18 +1,48 @@
+<h4>お問い合わせ一覧</h4>
+<div class="top-link"><%= link_to 'トップへ戻る', admin_home_top_path %></div>
 
-<h1>お問い合わせ一覧</h1>
+<div class="row clearfix">
+	<div class="col-lg-9">
+		<div class="col-lg-3">
+			<p><b>お問い合わせ日時</b></p>
+		</div>
+		<div class="col-lg-2">
+			<p><b>お名前</b></p>
+		</div>
+		<div class="col-lg-2">
+			<p><b>メールアドレス</b></p>
+		</div>
+		<div class="col-lg-2">
+			<p><b>電話番号</b></p>
+		</div>
+		<div class="col-lg-2">
+			<p><b>ステータス</b></p>
+		</div>
+	</div>
+</div>
 
-<% @contacts.each do |contact| %>
-    <%= link_to admin_contact_path(contact) do %>
-		<table border="1">
-				<tr>
-					<td><%= l contact.created_at, format: :short %></td><!--1メソッドを追加する事で日時を日本人向けに表示出来る-->
-					<td><%= contact.last_name + contact.first_name %></td>
-					<td><%= contact.email %></td>
-					<td><%= contact.phone_number %></td>
-					<td><%= contact.status %></td>
-				</tr>
-		</table>
+<div class="row clearfix">
+	<% @contacts.each do |contact| %>
+		<%= link_to admin_contact_path(contact) do %>
+		  <div class="admin-users col-lg-9 clearfix">
+		  	<div class="admin-user col-lg-3 user-text">
+		  		<p><%= l contact.created_at, format: :short %></p><!--1メソッドを追加する事で日時を日本人向けに表示出来る-->
+		  	</div>
+		  	<div class="admin-user col-lg-2 user-text">
+		  		<p><%= contact.last_name + contact.first_name %></p>
+		  	</div>
+		  	<div class="admin-user col-lg-2 user-text">
+		  		<p><%= contact.email %></p>
+		  	</div>
+		  	<div class="admin-user col-lg-2 user-text">
+		  		<p><%= contact.phone_number %></p>
+		  	</div>
+		  	<div class="admin-user col-lg-2 user-text">
+		  		<p><%= contact.status %></p>
+		  	</div>
+		  </div>
+		<% end %>
     <% end %>
-<% end %>
-
+    </div>
+</div>
 <%= paginate @contacts, class: "paginate" %>

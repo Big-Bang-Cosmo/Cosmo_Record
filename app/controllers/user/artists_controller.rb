@@ -4,5 +4,6 @@ class User::ArtistsController < ApplicationController
   	@items = @artist.items.page(params[:page]).reverse_order
     @genres = Genre.all
     @user = current_user
+    @all_ranks = Item.create_all_ranks
   end
 end

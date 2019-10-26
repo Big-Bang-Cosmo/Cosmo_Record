@@ -20,6 +20,8 @@ class User::ItemsController < ApplicationController
 
   def search
     @items = Item.search(params[:search])
+    @genres = Genre.all
+    @all_ranks = Item.create_all_ranks
   end
 end
 

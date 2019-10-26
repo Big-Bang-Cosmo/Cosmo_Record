@@ -1,24 +1,17 @@
 <h4>商品一覧</h4>
-<div class="row">
-<div class="all_items col-lg-9 ">
+<div class="row clearfix">
+<div class="row all_items col-lg-9 clearfix">
 <% @items.each do |item| %>
-  <ul>
-   <li>
-	<div class="product clearfix">
+	<div class="product">
 		<div class="item-image">
 			<%= link_to user_item_path(item) do %>
-			  <%= attachment_image_tag item, :item_image, :fill, 200, 200, fallback: "no_image.jpg", size:'200x200' %>
+			  <%= attachment_image_tag item, :item_image, :fill, 180, 180, fallback: "no_image.jpg", size:'180x180' %>
 			<% end %>
 		</div>
-		<div class="item-info">
-			<p><%= link_to "#{item.item_name}", user_item_path(item) %></p>
-			<p><%= link_to "#{item.artist.artist_name}", user_artist_path(item.artist) %></p>
-		</div>
-		<div class="price">
-			<p>価格（税込</p>
-			<p>¥<%= number_to_currency(item.price * 1.1) %></p>
-		</div>
-		<div class="favorite">
+		<div>
+			<p class="item_name"><%= link_to truncate("#{item.item_name}",lenght: 8,omission:"..."), user_item_path(item)%></p>
+			<p><%= link_to truncate("#{item.artist.artist_name}",lenght: 8,omission:"..."), user_artist_path(item.artist) %></p>
+			<p>価格(税込) <%= number_to_currency(item.price * 1.1) %></p>
 			<p>
                <% if user_signed_in? %>
 				 <% if item.favorited_by?(current_user) %>
@@ -39,38 +32,45 @@
 			</p>
 		</div>
 	</div>
-   </li>
- </ul>
 <% end %>
 <%= paginate @items, class: "paginate" %>
 </div>
 
 
-<div class="sidebar col-lg-3">
-		<div class="genre-item">
-			<p>ジャンル</p>
+<div class="row sidebar col-lg-3">
+		<div class="col-lg-12">
+		  <div class="genre-item">
+		  	<div class="genre-bar">
+			  <h4>ジャンル</h4>
+		    </div>
 			<ul>
 				<% @genres.each do |genre| %>
 				<li><%= link_to "#{genre.genre_name}", user_genre_path(genre) %></li>
 				<% end %>
 			</ul>
+		 </div>
 		</div>
 
-		 <div class="ranking-item">
-			<p>お気に入りランキング</p>
+		 
+		 <div class="col-lg-12">
+		   <div class="ranking-item">
+			<h4>お気に入りランキング</h4>
 	          <% @all_ranks.each.with_index(1) do |item, i| %>
-				   <p>第<%= i %>位</p>
+	          	<div class="ranking">
+				   <p class="rank">第<%= i %>位</p>
 				   <p><%= link_to user_item_path(item) do %>
 						<%= attachment_image_tag item, :item_image, :fill, 120, 120, fallback: "no_image.jpg", size:'120x120' %>
 						<% end %></p>
-				   <p><%= link_to item.item_name, user_item_path(item.id) %></p>
-				   <p><%= item.artist.artist_name %></p>
-				   <p><%= item.favorites.count %></p>
-	          <% end %>
+				   <p class="item_name"><%= link_to truncate("#{item.item_name}",lenght: 8,omission:"..."), user_item_path(item)%></p>
+				   <p><%= link_to truncate("#{item.artist.artist_name}",lenght: 8,omission:"..."), user_artist_path(item.artist) %></p>
+				   	<p><span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span><%= item.favorites.count %></p>
+				  </div>
+	           <% end %>
+	       </div>
 		</div>
  </div>
 
-</div><!--row_end-->
+</div>
 
 
 

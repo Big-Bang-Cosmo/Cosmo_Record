@@ -1,24 +1,32 @@
+<h4><%= @user.last_name %><%=@user.first_name %>さんの登録住所一覧</h4>
+<div class="top-link"><%= link_to 'ユーザー一覧へ戻る', admin_users_path %></div>
 
-<h1><%= @user.last_name %><%=@user.first_name %>さんの登録住所一覧</h1>
+<div class="row clearfix">
+    <div class="col-lg-7">
+        <div class="col-lg-4">
+            <p><b>郵便番号</b></p>
+        </div>
+        <div class="col-lg-4">
+            <p><b>住所</b></p>
+        </div>
+        <div class="col-lg-4">
+            <p><b>電話番号</b></p>
+        </div>
+    </div>
+</div>
 
-<table>
-    <thead>
-        <tr>
-            <th>郵便番号</th>
-            <th>住所</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @user.deliveries.each do |delivery| %>
-        <tr>
-				<td><%= delivery.delivery_postal_code %></td>
-				<td><%= delivery.delivery_address %></td>
-    	</tr>
-        <% end %>
-　　　</tbody>
-<table>
-
-<div>
-    <p>電話番号</p>
-    <p><%= @user.phone_number %></p>
+<div class="row clearfix">
+    <% @user.deliveries.each do |delivery| %>
+      <div class="admin-users col-lg-7 clearfix">
+        <div class="admin-user col-lg-4 user-text">
+            <p><%= delivery.delivery_postal_code %></p>
+        </div>
+        <div class="admin-user col-lg-4 user-text">
+            <p><%= delivery.delivery_address %></p>
+        </div>
+        <div class="admin-user col-lg-4 user-text">
+            <p><%= @user.phone_number %></p>
+        </div>
+      </div>
+    <% end %>
 </div>

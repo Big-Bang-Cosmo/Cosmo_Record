@@ -2,6 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+
+.all_items {
+	display: flex;
+	flex-wrap: wrap;
+}
+
 .show-item-image{
   text-align: center;
 }
@@ -164,15 +171,70 @@
 
 ul {
 	list-style: none;
+
 }
 
 .product {
+	width: 25%;
 	padding: 15px;
-	margin-bottom: 50px;
-	background-color: #eff7ff;
+	margin-bottom: 25px;
+	position: relative;
+}
+
+
+.genre-item ul {
+	list-style: inside;
+}
+
+.item-image {
+	padding-right: 20px;
+	margin-bottom: 10px;
+}
+
+.item_name {
+	font-weight: 800;
+}
+
+.item-info {
+	padding-right: 20px;
+}
+
+.price {
+	float: left;
+}
+
+.favorite {
+	float: left;
+}
+
+.sidebar {
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .genre-item {
-	border: solid #FFFFF 1px;
+	border: solid #d3d3d3 1px;
+	margin-top: 15px;
+	margin-bottom: 30px;
+    padding-left: 30px;
 }
+
+
+.ranking-item {
+	border: solid #d3d3d3 1px;
+	text-align: center;
+}
+
+.ranking {
+	padding: 20px 0px;
+}
+
+.rank {
+	font-size: 18px;
+}
+
+.new {
+	padding: 20px 0;
+}
+
 

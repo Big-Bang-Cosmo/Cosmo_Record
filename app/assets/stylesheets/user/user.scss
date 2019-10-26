@@ -2,10 +2,29 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.admin-users {
+	background-color: #eff7ff;
+	margin-bottom: 15px;
+	padding: 5px;
+	position: relative;
+}
+
+.admin-user {
+	float: left;
+	padding: 5px 0;
+	position: absolute;
+	top: 5px;
+}
+
+.user-text {
+	position: absolute;
+}
+
 .reviewer{
 	margin-top: 30px;
 	position: relative;
 }
+
 .review_name{
 	display: inline-block;
 	float: left;
@@ -28,3 +47,4 @@
 	margin-top: 10px;
 	margin-bottom: 0;
 }
+
