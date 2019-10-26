@@ -2,7 +2,7 @@ class Admin::OrdersController < ApplicationController
 
   def index
   	  @orders = Order.page(params[:page]).reverse_order
-  	  
+
   end
 
 	def update
@@ -18,13 +18,10 @@ class Admin::OrdersController < ApplicationController
 			redirect_to admin_bought_items_path(order.id)
 		end
 	end
-	
+
 	def bought_items
 		@user = User.find(params[:id])
 		@orders = @user.orders.page(params[:page]).reverse_order
-	end
-
-	def show
 	end
 
 	def day_bought_items
