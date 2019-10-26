@@ -18,7 +18,11 @@ class Admin::ItemsController < ApplicationController
      if @item.save
       redirect_to  admin_items_path, notice: "#{@item.item_name}を登録しました"
      else
-      render :new
+     @disc = @item.discs.build
+     @song = @disc.songs.build
+     @moji = "商品を追加する"
+     @url = admin_items_path
+    render 'admin/items/new'
      end
   end
 

@@ -13,18 +13,18 @@
    <header>
  <% if request.path_info.include?('user') %>
  <div class="user-header">
-   <%= link_to 'Cosmo Record', user_path, :style=>"color:#ffd700; font-size: 40px; text-decoration: none; position: relative; top: 20px; left: 20px; font-family: Segoe Script; " %>
+   <%= link_to 'Cosmo Record', user_path, :style=>"color:#ffff28; font-size: 40px; text-decoration: none; position: relative; top: 20px; left: 20px; font-family: cursive; " %>
    <nav>
        <ul class="nav-list">
              <% if user_signed_in? %>
                  <li class="nav-list-item">
-                   <%= link_to "ユーザー名: #{current_user.last_name} #{current_user.first_name}", user_users_favorites_path(current_user), :style=>"color:#ffd700; " %>
+                   <%= link_to "ユーザー名: #{current_user.last_name} #{current_user.first_name}", user_users_favorites_path(current_user), :style=>"color:white; " %>
                  </li>
                  <li class="nav-list-item">
-                   <%= link_to "ログアウト", destroy_user_session_path, method: :delete, :style=>"color:#ffd700;" %>
+                   <%= link_to "ログアウト", destroy_user_session_path, method: :delete, :style=>"color:white;" %>
                  </li>
                  <li class="nav-list-item">
-                   <%= link_to "お問い合わせ", new_user_contact_path, :style=>"color:#ffd700;" %>
+                   <%= link_to "お問い合わせ", new_user_contact_path, :style=>"color:white;" %>
                  </li>
                  <div class="nav-list-cart">
                    <%= link_to user_user_cart_item_list_path(current_user), class:"btn-square",:style=>"margin-bottom: 50px;" do %>
@@ -78,8 +78,8 @@
      </div>
    <% end %>
      </header>
-     <div class="container">
-       <%= yield %>
-     </div>
+<div class = "container">
+    <%= yield %>
+</div>
   </body>
 </html>

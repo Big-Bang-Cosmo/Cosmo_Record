@@ -3,17 +3,17 @@
 
 <% @orders.each do |order| %>
 
-    <%= link_to "ユーザーの注文詳細画面のリンク", admin_bought_items_path(order.user.id) do %>
-
+    <%= link_to admin_bought_items_path(order.user.id) do %>
+    	<%= "ユーザーの注文詳細画面のリンク" %>
+    <% end %>
 		<table border="1">
 				<tr>
-					<td><%= l order.user.created_at, format: :short %></td>
+					<td><%= l order.created_at, format: :short %></td>
 					<td><%= order.user.last_name + order.user.first_name %></td>
 					<td><%= order.user.email %></td>
 					<td><%= order.user.phone_number %></td>
 				</tr>
 		</table>
     <% end %>
-<% end %>
 
 <%= paginate @orders, class: "paginate" %>

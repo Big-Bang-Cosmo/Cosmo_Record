@@ -60,18 +60,19 @@
 .nav-list-cart{
 	height: 50px;
 }
+
 .btn-square {
   display: inline-block;
   padding: 0.5em 1em;
   text-decoration: none;
-  background: #668ad8;/*ボタン色*/
-  color:#ffd700;
+  background: #4169e1;/*ボタン色*/
+  color:white;
   border-bottom: solid 4px #627295;
   border-radius: 3px;
   position: relative;
   bottom: 25px;
+   background    : rgba(0, 0, 102, 0.60);
 }
-
 .btn-square:active {
   /*ボタンを押したとき*/
   -webkit-transform: translateY(4px);

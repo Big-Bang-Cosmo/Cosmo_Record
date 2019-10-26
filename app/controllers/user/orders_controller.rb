@@ -1,4 +1,5 @@
 class User::OrdersController < ApplicationController
+
 	def new
 		@order = Order.new
 		@order_item = OrderItem.new
@@ -42,7 +43,6 @@ class User::OrdersController < ApplicationController
 
 #購入履歴一覧
 	def index
-		@user = current_user
 		@orders = Order.page(params[:page]).reverse_order
 	end
 #購入履歴詳細
