@@ -37,7 +37,7 @@
 			<% end %>
         </div>
 
-        <div class="col-lg-3 show-cart" style="padding: 30px 0; text-align: center; ">
+        <div class="col-lg-3 show-cart" style="text-align: center; position: relative; bottom: 45px; ">
     		<% if @item.stock > 0 && current_user %>
 			<%= form_for(@cart_item, url: user_cart_items_path, method: :post) do |f| %>
 				<%= f.hidden_field :quantity, value: 1 %>

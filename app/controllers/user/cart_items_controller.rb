@@ -41,4 +41,4 @@ private
   def cart_item_params
     params.require(:cart_item).permit(:quantity)
   end
-
+end

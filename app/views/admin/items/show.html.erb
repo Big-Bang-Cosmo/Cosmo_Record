@@ -17,7 +17,7 @@
 			<p class="show-item-price"><%= number_to_currency(@item.price) %>(税抜)</p>
         </div>
 
-        <div class="col-lg-3 show-stock" style="padding: 33px 0; text-align: center; ">
+        <div class="col-lg-3 show-stock" style="margin: 33px 70px 33px 0; margin-top: 18px; text-align: center; ">
         	<% if @item.stock > 0 %>
 			        <p class="show-item-stock-admin">販売中</p>
 			    <% else %>
@@ -25,7 +25,7 @@
 			<% end %>
 			<p class="show-item-stock-admin">在庫数：<%= @item.stock %></p>
         </div>
-        <div class="col-lg-3 show-stock" style="padding: 33px 0; text-align: center; ">
+        <div class="col-lg-2 show-stock" style="text-align: center; ">
         	<p class="show-item-stock-admin"><%= link_to "在庫の追加", new_admin_item_arrival_path(@item.id) %></p>
         	<p class="show-item-stock-admin"><%= link_to "商品を編集する", edit_admin_item_path(@item.id) %></p>
         	<p class="show-item-stock-admin"><%= link_to "商品を削除する", admin_item_path(@item.id), method: :delete %></p>
