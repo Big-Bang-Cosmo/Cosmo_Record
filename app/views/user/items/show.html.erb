@@ -1,4 +1,4 @@
-<h1>ユーザーの::Items#show</h1>
+
 <% if @review.errors.any? %>
 	<div id="error_explanation">
 		<h2><%= pluralize(@review.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -10,61 +10,72 @@
 	</div>
 <% end %>
 
-<div class = "container" >
-	<%= attachment_image_tag @item, :item_image, :fill, 250, 250, fallback: "no_image.jpg" %>
-	<div = item_box>
-		<h1><%= @item.item_name %></h1>
-
-		<div = item_info>
-			<%= @item.artist.artist_name %>
-			<%= @item.genre.genre_name %>
-			<%= @item.label.label_name %>
+<div class="row head"><!-- row1ここから -->
+	<div class="col-lg-6 show-item-image" style="padding: 30px 0;">
+	<!-- colの後にスペースを開けたらクラス名を指定でき、cssへ記入できる -->
+		<%= attachment_image_tag @item, :item_image, :fill, 400, 400, fallback: "no_image.jpg" %>
+    </div>
+	    <div class="col-lg-6 show-name" style="padding: 40px 0; text-align: center;">
+		    <h2><%= @item.item_name %></h2>
 		</div>
+		<div class="col-lg-3 show-info" style="padding: 30px 0;">
+			<p class="show-item-info"><%= @item.artist.artist_name %></p>
+			<p class="show-item-info"><%= @item.genre.genre_name %></p>
+			<p class="show-item-info"><%= @item.label.label_name %></p>
+		</div>
+		<div class="col-lg-3 show-price" style="padding: 50px 0; text-align: center;">
+			<p class="show-item-price"><%= number_to_currency(@tax_price) %>(税込)</p>
+        </div>
 
-		<%= number_to_currency(@tax_price) %>
+        <div class="col-lg-3 show-stock" style="padding: 33px 0; text-align: center; ">
+        	<% if @item.stock >= 10 %>
+			        <p class="show-item-stock">在庫あり</p>
+			    <% elsif @item.stock == 0%>
+			        <p class="show-item-stock">在庫なし</p>
+			    <% else %>
+			        <p class="show-item-stock">在庫僅か</p>
+			<% end %>
+        </div>
 
-	<% if @item.stock >= 10 %>
-	        <h3>在庫あり</h3>
-	    <% elsif @item.stock == 0%>
-	        <h3>在庫なし</h3>
-	    <% else %>
-	        <h3>在庫僅か</h3>
-	    <% end %>
+        <div class="col-lg-3 show-cart" style="padding: 30px 0; text-align: center; ">
+    		<% if @item.stock > 0 && current_user %>
+			<%= form_for(@cart_item, url: user_cart_items_path, method: :post) do |f| %>
+				<%= f.hidden_field :quantity, value: 1 %>
+				<%= f.hidden_field :id, value: @item.id %>
+				<%= f.submit 'カートに入れる', class:"cart-add" %>
+			    <% end %>
+		    <% else %>
+		    	<div class="show-space"></div>
+		    <% end %>
+        </div>
 
-	<% if @item.stock > 0 && current_user %>
-		<%= form_for(@cart_item, url: user_cart_items_path, method: :post) do |f| %>
-			<%= f.hidden_field :quantity, value: 1 %>
-			<%= f.hidden_field :id, value: @item.id %>
-			<%= f.submit 'カートに入れる' %>
-		<% end %>
-	<% end %>
-		<% if user_signed_in? %>
-						<% if @item.favorited_by?(current_user) %>
-						    <%= link_to user_item_favorites_path(@item), method: :delete do %>
-						      <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
-						      <%= @item.favorites.count %>
-						    <% end %>
-						<% else %>
-						    <%= link_to user_item_favorites_path(@item), method: :post do %>
-						      <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
-						      <%= @item.favorites.count %>
-						    <% end %>
-						<% end %>
-					<% else %>
-						<span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
-				        <%= @item.favorites.count %>
-					<% end %>
-	</div>
+        <div class="col-lg-3 show-favorite" style="text-align: center; ">
+			<% if user_signed_in? %>
+				<% if @item.favorited_by?(current_user) %>
+				    <%= link_to user_item_favorites_path(@item), method: :delete do %>
+				      <p class="show-item-favorite">お気に入りから削除　<span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span><%= @item.favorites.count %></p>
+				    <% end %>
+				<% else %>
+				    <%= link_to user_item_favorites_path(@item), method: :post do %>
+				      <p class="show-item-favorite">お気に入りに追加　<span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span><%= @item.favorites.count %></p>
+				    <% end %>
+				<% end %>
+			<% else %>
+				<p class="show-item-favorite">お気に入りの数　<span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span><%= @item.favorites.count %></p>
+		    <% end %>
+		</div>
+</div> <!-- row1ここまで -->
 
-	<div class = "item_introduction">
-			<h3>商品説明：</h3><br>
-			<%= @item.introduction %>
-	</div>
-	<div class = "item_songs">
+<div class="row">
+	<div class="col-lg-12 show-item-headline">商品の紹介：</div>
+	<div class="col-lg-12 show-item-introduction-body" style="border: solid black 2px;"><%= @item.introduction %></div>
+
+<div class="col-lg-12 show-item-headline">収録内容：</div>
+<div class="col-lg-12 show-item-song-body" style="border: solid black 2px;">
 		<table>
 			<% @item.discs.each  do |disc| %>
 				<tr>
-					<td>Disc<%= disc.disc_number %></td>
+					<td><div class="disk-title">Disc<%= disc.disc_number %></div></td>
 						<% disc.songs.each  do |song| %>
 							<tr>
 								<td><%= song.song_number%></td>
@@ -74,23 +85,43 @@
 				</tr>
 			<% end %>
 		</table>
-	</div>
-
-	<h3>レビューフォーム</h3>
-	<%= form_for [@item, @review], url: user_item_reviews_path(item_id: @item.id) do |f| %>
-	<%= f.text_area :review_body %>
-	<%= f.submit '送信' %>
-	<% end %>
-
-	<% @reviews.each do |review| %>
-		<%= link_to user_user_reviews_path(review.user.id) do %>
-			<p><%= review.user.last_name %><%= review.user.first_name %>さんのレビュー</p>
-		<% end %>
-		<% if review.user == current_user %>
-			<%= link_to "編集", edit_user_item_review_path(@item.id, review.id) %>
-			<%= link_to "削除", user_item_review_path(@item.id, review.id), method: :delete %>
-		<% end %>
-		<%= review.review_body %>
-	<% end %>
-	<%= paginate @reviews, class: "paginate" %>
 </div>
+</div>
+<div class="row">
+	<div class="col-lg-12 show-item-headline">レビューフォーム</div>
+	<%= form_for [@item, @review], url: user_item_reviews_path(item_id: @item.id) do |f| %>
+	<%= f.text_area :review_body, class: "review-box" %>
+	<div class="col-lg-10"></div>
+	<div class="col-lg-2 show-item-review" style="text-align: center; padding-bottom: 30px;" >
+	    <%= f.submit '送信する', class:"review-submit" %>
+	    <% end %>
+    </div>
+</div>
+
+<div class="show-user-review-name">
+	<div class="col-lg-12">
+		<% @reviews.each do |review| %>
+		<%= link_to user_user_reviews_path(review.user.id) do %>
+				<p><%= review.user.last_name %><%= review.user.first_name %>
+		<% end %>さんのレビュー
+		       </p>
+</div>
+
+<div class="col-xs-1">
+	<% if review.user == current_user %>
+		<div class="show-review-edit"><%= link_to "編集", edit_user_item_review_path(@item.id, review.id) %></div>
+</div>
+<div class="col-xs-1">
+		<div class="show-review-delete"><%= link_to "削除", user_item_review_path(@item.id, review.id), method: :delete %></div>
+	<% end %>
+</div>
+<div class="col-lg-7"></div>
+
+<div class="col-lg-12">
+	<div class="review-body"><%= review.review_body %>
+	<% end %></div>
+</div>
+
+
+</div>
+	<%= paginate @reviews, class: "paginate" %>
