@@ -1,3 +1,24 @@
 // Place all the styles related to the user/reviews controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.reviewer{
+	margin-top: 30px;
+	position: relative;
+}
+
+.review_name{
+	display: inline-block;
+	float: left;
+}
+.review_name_word{
+	display: inline-block;
+	float: left;
+	margin-left: 20px;
+	position: absolute;
+	top: 11px
+}
+.review_name{
+	display: inline-block;
+	margin-bottom: 0;
+}

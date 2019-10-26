@@ -1,27 +1,28 @@
-<h1>Adminのユーザー別のレビュー一覧ページだよーん</h1>
-<h1><%= @user.last_name %><%= @user.first_name %>さんのレビュー</h1><h2>レビュー一覧</h2>
-<table class="table table-striped">
+<<div class= "reviewer clearfix">
+	<h1 class= "review_name"><%= @user.last_name %><%= @user.first_name %></h1><h3 class= "review_name_word">さんのレビュー一覧</h3>
+</div>
+<table class="table table-striped" style="table-layout:fixed;width:100%;">
 	<% @reviews.each do |review| %>
 		<thead>
 			<tr>
-				<th>
-					<p><%= l review.created_at, format: :short %></p>
-				</th>
-				<th>
+				<th class="col-lg-10">
+					<p class= "User_reviews_date"><%= l review.created_at, format: :short %></p>
 					<%= link_to user_item_path(review.item.id) do %>
-						<%= review.item.item_name %>
+						<h4 class= "review_item_name"><b><%= review.item.item_name %></b></h4>
 					<% end %>
-				</th>
-				<th>
-					<%= link_to "編集する", edit_admin_item_review_path(review.item.id, review.id) %>
-					<%= link_to "削除する", admin_item_review_path(review.item.id, review.id), method: :delete %>
 				</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td>
+			<tr class="info">
+				<td style="word-wrap:break-word;">
 					<%= review.review_body %>
+				</td>
+				<td class="col-lg-1">
+					<b><%= link_to "編集する", edit_user_item_review_path(review.item.id, review.id) %></b>
+				</td>
+				<td class="col-lg-1">
+					<b><%= link_to "削除する", user_item_review_path(review.item.id, review.id), method: :delete %></b>
 				</td>
 			</tr>
 		</tbody>
