@@ -128,3 +128,51 @@
 .review-body{
   border: black 1px solid;
 }
+
+
+
+
+.reviewer{
+  margin-top: 30px;
+  position: relative;
+}
+.review_name{
+  display: inline-block;
+  float: left;
+}
+.review_name_word{
+  display: inline-block;
+  float: left;
+  margin-left: 20px;
+  position: absolute;
+  top: 11px
+}
+.review_item_name{
+  display: inline-block;
+}
+.table table-striped{
+  position: relative;
+}
+.User_reviews_date{
+  margin-top: 30px;
+}
+
+
+
+
+
+
+ul {
+	list-style: none;
+}
+
+.product {
+	padding: 15px;
+	margin-bottom: 50px;
+	background-color: #eff7ff;
+}
+
+.genre-item {
+	border: solid #FFFFF 1px;
+}
+

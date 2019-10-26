@@ -1,4 +1,5 @@
 class User::OrdersController < ApplicationController
+
 	def new
 		@order = Order.new
 		@order_item = OrderItem.new

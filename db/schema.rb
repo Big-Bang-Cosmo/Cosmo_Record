@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 2019_10_23_082406) do
 
   create_table "arrivals", force: :cascade do |t|
     t.integer "item_id"
+    t.integer "arrival_quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "arrival_quantity"
   end
 
   create_table "artists", force: :cascade do |t|

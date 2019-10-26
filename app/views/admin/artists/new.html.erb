@@ -1,5 +1,16 @@
 <h2>アーティスト登録ページ</h2>
 
+<% if @artist.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@artist.errors.count, "error") %> prohibited this post from being saved:</h2>
+		<ul>
+			<% @artist.errors.full_messages.each do |message| %>
+			 <il><%= message %></il>
+			 <% end %>
+		</ul>
+	</div>
+<% end %>
+
 <%= form_for(@artist, url: admin_artists_path) do |f| %>
 	<label>アーティスト</label>
 	<br>

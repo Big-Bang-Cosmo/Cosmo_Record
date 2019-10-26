@@ -1,47 +1,28 @@
-<div class="container">
-
 <h4>商品一覧</h4>
-
-<div class="sidebar">
-	<div class="genre-item">
-		<p>ジャンル</p>
-		<ul>
-			<% @genres.each do |genre| %>
-			<li><%= link_to "#{genre.genre_name}", user_genre_path(genre) %></li>
-			<% end %>
-		</ul>
-	</div>
-</div>
-
-<div class="ranking">
-	<div class="ranking-item">
-		<p>お気に入りランキング</p>
-          <% @all_ranks.each.with_index(1) do |item, i| %>
-			   <p>第<%= i %>位</p>
-			   <p><%= link_to user_item_path(item) do %>
-					<%= attachment_image_tag item, :item_image, :fill, 120, 120, fallback: "no_image.jpg", size:'120x120' %>
-					<% end %></p>
-			   <p><%= link_to item.item_name, user_item_path(item.id) %></p>
-			   <p><%= item.artist.artist_name %></p>
-			   <p><%= item.favorites.count %></p>
-          <% end %>
-	</div>
-</div>
-
+<div class="row">
+<div class="all_items col-lg-9 ">
 <% @items.each do |item| %>
-	<table border="1">
-			<tr>
-				<td><%= link_to user_item_path(item) do %>
-					<%= attachment_image_tag item, :item_image, :fill, 170, 170, fallback: "no_image.jpg", size:'170x170' %>
-					<% end %>
-				</td>
-				<td><%= link_to "#{item.item_name}", user_item_path(item) %></td>
-				<td><%= link_to "#{item.artist.artist_name}", user_artist_path(item.artist) %></td>
-				<td><p>価格（税込）：¥</p><%= number_to_currency(item.price * 1.1) %></td>
-                <td>
-                	<% if user_signed_in? %>
-						<% if item.favorited_by?(current_user) %>
-						    <%= link_to user_item_favorites_path(item), method: :delete do %>
+  <ul>
+   <li>
+	<div class="product clearfix">
+		<div class="item-image">
+			<%= link_to user_item_path(item) do %>
+			  <%= attachment_image_tag item, :item_image, :fill, 200, 200, fallback: "no_image.jpg", size:'200x200' %>
+			<% end %>
+		</div>
+		<div class="item-info">
+			<p><%= link_to "#{item.item_name}", user_item_path(item) %></p>
+			<p><%= link_to "#{item.artist.artist_name}", user_artist_path(item.artist) %></p>
+		</div>
+		<div class="price">
+			<p>価格（税込</p>
+			<p>¥<%= number_to_currency(item.price * 1.1) %></p>
+		</div>
+		<div class="favorite">
+			<p>
+               <% if user_signed_in? %>
+				 <% if item.favorited_by?(current_user) %>
+						<%= link_to user_item_favorites_path(item), method: :delete do %>
 						      <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
 						      <%= item.favorites.count %>
 						    <% end %>
@@ -51,17 +32,45 @@
 						      <%= item.favorites.count %>
 						    <% end %>
 						<% end %>
-					<% else %>
+				  <% else %>
 						<span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
 				        <%= item.favorites.count %>
-					<% end %>
-                </td>
-			</tr>
-	</table>
+			    <% end %>
+			</p>
+		</div>
+	</div>
+   </li>
+ </ul>
 <% end %>
-
 <%= paginate @items, class: "paginate" %>
-
 </div>
+
+
+<div class="sidebar col-lg-3">
+		<div class="genre-item">
+			<p>ジャンル</p>
+			<ul>
+				<% @genres.each do |genre| %>
+				<li><%= link_to "#{genre.genre_name}", user_genre_path(genre) %></li>
+				<% end %>
+			</ul>
+		</div>
+
+		 <div class="ranking-item">
+			<p>お気に入りランキング</p>
+	          <% @all_ranks.each.with_index(1) do |item, i| %>
+				   <p>第<%= i %>位</p>
+				   <p><%= link_to user_item_path(item) do %>
+						<%= attachment_image_tag item, :item_image, :fill, 120, 120, fallback: "no_image.jpg", size:'120x120' %>
+						<% end %></p>
+				   <p><%= link_to item.item_name, user_item_path(item.id) %></p>
+				   <p><%= item.artist.artist_name %></p>
+				   <p><%= item.favorites.count %></p>
+	          <% end %>
+		</div>
+ </div>
+
+</div><!--row_end-->
+
 
 

@@ -92,36 +92,39 @@
 	<%= form_for [@item, @review], url: user_item_reviews_path(item_id: @item.id) do |f| %>
 	<%= f.text_area :review_body, class: "review-box" %>
 	<div class="col-lg-10"></div>
-	<div class="col-lg-2 show-item-review" style="text-align: center; padding-bottom: 30px;" >
+	<div class="col-lg-2 show-item-review" style="text-align: center; " >
 	    <%= f.submit '送信する', class:"review-submit" %>
 	    <% end %>
     </div>
 </div>
 
-<div class="show-user-review-name">
-	<div class="col-lg-12">
-		<% @reviews.each do |review| %>
-		<%= link_to user_user_reviews_path(review.user.id) do %>
-				<p><%= review.user.last_name %><%= review.user.first_name %>
-		<% end %>さんのレビュー
-		       </p>
-</div>
-
-<div class="col-xs-1">
-	<% if review.user == current_user %>
-		<div class="show-review-edit"><%= link_to "編集", edit_user_item_review_path(@item.id, review.id) %></div>
-</div>
-<div class="col-xs-1">
-		<div class="show-review-delete"><%= link_to "削除", user_item_review_path(@item.id, review.id), method: :delete %></div>
+<table class="table table-striped" style="table-layout:fixed;width:100%;">
+	<% @reviews.each do |review| %>
+		<thead>
+			<tr>
+				<th class="col-xs-10">
+					<p class= "User_reviews_date"><%= l review.created_at, format: :short %></p>
+					<%= link_to user_user_reviews_path(review.user.id) do %>
+						<h4 class= "review_name"><b><p><%= review.user.last_name %><%= review.user.first_name %>さんのレビュー
+		       </p></b></h4>
+					<% end %>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="info">
+				<td style="word-wrap:break-word;">
+					<%= review.review_body %>
+				</td>
+				<td class="col-xs-1">
+					<b><%= link_to "編集する", edit_user_item_review_path(review.item.id, review.id) %></b>
+				</td>
+				<td class="col-xs-1">
+					<b><%= link_to "削除する", user_item_review_path(review.item.id, review.id), method: :delete %></b>
+				</td>
+			</tr>
+		</tbody>
 	<% end %>
-</div>
-<div class="col-lg-7"></div>
+</table>
 
-<div class="col-lg-12">
-	<div class="review-body"><%= review.review_body %>
-	<% end %></div>
-</div>
-
-
-</div>
-	<%= paginate @reviews, class: "paginate" %>
+<%= paginate @reviews, class: "paginate" %>
