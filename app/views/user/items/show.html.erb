@@ -103,7 +103,7 @@
 		<thead>
 			<tr>
 				<th class="col-xs-10">
-					<p class= "User_reviews_date"><%= l review.created_at, format: :short %></p>
+					<p class= "User_reviews_date"><%= review.created_at.strftime('%Y/%m/%d') %></p>
 					<%= link_to user_user_reviews_path(review.user.id) do %>
 						<h4 class= "review_name"><b><p><%= review.user.last_name %><%= review.user.first_name %>さんのレビュー
 		       </p></b></h4>

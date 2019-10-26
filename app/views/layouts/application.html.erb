@@ -60,7 +60,7 @@
 
   <% elsif request.path_info.include?('admin') %>
     <div class="user-header">
-     <%= link_to 'Cosmo Record', user_path, :style=>"color:#ffd700; font-size: 40px; text-decoration: none; position: relative; right: 238px; top: 20px; font-family: Segoe Script; " %>
+     <%= link_to 'Cosmo Record', admin_home_top_path, :style=>"color:#ffd700; font-size: 40px; text-decoration: none; position: relative; right: 40px; top: 20px; font-family: cursive; " %>
         <% if admin_signed_in? %>
              <li class="nav-list-item">
                 <%= link_to "管理者としてログイン中　ログアウト", destroy_admin_session_path, method: :delete, :style=>"color:#ffd700; position: relative; left: 30px; top: 47px;" %>
