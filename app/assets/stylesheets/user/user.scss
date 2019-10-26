@@ -2,10 +2,29 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.admin-users {
+	background-color: #eff7ff;
+	margin-bottom: 15px;
+	padding: 5px;
+	position: relative;
+}
+
+.admin-user {
+	float: left;
+	padding: 5px 0;
+	position: absolute;
+	top: 5px;
+}
+
+.user-text {
+	position: absolute;
+}
+
 .reviewer{
 	margin-top: 30px;
 	position: relative;
 }
+
 .review_name{
 	display: inline-block;
 	float: left;
@@ -17,15 +36,21 @@
 	position: absolute;
 	top: 11px
 }
-.review_item_name{
+.review_name{
 	display: inline-block;
+	margin-bottom: 0;
 }
 .table table-striped{
 	position: relative;
 }
 .User_reviews_date{
+<<<<<<< HEAD
 	margin-top: 30px;
 	margin-bottom: 0px;
 
+=======
+	margin-top: 10px;
+	margin-bottom: 0;
+>>>>>>> 2a2a25df5a3d191de89d0547c3c33f7d5ce7527c
 }
 

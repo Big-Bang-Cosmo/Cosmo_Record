@@ -1,3 +1,37 @@
 // Place all the styles related to the admin/arrivals controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.arrival {
+	background-color: #eff7ff;
+	margin-bottom: 15px;
+	padding: 5px;
+	position: relative;
+}
+
+.arrivai_item {
+	float: left;
+	padding: 5px 0;
+	position: absolute;
+	top: 5px;
+}
+
+.text {
+	position: absolute;
+	top: 15px;
+}
+
+.top-link {
+	text-align: right;
+	padding-bottom: 10px;
+}
+
+
+.arrival_quantity {
+	margin: 30px 0px;
+}
+
+.back {
+	padding: 10px 0px;
+}
