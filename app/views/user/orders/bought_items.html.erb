@@ -1,20 +1,29 @@
-<h1>User側の注文詳細一覧</h1>
-<div class = "container">
+<h4>購入履歴一覧</h4>
+<div class="row clearfix">
+
 	<% @orders.each do |order| %>
-		<h4><%= l order.created_at, format: :short %></h4>
+		<p><%= l order.created_at, format: :short %></p>
+
 			<% order.order_items.each do |order_item| %>
-				<%= attachment_image_tag order_item.item, :item_image, :fill, 250, 250, fallback: "no_image.jpg" %>
-				<h4>商品名:<%= order_item.item.item_name %></h4>
-				<h5>アーティスト名:<%= order_item.item.artist.artist_name %></h5>
-				<h5>価格(税込)<%= order_item.item.price %></h5>
-				<h5>枚数:<%= order_item.quantity %></h5>
+			  <div>
+					<p><%= attachment_image_tag order_item.item, :item_image, :fill, 200, 200, fallback: "no_image.jpg" %></p>
+					<p><%= order_item.item.item_name %></p>
+					<p><%= order_item.item.artist.artist_name %></p>
+					<p>価格(税込)：<%= number_to_currency(order_item.item.price) %></p>
+					<p>枚数：<%= order_item.quantity %>枚</p>
+					<p><%= order.delivery_status %></p>
+			  </div>
   			<% end %>
-  		
-  		<h5><%= order.delivery_status %></h5>
-  		<%= link_to user_day_bought_items_path(order.id) do %>
-			<p><%= l order.created_at, format: :short %>の購入詳細履歴</p>
-		<% end %>
+
+  			<div>
+  				<%= link_to user_day_bought_items_path(order.id) do %>
+			      <p><%= l order.created_at, format: :short %>の購入詳細履歴</p>
+			    <% end %>
+  			</div>
+
 	<% end %>
-<%= paginate @orders, class: "paginate" %>
+
+	<%= paginate @orders, class: "paginate" %>
+
 </div>
 

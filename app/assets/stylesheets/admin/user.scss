@@ -1,3 +1,24 @@
 // Place all the styles related to the admin/user controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.all_favorite_items {
+	padding: 0 30px;
+}
+
+.user-favorites {
+	backgraound-color: blue;
+    padding: 15px;
+	margin-bottom: 25px;
+}
+
+.my-page  {
+     text-align: right;
+}
+
+.my-page li {
+	float: right;
+	padding: 0px 10px;
+}
+
