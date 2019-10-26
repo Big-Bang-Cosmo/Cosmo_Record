@@ -36,4 +36,5 @@ class Item < ApplicationRecord
 	def self.create_all_ranks
 		Item.find(Favorite.group(:item_id).order('count(item_id) desc').limit(5).pluck(:item_id))
 	end
+
 end

@@ -1,20 +1,31 @@
-
-<h1>販売商品一覧</h1>
-
+<h4>販売商品一覧</h4>
+<div class="top-link"><%= link_to 'トップへ戻る', admin_home_top_path %></div>
+<div class="row clearfix">
 <% @items.each do |item| %>
-	<table border="1">
-			<tr>
-				<td><%= link_to admin_item_path(item) do %>
-					<%= attachment_image_tag item, :item_image, :fill, 100, 100, fallback: "no_image.jpg", size:'100x100' %>
-					<% end %>
-				</td>
-				<td><%= link_to "#{item.item_name}", admin_item_path(item) %></td></td>
-				<td><%= item.artist.artist_name %></td>
-				<td><p>価格（税抜）：</p><%= number_to_currency(item.price) %></td>
-				<td><span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
-				<%= item.favorites.count %></td>
-			</tr>
-	</table>
+  <div class="admin-items clearfix">
+		<div class="admin_item col-lg-1 img">
+			<p><%= link_to admin_item_path(item) do %>
+				 <%= attachment_image_tag item, :item_image, :fill, 50, 50, fallback: "no_image.jpg", size:'50x50' %>
+				<% end %>
+			</p>
+		</div>
+		<div class="admin_item col-lg-3 text">
+				<p><%= link_to "#{item.item_name}", admin_item_path(item) %></p>
+		</div>
+		<div class="admin_item col-lg-4 text">
+				<p><%= item.artist.artist_name %></p>
+		</div>
+		<div class="admin_item col-lg-3 text">
+				<p>価格(税抜)：<%= number_to_currency(item.price) %></p>
+		</div>
+		<div class="admin_item col-lg-1 text">
+			<p><span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span><%= item.favorites.count %></p>
+		</div>
+	</div>
+
 <% end %>
 
 <%= paginate @items, class: "paginate" %>
+
+</div>
+
