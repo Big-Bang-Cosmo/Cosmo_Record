@@ -59,3 +59,44 @@
 .p-delete {
 	margin-bottom: 70px;
 }
+
+
+.order-items {
+	padding: 5px 0;
+	position: relative;
+}
+
+.order-item {
+    background-color: #eff7ff;
+    margin-bottom: 15px;
+    padding: 10px 0;
+}
+
+.order-date {
+	font-size: 18px;
+}
+
+.order-item-text {
+	position: absolute;
+	top: 35px;
+}
+
+.order-date-link  {
+	right: 0px;
+	bottom: 0px;
+}
+
+.col-lg-3.order-date-link {
+	position: absolute;
+}
+
+.order-product{
+	position: relative;
+}
+
+.user-order-item {
+	margin-bottom: 50px;
+
+}
+
+
