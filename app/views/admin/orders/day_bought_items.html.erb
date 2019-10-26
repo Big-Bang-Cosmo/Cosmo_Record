@@ -1,32 +1,38 @@
 
-<h4><%= @order.user.last_name + @order.user.first_name %>さんの<%= l @order.created_at, format: :short %>日の注文一覧</h4>
-
-<%= link_to "購入履歴一覧に戻る", admin_orders_path %>
-
-<div class="order-item-history clearfix">
-
-	<div class="order-show-content">
-		<p>お届け先住所</p>
-		<%= @order.user.last_name + @order.user.first_name %>
-		<%= @order.delivery_postal_code %>
-		<%= @order.delivery_adress %>
-	</div>
-
-	<div class="order-show-content">
-		<p>支払方法</p>
-		<%= @order.payment_methods %>
-	</div>
-
-	<div class="order-show-content">
-		<p>購入明細</p>
-		<p>商品の小計:</p><%= number_to_currency(@order.total_price - @order.shipping_fee) %>
-		<p>配送料:</p><%= number_to_currency(@order.shipping_fee) %>
-		<p>ご請求額:</p><%= number_to_currency(@order.total_price) %>
-	</div>
-
+<div class= "back_box clearfix">
+	<h4><%= link_to "購入履歴一覧に戻る", admin_orders_path, class: "back" %></h4>
 </div>
 
-<%= l @order.created_at, format: :short %>
+<h4><%= @order.user.last_name + @order.user.first_name %>さんの<%= l @order.created_at, format: :short %>日の注文の詳細</h4>
+<div class = "row">
+			<div class= "col-lg-3">
+				<h4>お届け先住所</h4>
+				<h4><%= @order.user.last_name + @order.user.first_name %></h4>
+				<h4><%= @order.delivery_postal_code %></h4>
+				<h4><%= @order.delivery_adress %></h4>
+			</div>
+
+			<div class= "col-lg-3">
+				<h4>支払方法</h4>
+				<h4><%= @order.payment_methods %></h4>
+			</div>
+
+			<div class= "col-lg-2">
+				<div><h4>購入明細</h4></div>
+				<h4>商品の小計 :</h4>
+				<h4>配送料 :</h4>
+				<h4>ご請求額 :</h4>
+			</div>
+			<div class="order_price">
+				<h4></h4>
+				<p></p>
+				<h4><%= number_to_currency(@order.total_price - @order.shipping_fee) %></h4>
+				<h4><%= number_to_currency(@order.shipping_fee) %></h4>
+				<h4><%= number_to_currency(@order.total_price) %></h4>
+			</div>
+</div>
+
+<h4><%= l @order.created_at, format: :short %></h4>
 <% @orders.each do |order_item| %>
 	<table border="1">
 			<tr>
