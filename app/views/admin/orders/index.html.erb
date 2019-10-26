@@ -1,19 +1,42 @@
 <h4>ユーザーの注文一覧</h4>
 <div class="top-link"><%= link_to 'トップへ戻る', admin_home_top_path %></div>
 
-<% @orders.each do |order| %>
+<div class="row clearfix">
+	<div class="col-lg-9">
+		<div class="col-lg-3">
+			<p><b>注文日時</b></p>
+		</div>
+		<div class="col-lg-3">
+			<p><b>お名前</b></p>
+		</div>
+		<div class="col-lg-3">
+			<p><b>メールアドレス</b></p>
+		</div>
+		<div class="col-lg-3">
+			<p><b>電話番号</b></p>
+		</div>
+	</div>
+</div>
 
-    <%= link_to admin_bought_items_path(order.user.id) do %>
-    	<%= "ユーザーの注文詳細画面のリンク" %>
+<div class="row clearfix">
+    <% @orders.each do |order| %>
+    	<%= link_to admin_bought_items_path(order.user.id) do %>
+    	  <div class="admin-users col-lg-9 clearfix">
+		  	<div class="admin-user col-lg-3 user-text">
+		  		<p><%= l order.created_at, format: :short %></p>
+		  	</div>
+		  	<div class="admin-user col-lg-3 user-text">
+		  		<p><%= order.user.last_name + order.user.first_name %></p>
+		  	</div>
+		  	<div class="admin-user col-lg-3 user-text">
+		  		<p><%= order.user.email %></p>
+		  	</div>
+		  	<div class="admin-user col-lg-3 user-text">
+		  		<p><%= order.user.phone_number %></p>
+		  	</div>
+		  </div>
+    	<% end %>
     <% end %>
-		<table border="1">
-				<tr>
-					<td><%= l order.created_at, format: :short %></td>
-					<td><%= order.user.last_name + order.user.first_name %></td>
-					<td><%= order.user.email %></td>
-					<td><%= order.user.phone_number %></td>
-				</tr>
-		</table>
-    <% end %>
+</div>
 
 <%= paginate @orders, class: "paginate" %>
