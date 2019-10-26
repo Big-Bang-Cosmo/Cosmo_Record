@@ -1,76 +1,80 @@
-<div class="container">
-<h2>決済確定ページ</h2>
 
-　　　　<% if @order.errors.any? %>
-			<div id="error_explanation">
-				<h2><%= pluralize(order.errors.count, "error") %> prohibited this post from being saved:</h2>
-				<ul>
-					<% order.errors.full_messages.each do |message| %>
-					 <il><%= message %></il>
-					 <% end %>
-				</ul>
+<% if @order.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(order.errors.count, "error") %> prohibited this post from being saved:</h2>
+		<ul>
+			<% order.errors.full_messages.each do |message| %>
+			 <il><%= message %></il>
+			 <% end %>
+		</ul>
+	</div>
+<% end %>
+
+<div class= "row">
+
+	<div class="col-lg-9">
+	    <% @user_cart_items.each do |cart_item| %>
+			<div class="order_cart_item flex">
+				<div class="order_image_box">
+					<%= attachment_image_tag cart_item.item, :item_image, :fill, 200, 200, fallback: "no_image.jpg" %>
+				</div>
+				<div class= "box1 flex">
+					<p class= "p1">商品名<br><b><%= cart_item.item.item_name %></b></p>
+					<p class= "p2">アーティスト名<br><b><%= cart_item.item.artist.artist_name %></b></p>
+				</div>
+				<div class=	"box2 flex">
+					<p class= "p3">数量: <b><%= cart_item.quantity %></b></p>
+					<%= link_to '削除',user_cart_item_path(cart_item.id), method: :delete, class: "p-delete" %>
+					<p class= "p4">価格(税込)：<%= number_to_currency(cart_item.item.price * cart_item.quantity.to_i * 1.1) %></p>
+				</div>
 			</div>
 		<% end %>
-
-<%= form_for(@order, url: user_orders_path, method: :post ) do |f| %>
-	<div>
-		<%= f.submit '注文を確定する',class:"btn-square" %>
-	</div>
-<br>
-	<div>
-	    <h4>商品の合計金額(税込):<%= number_to_currency(@total_price) %>
-	    <h4>配送料：¥<%= @shipping_fee %></h4>
-		<h4>ご請求額：¥<%= number_to_currency(@total_price.to_i + @shipping_fee.to_i)  %></h4>
 	</div>
 
-	<div>
-		<h3>お届け先</h3>
-		<p>※ご希望のお届け先を選択してください</p>
-		<% current_user.deliveries.each do |u| %>
-				<%= f.radio_button :delivery_adress, u.id, checked: "checked" %>
-				<%= u.delivery_postal_code %>
-				<%= u.delivery_address %>
+	<div class="col-lg-3 order_box">
+		<%= form_for(@order, url: user_orders_path, method: :post ) do |f| %>
+			<div class= "order_bottun_box">
+				<%= f.submit '注文を確定する', class:"order_btn" %>
+			</div>
 		<br>
-		<p><%= link_to "お届け先を追加する", edit_user_registration_path %></p>
-		<% end %>
-	</div>
-<hr>
-	<div>
-		<h3>お支払い方法</h3>
-			<label><%= f.radio_button :payment_methods,:銀行振込, checked: "checked"%>銀行振込</label>
-			<br>
-			<label><%= f.radio_button :payment_methods, :代引き %>代引き</label>
-			<br>
-			<label><%= f.radio_button :payment_methods ,:クレジットカード %>クレジットカード</label>
-				<ul>
-					<li>カード番号(ハイフンなし): 12345678</li>
-					<li>名前(半角スペースにご注意ください): BIGBANG COSMO</li>
-					<li>有効期限: 9月/22年</li>
-				</ul>
-	</div>
-
-<hr>
-
-	<div>
-		<h4>支払い情報</h4>
-		<p>クレジットカード　visa下4桁 XXXX</p>
-	</div>
-
-<hr>
-
-	<div>
-	   <% @user_cart_items.each do |cart_item| %>
 			<div>
-				<%= attachment_image_tag cart_item.item, :item_image, :fill, 200, 200, fallback: "no_image.jpg" %>
-				<p>商品名<%= cart_item.item.item_name %></p>
-				<p>アーティスト名<%= cart_item.item.artist.artist_name %></p>
-				<p>数量:<%= cart_item.quantity %>
-					<%= link_to '削除',user_cart_item_path(cart_item.id), method: :delete %>
-					<p>価格(税込)：¥<%= number_to_currency(cart_item.item.price * cart_item.quantity.to_i * 1.1) %></p>
+			    <h4>商品の合計金額(税込):<%= number_to_currency(@total_price) %>
+			    <h4>配送料：¥<%= @shipping_fee %></h4>
+				<h4>ご請求額：¥<%= number_to_currency(@total_price.to_i + @shipping_fee.to_i)  %></h4>
 			</div>
+
+			<div>
+				<h3>お届け先</h3>
+				<p>※ご希望のお届け先を選択してください</p>
+				<% current_user.deliveries.each do |u| %>
+						<%= f.radio_button :delivery_adress, u.id, checked: "checked" %>
+						<%= u.delivery_postal_code %>
+						<%= u.delivery_address %>
+				<br>
+				<p><%= link_to "お届け先を追加する", edit_user_registration_path %></p>
+				<% end %>
+			</div>
+		<hr>
+			<div>
+				<h3>お支払い方法</h3>
+					<label><%= f.radio_button :payment_methods,:銀行振込, checked: "checked"%>銀行振込</label>
+					<br>
+					<label><%= f.radio_button :payment_methods, :代引き %>代引き</label>
+					<br>
+					<label><%= f.radio_button :payment_methods ,:クレジットカード %>クレジットカード</label>
+						<ul>
+							<li>カード番号(ハイフンなし): 12345678</li>
+							<li>名前(半角スペースにご注意ください): BIGBANG COSMO</li>
+							<li>有効期限: 9月/22年</li>
+						</ul>
+			</div>
+
+		<hr>
+			<div>
+				<h4>支払い情報</h4>
+				<p>クレジットカード　visa下4桁 XXXX</p>
+			</div>
+		<hr>
 		<% end %>
 	</div>
- <% end %>
-
 </div>
-
