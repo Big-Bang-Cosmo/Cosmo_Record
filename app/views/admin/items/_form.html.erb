@@ -11,45 +11,43 @@
 			</div>
 		<% end %>
 
-	<div class = "row">
-		<div class = "col-lg-5">
+	<div class = "row item-new-main">
+		<div class = "col-lg-5" style="text-align: center; margin:0 0 30px 50px; ">
 			<%= attachment_image_tag @item, :item_image, :fill, 150, 150, fallback: "no_image.jpg",size: '150x150' %>
 			<label>ジャケット画像の登録</label>
-			 <%= f.attachment_field :item_image %>
+			 <%= f.attachment_field :item_image, :class => 'item-new-image' %>
 		</div>
 
 
-		<div class = "col-lg-5">
-			<p><%= f.label :item_name, "シングル/アルバム名" %>:<%= f.text_field :item_name, size:40 %></p>
-			<p><%= f.label :artist_name, "アーティスト名" %>:<%= f.collection_select :artist_id, Artist.all, :id, :artist_name, size:50 %></p>
-			<p><%= f.label :label_name, "レーベル名" %>:<%= f.collection_select :label_id, Label.all, :id, :label_name, size:50 %></p>
-			<p><%= f.label :genre_name, "ジャンル名" %>:<%= f.collection_select :genre_id, Genre.all, :id, :genre_name, size:50 %></p>
-			<p><%= f.label :price, "商品価格(税抜)" %>:<span>¥</span><%= f.text_field :price, size:10 %></p>
-	  </div>
+		<div class = "col-lg-6" style="text-align: right; padding-top: 15px;">
+			<p class="item-new-headline"><%= f.label :item_name, "シングル/アルバム名" %>:<%= f.text_field :item_name, :class => 'item-new-content' %></p>
+			<p class="item-new-headline"><%= f.label :artist_name, "アーティスト名" %>:<%= f.collection_select :artist_id, Artist.all, :id, :artist_name,{prompt: true}, class:'item-new-content' %></p>
+			<p class="item-new-headline"><%= f.label :label_name, "レーベル名" %>:<%= f.collection_select :label_id, Label.all, :id, :label_name,{prompt: true}, class:'item-new-content' %></p>
+			<p class="item-new-headline"><%= f.label :genre_name, "ジャンル名" %>:<%= f.collection_select :genre_id, Genre.all, :id, :genre_name,{prompt: true}, class:'item-new-content' %></p>
+			<p class="item-new-headline"><%= f.label :price, "商品価格(税抜)" %>:¥<span></span><%= f.text_field :price, :class => 'item-new-content' %></p>
+			<!-- {prompt: true}をclassの前に記述する事でclassをcollection_selectにも適用でき、:trueと入力すればデフォルトの文字を入れられる -->
+	  　</div>
 	</div><!-- row_end -->
 
-		<div>
-			<%= f.label :introduction, "商品説明" %>
-			<br>
-			<%= f.text_area :introduction, size:"100x3" %>
-	    </div>
-
-
-	    <div>
-	      <h4>曲名一覧</h4>
-
+<div class = "row">
+	<div class = "col-lg-12" style="margin-bottom: 30px;">
+		<%= f.label :introduction, "商品説明" %>
+		<br>
+		<%= f.text_area :introduction, size:"155x3" %>
+    </div>
+</div>
+    <h4>曲名一覧</h4>
+		<div class = "col-lg-11" style="margin-left: 45px;">
 		    <div class="items">
 					<%= f.fields_for :discs do |disc| %>
 						<%= render "disc_fields", f: disc %>
 					<% end %>
 				<div class="links">
-					<%= link_to_add_association "ディスクを追加", f, :discs %>
+					<%= link_to_add_association "ディスクを追加", f, :discs, class: 'btn btn-default'  %>
 				</div>
 			</div>
-
 			<div class="actions">
-
-				<%= f.submit @moji %>
+				<%= f.submit @moji, class: 'btn-primary btn-lg btn-block' %>
 			</div>
 		</div>
 
