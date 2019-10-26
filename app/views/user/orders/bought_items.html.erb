@@ -1,27 +1,46 @@
 <h4>購入履歴一覧</h4>
-<div class="row clearfix">
+<div class="top-link"><%= link_to 'マイページへ戻る' %></div>
 
-	<% @orders.each do |order| %>
-		<p><%= l order.created_at, format: :short %></p>
 
-			<% order.order_items.each do |order_item| %>
-			  <div>
-					<p><%= attachment_image_tag order_item.item, :item_image, :fill, 200, 200, fallback: "no_image.jpg" %></p>
+<% @orders.each do |order| %>
+<div class="user-order-item">
+	<div>
+		<p class="order-date"><%= l order.created_at, format: :short %></p>
+	</div>
+
+	<div class="order-product row">
+		<div class="order-items col-lg-9">
+		 <% order.order_items.each do |order_item| %>
+			<div class="order-item col-lg-12">
+				<div class="col-lg-3">
+					<p>
+						<%= attachment_image_tag order_item.item, :item_image, :fill, 140, 140, fallback: "no_image.jpg" %></p>
+				</div>
+				<div class="order-item-text col-lg-3">
 					<p><%= order_item.item.item_name %></p>
-					<p><%= order_item.item.artist.artist_name %></p>
-					<p>価格(税込)：<%= number_to_currency(order_item.item.price) %></p>
-					<p>枚数：<%= order_item.quantity %>枚</p>
+						<p><%= order_item.item.artist.artist_name %></p>
+				</div>
+				<div class="order-item-text col-lg-2">
+					<p>価格(税込)<br><%= number_to_currency(order_item.item.price) %></p>
+				</div>
+				<div class="order-item-text col-lg-2">
+					<p><%= order_item.quantity %>枚</p>
+				</div>
+				<div class="order-item-text col-lg-2">
 					<p><%= order.delivery_status %></p>
-			  </div>
-  			<% end %>
+				</div>
+			</div>
+		  <% end %>
+		</div>
 
-  			<div>
-  				<%= link_to user_day_bought_items_path(order.id) do %>
-			      <p><%= l order.created_at, format: :short %>の購入詳細履歴</p>
-			    <% end %>
-  			</div>
-
-	<% end %>
+		<div class="order-date-link col-lg-3">
+	  		<%= link_to user_day_bought_items_path(order.id) do %>
+					<p><%= l order.created_at, format: :short %>の購入詳細履歴</p>
+		    <% end %>
+		</div>
+	</div>
+</div>
+<% end %>
 
 	<%= paginate @orders, class: "paginate" %>
 
