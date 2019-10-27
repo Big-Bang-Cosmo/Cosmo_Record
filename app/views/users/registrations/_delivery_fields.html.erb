@@ -1,12 +1,31 @@
 <hr>
-<div class="nested-fields disc_field">
+<div class="nested-fields">
         <p>【<%= f.label :配送先 %>】</p>
-          <p class="registrations-headline">郵便番号</p>
-            <%= f.text_field :delivery_postal_code %>
-              <!-- <input type="text" name="delivery_postal_code"> -->
-          <p class="registrations-headline">住所</p>
-            <%= f.text_field :delivery_address %>
-              <!-- <input type="text" name="delivery_address"> -->
+        <div class="delivery-filed">
+	        <div class="col-lg-2">
+	          <p class="registrations-headline">郵便番号</p>
+	        </div>
+	        <div class="col-lg-10">
+	            <p><%= f.text_field :delivery_postal_code ,class:"form-control"%></p>
+	              <!-- <input type="text" name="delivery_postal_code"> -->
+	        </div>
+   		 </div>
+
+   		<div class="delivery-filed">
+	        <div class="col-lg-2">
+	          <p class="registrations-headline">住所</p>
+	        </div>
+	        <div class="col-lg-10">
+	            <p><%= f.text_field :delivery_address ,class:"form-control"%></p>
+	              <!-- <input type="text" name="delivery_address"> -->
+	        </div>
+    	</div>
+
          <br>
-         <%= link_to_remove_association "配送先を削除", f %>
+        <div class="remove">
+        	<button class="btn btn-default">
+         		<%= link_to_remove_association "配送先を削除", f %>
+             </button>
+        </div>
+
 </div>
