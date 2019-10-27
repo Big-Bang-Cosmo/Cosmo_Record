@@ -61,6 +61,17 @@
 }
 
 
+.order_price{
+	padding-top: 30px;
+	padding-bottom: 20px;
+
+}
+.back{
+	display: inline-block;
+	float: right;
+	padding-bottom: 20px;
+}
+
 .order-items {
 	padding: 5px 0;
 	position: relative;
@@ -74,6 +85,7 @@
 
 .order-date {
 	font-size: 18px;
+	margin-bottom: 0;
 }
 
 .order-item-text {
@@ -84,7 +96,6 @@
 .order-date-link  {
 	right: 0px;
 	bottom: 10px;
-	background-color: blue;
 }
 
 .col-lg-3.order-date-link {
@@ -117,4 +128,11 @@
 
 
 
+=======
+}
+
+.order_name{
+	margin-top :0;
+}
+>>>>>>> 987e2464512f7540297228c7b28abe3b915fabea
 
