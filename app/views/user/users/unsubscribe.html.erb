@@ -1,11 +1,12 @@
 
-<h4>退会手続き</h4>
+<h3 class="unsubscribe">退会手続き</h3>
 
 <p>退会されますと、以下の情報が削除されます。</p>
 <ul>
-	<li>登録情報</li>
-	<li>お気に入り</li>
-	<li>購入履歴</li>
+	<li>・登録情報</li>
+	<li>・お気に入り</li>
+	<li>・購入履歴</li>
 </ul>
+<p><b>Cosmo Record はこれからも様々なサービスを提供していけるように努めていきます。<br>本当に退会してもよろしいですか？<b></p>
 
-<%= link_to '退会する', user_registration_path(current_user), method: :delete, "data-confirm" => "本当に退会しますか？" %>
+<%= link_to '退会する', user_registration_path(current_user), method: :delete, "data-confirm" => "本当に退会しますか？", class: "btn btn-default btn-sm" %>
