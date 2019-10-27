@@ -23,7 +23,6 @@ class User::UsersController < ApplicationController
   end
 
 
-
   # def unsubscribe
   # end
 
