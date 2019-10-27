@@ -110,6 +110,15 @@
 	margin-bottom: 50px;
 }
 
+.order-side.col-lg-4 {
+	position: absolute;
+}
+
+.order-side {
+	bottom: 20px;
+	right: 0px;
+}
+
 .order_name{
 	margin-top :0;
 }
@@ -126,3 +135,14 @@
 	text-align: center;
 }
 
+.d-status {
+	margin: 0;
+}
+
+.all-status {
+	margin-bottom: 10px;
+}
+
+.order-date-r {
+	padding-top: 20px;
+}
