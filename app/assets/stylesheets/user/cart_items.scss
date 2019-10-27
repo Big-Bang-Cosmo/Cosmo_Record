@@ -1,3 +1,65 @@
 // Place all the styles related to the user/cart_items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.cart-headline{
+  width: 160px;
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  font-weight: bold;
+  color: black;/*文字色*/
+  background: #FFF;
+  border: solid 1px black;/*線*/
+  border-radius: 10px;/*角の丸み*/
+  margin: 0 auto;
+  margin: 40px 0;
+}
+
+.cart-item-content{
+  border-bottom: 1px solid gray;
+  margin-bottom: 25px;
+}
+
+.cart-items-image{
+	margin-bottom: 25px;
+}
+
+.user-cart-item-box{
+	padding-top: 35px;
+	font-size: 16px;
+}
+.user-cart-item-price{
+	padding-top: 55px;
+	text-align: center;
+	font-size: 16px;
+}
+.user-cart-item-quantity{
+	padding-top: 35px;
+	font-size: 16px;
+}
+
+.cart-item-order-btn{
+	margin-bottom: 100px;
+}
+
+.cart-item-total-price{
+  width: 220px;
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  font-weight: bold;
+  color: black;/*文字色*/
+  background: #FFF;
+  border: solid 1px black;/*線*/
+  border-radius: 10px;/*角の丸み*/
+  margin: 0 auto;
+  margin: 40px 0;
+  font-size: 20px;
+}
+
+.cart-item-keep-shopping{
+	padding-top: 158px;
+}
+
+.cart-item-purchase{
+	padding-left: 80px;
+}
