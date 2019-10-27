@@ -15,19 +15,18 @@ class User::CartItemsController < ApplicationController
     @cart_item.quantity = 1
     @cart_item.save
     redirect_to user_user_cart_item_list_path(current_user.id)
-  end
+    end
   end
 
   def update
   	@cart_item = CartItem.find(params[:id])
-  	if cart_item.item.stock >= cart_item.quantity
-    @cart_item.update(cart_item_params)
-  	redirect_to user_user_cart_item_list_path(current_user.id)
-  else
+  	if @cart_item.item.stock >= cart_item.quantity
+       @cart_item.update(cart_item_params)
+  	   redirect_to user_user_cart_item_list_path(current_user.id)
+    else
     @cart_item = CartItem.find(params[:id])
     render 'user/user_cart_item_list'
-
-
+    end
   end
 
   def destroy

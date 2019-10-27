@@ -1,44 +1,64 @@
 
-<h4><%= @order.user.last_name + @order.user.first_name %>さんの<%= l @order.created_at, format: :short %>日の注文一覧</h4>
-
-<%= link_to "購入履歴一覧に戻る", admin_orders_path %>
-
-<div class="order-item-history clearfix">
-
-	<div class="order-show-content">
-		<p>お届け先住所</p>
-		<%= @order.user.last_name + @order.user.first_name %>
-		<%= @order.delivery_postal_code %>
-		<%= @order.delivery_adress %>
-	</div>
-
-	<div class="order-show-content">
-		<p>支払方法</p>
-		<%= @order.payment_methods %>
-	</div>
-
-	<div class="order-show-content">
-		<p>購入明細</p>
-		<p>商品の小計:</p><%= number_to_currency(@order.total_price - @order.shipping_fee) %>
-		<p>配送料:</p><%= number_to_currency(@order.shipping_fee) %>
-		<p>ご請求額:</p><%= number_to_currency(@order.total_price) %>
-	</div>
-
+<div class= "back_box clearfix">
+	<h4><%= link_to "購入履歴一覧に戻る", admin_orders_path, class: "back" %></h4>
 </div>
 
-<%= l @order.created_at, format: :short %>
-<% @orders.each do |order_item| %>
-	<table border="1">
-			<tr>
-				<td><%= link_to user_item_path(order_item) do %>
-					<%= attachment_image_tag order_item.item, :item_image, :fill, 100, 100, fallback: "no_image.jpg", size:'100x100' %>
-					<% end %>
-				</td>
-				<td><%= link_to "#{order_item.item.item_name}", admin_item_path(order_item.item) %></td></td>
-				<td><%= order_item.item.artist.artist_name %></td>
-				<td><p>価格（税抜）：</p><%= number_to_currency(order_item.item.price) %></td>
-				<td>数量:<%= order_item.quantity %></td>
-				<td><%= order_item.order.delivery_status %></td>
-			</tr>
-	</table>
-<% end %>
+<h4 class="order_name"><%= @order.user.last_name + @order.user.first_name %>さんの<%= l @order.created_at, format: :short %>日の注文の詳細</h4>
+<div class = "row">
+	<div class= "col-lg-3">
+		<h4>お届け先住所</h4>
+		<h4><%= @order.user.last_name + @order.user.first_name %></h4>
+		<h4><%= @order.delivery_postal_code %></h4>
+		<h4><%= @order.delivery_adress %></h4>
+	</div>
+
+	<div class= "col-lg-3">
+		<h4>支払方法</h4>
+		<h4><%= @order.payment_methods %></h4>
+	</div>
+
+	<div class= "col-lg-2">
+		<div><h4>購入明細</h4></div>
+		<h4>商品の小計 :</h4>
+		<h4>配送料 :</h4>
+		<h4>ご請求額 :</h4>
+	</div>
+	<div class="order_price">
+		<h4></h4>
+		<p></p>
+		<h4><%= number_to_currency(@order.total_price - @order.shipping_fee) %></h4>
+		<h4><%= number_to_currency(@order.shipping_fee) %></h4>
+		<h4><%= number_to_currency(@order.total_price) %></h4>
+	</div>
+</div>
+
+<div class="user-order-item">
+	<div>
+		<p class="order-date"><%= l @order.created_at, format: :short %></p>
+	</div>
+
+	<div class="order-product row">
+		<div class="order-items col-lg-9">
+		<% @order.order_items.each do |order_item| %>
+			<div class="order-item col-lg-12">
+				<div class="col-lg-3">
+					<p><%= attachment_image_tag order_item.item, :item_image, :fill, 140, 140, fallback: "no_image.jpg" %></p>
+				</div>
+				<div class="order-item-text col-lg-3">
+					<p><%= order_item.item.item_name %></p>
+					<p><%= order_item.item.artist.artist_name %></p>
+				</div>
+				<div class="order-item-text col-lg-2">
+					<p>価格(税込)<br><%= number_to_currency(order_item.item.price) %></p>
+				</div>
+				<div class="order-item-text col-lg-2">
+					<p><%= order_item.quantity %>枚</p>
+				</div>
+				<div class="order-item-text col-lg-2">
+					<p><%= @order.delivery_status %></p>
+				</div>
+			</div>
+		<% end %>
+		</div>
+	</div>
+</div>

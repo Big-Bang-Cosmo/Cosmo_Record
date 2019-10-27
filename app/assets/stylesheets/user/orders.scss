@@ -61,6 +61,17 @@
 }
 
 
+.order_price{
+	padding-top: 30px;
+	padding-bottom: 20px;
+
+}
+.back{
+	display: inline-block;
+	float: right;
+	padding-bottom: 20px;
+}
+
 .order-items {
 	padding: 5px 0;
 	position: relative;
@@ -74,6 +85,7 @@
 
 .order-date {
 	font-size: 18px;
+	margin-bottom: 0;
 }
 
 .order-item-text {
@@ -83,7 +95,7 @@
 
 .order-date-link  {
 	right: 0px;
-	bottom: 0px;
+	bottom: 10px;
 }
 
 .col-lg-3.order-date-link {
@@ -96,7 +108,9 @@
 
 .user-order-item {
 	margin-bottom: 50px;
-
 }
 
+.order_name{
+	margin-top :0;
+}
 
