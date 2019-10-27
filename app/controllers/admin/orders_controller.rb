@@ -9,12 +9,11 @@ class Admin::OrdersController < ApplicationController
 		if  order.delivery_status == "商品準備中"
 			order.delivery_status = "出荷済み"
 			order.save
-			redirect_to admin_bought_items_path(order.id)
-		else
-			order.delivery_status == "出荷済み"
+			redirect_to admin_bought_items_path(order.user.id)
+		elsif order.delivery_status == "出荷済み"
 			order.delivery_status = "商品準備中"
 			order.save
-			redirect_to admin_bought_items_path(order.id)
+			redirect_to admin_bought_items_path(order.user.id)
 		end
 	end
 

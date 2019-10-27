@@ -17,4 +17,5 @@ class User < ApplicationRecord
   validates :gender, presence: :true
   validates :phone_number, presence: :true
 
+
 end
