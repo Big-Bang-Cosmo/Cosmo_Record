@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :deliveries, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  has_many :orders
+  has_many :orders, dependent: :destroy
   accepts_nested_attributes_for :deliveries, allow_destroy: true
 
   validates :last_name, presence: :true

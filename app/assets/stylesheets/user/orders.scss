@@ -83,7 +83,8 @@
 
 .order-date-link  {
 	right: 0px;
-	bottom: 0px;
+	bottom: 10px;
+	background-color: blue;
 }
 
 .col-lg-3.order-date-link {
@@ -96,7 +97,24 @@
 
 .user-order-item {
 	margin-bottom: 50px;
-
 }
+
+.order-side.col-lg-4 {
+	position: absolute;
+}
+
+.order-side {
+	background-color: blue;
+	bottom: 20px;
+	right: 0px;
+}
+
+
+
+
+
+
+
+
 
 

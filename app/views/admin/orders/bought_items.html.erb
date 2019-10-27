@@ -1,29 +1,55 @@
-<h1>Admin側のUserの注文詳細一覧</h1>
-<div class = "container">
-	<% @orders.each do |order| %>
-		<h4><%= l order.created_at, format: :short %></h4>
+<h4><%= @user.last_name %><%= @user.first_name %>さんの注文詳細</h4>
+<div class="top-link"><%= link_to 'ユーザーの注文一覧へ戻る',user_users_favorites_path %></div>
+
+
+<% @orders.each do |order| %>
+<div class="user-order-item">
+	<div>
+		<p class="order-date"><%= l order.created_at, format: :short %></p>
+	</div>
+	<div class="order-product row">
+		<div class="order-items col-lg-8">
 			<% order.order_items.each do |order_item| %>
-				<%= attachment_image_tag order_item.item, :item_image, :fill, 250, 250, fallback: "no_image.jpg" %>
-				<h4>商品名:<%= order_item.item.item_name %></h4>
-				<h5>アーティスト名:<%= order_item.item.artist.artist_name %></h5>
-				<h5>価格(税込)<%= order_item.item.price %></h5>
-				<h5>枚数:<%= order_item.quantity %></h5>
-  			<% end %>
+				<div class="order-item col-lg-12">
+					<div class="col-lg-3">
+						<p><%= attachment_image_tag order_item.item, :item_image, :fill, 140, 140, fallback: "no_image.jpg" %></p>
+					</div>
+					<div class="order-item-text col-lg-3">
+						<p><b><%= link_to order_item.item.item_name, user_item_path(order_item.item) %></b></p>
+				    	<p><%= order_item.item.artist.artist_name %></p>
+					</div>
+					<div class="order-item-text col-lg-3">
+					     <p>価格(税込)<br><%= number_to_currency(order_item.item.price) %></p>
+					</div>
+					<div class="order-item-text col-lg-3">
+						<p><%= order_item.quantity %>枚</p>
+				    </div>
 
-  		<% if order.delivery_status == "商品準備中"  %>
-			<%= link_to admin_order_path(order.id), method: :patch do %>
-				<%= order.delivery_status %>
-			<% end %>
-  		<% else %>
-			<%= link_to admin_order_path(order.id), method: :patch do %>
-				<%= order.delivery_status %>
-			<% end %>
-  		<% end %>
+				 </div>
+			  <% end %>
+			</div>
 
-  		<%= link_to admin_day_bought_items_path(order.id) do %>
-			<p><%= l order.created_at, format: :short %>の購入詳細履歴</p>
-		<% end %>
+		<div class="order-side col-lg-4">
+			<div class="col-lg-12">
+					  <% if order.delivery_status == "商品準備中"  %>
+						 	<%= link_to admin_order_path(order.id), method: :patch do %>
+								<p><%= order.delivery_status %></p>
+							<% end %>
+		  			  <% else %>
+							<%= link_to admin_order_path(order.id), method: :patch do %>
+								<p><%= order.delivery_status %></p>
+							<% end %>
+		  			  <% end %>
+	  		</div>
+	  		<div class="col-lg-12">
+		  		<%= link_to admin_day_bought_items_path(order.id) do %>
+					<p><%= l order.created_at, format: :short %>の購入詳細</p>
+				<% end %>
+			 </div>
+		</div>
+	</div>
+   </div>
+<% end %>
 
-	<% end %>
 <%= paginate @orders, class: "paginate" %>
-</div>
+

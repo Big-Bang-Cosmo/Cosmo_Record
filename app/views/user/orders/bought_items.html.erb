@@ -1,5 +1,5 @@
 <h4>購入履歴一覧</h4>
-<div class="top-link"><%= link_to 'マイページへ戻る' %></div>
+<div class="top-link"><%= link_to 'マイページへ戻る',user_users_favorites_path %></div>
 
 
 <% @orders.each do |order| %>
@@ -7,7 +7,6 @@
 	<div>
 		<p class="order-date"><%= l order.created_at, format: :short %></p>
 	</div>
-
 	<div class="order-product row">
 		<div class="order-items col-lg-9">
 		 <% order.order_items.each do |order_item| %>
@@ -17,7 +16,7 @@
 						<%= attachment_image_tag order_item.item, :item_image, :fill, 140, 140, fallback: "no_image.jpg" %></p>
 				</div>
 				<div class="order-item-text col-lg-3">
-					<p><%= order_item.item.item_name %></p>
+					<p><b><%= link_to order_item.item.item_name, user_item_path(order_item.item) %></b></p>
 						<p><%= order_item.item.artist.artist_name %></p>
 				</div>
 				<div class="order-item-text col-lg-2">
@@ -35,7 +34,7 @@
 
 		<div class="order-date-link col-lg-3">
 	  		<%= link_to user_day_bought_items_path(order.id) do %>
-					<p><%= l order.created_at, format: :short %>の購入詳細履歴</p>
+					<p><%= l order.created_at, format: :short %>の購入詳細</p>
 		    <% end %>
 		</div>
 	</div>

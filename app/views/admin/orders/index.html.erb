@@ -20,7 +20,9 @@
 
 <div class="row clearfix">
     <% @orders.each do |order| %>
+
     	<%= link_to admin_bought_items_path(order.user.id) do %>
+
     	  <div class="admin-users col-lg-9 clearfix">
 		  	<div class="admin-user col-lg-3 user-text">
 		  		<p><%= l order.created_at, format: :short %></p>
