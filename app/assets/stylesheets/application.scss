@@ -33,10 +33,13 @@
 	width: 100%;
 	height: 150px;
 	background: image-url('header.png');
+  position: relative;
 }
 
 .nav-list{
-	text-align: right;
+    position: absolute;
+    right: 30px;
+    top: 35px;
 }
 
 .nav-list-item{
@@ -45,20 +48,27 @@
     float: left;
     text-align: right;
     list-style: none;
-    position: relactive;
-    margin-right: 20px;
-    position: relative;
-    left: 1000px;
-    bottom: 20px;
+    padding-left: 15px;
 }
-.nav-list-cart{
-	padding: 50px 50px 0 0;
-}
+
 .glyphicon-shopping-cart{
-    position: relative;
 }
+
+
 .nav-list-cart{
-	height: 50px;
+  position: absolute;
+  right: 50px;
+  bottom: 0px;
+}
+
+.nav-list-cart p {
+  margin-bottom: 0px;
+}
+
+.header-search {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
 }
 
 .btn-square {
@@ -79,6 +89,25 @@
   transform: translateY(4px);/*下に動く*/
   border-bottom: none;/*線を消す*/
 }
+
+.admin-nav-list-item {
+  position: absolute;
+  right: 20px;
+}
+
+.admin-header-search {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+}
+
+.admin-nav {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+
+}
+
 
 .order-show-content{
 	float: left;
