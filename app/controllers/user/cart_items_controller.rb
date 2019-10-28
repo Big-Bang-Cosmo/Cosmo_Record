@@ -20,7 +20,7 @@ class User::CartItemsController < ApplicationController
 
   def update
   	@cart_item = CartItem.find(params[:id])
-  	if @cart_item.item.stock >= cart_item.quantity
+  	if @cart_item.item.stock >= @cart_item.quantity
        @cart_item.update(cart_item_params)
   	   redirect_to user_user_cart_item_list_path(current_user.id)
     else
@@ -34,7 +34,6 @@ class User::CartItemsController < ApplicationController
     @cart_item.destroy
     redirect_to user_user_cart_item_list_path(current_user.id)
   end
-end
 
 private
   def cart_item_params

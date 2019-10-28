@@ -3,9 +3,23 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .contact_info{
-	border: double;
-	background-color: green;
 }
+
+.contact_user_info {
+	background-color: #eff7ff;
+	border: solid 1px #a9a9a9;
+	padding: 10px;
+}
+
 .contact_body{
-	
+	background-color: #eff7ff;
+	padding: 30px;
+	border-right: solid 1px #a9a9a9;
+	border-bottom: solid 1px #a9a9a9;
+	border-left: solid 1px #a9a9a9;
+}
+
+.contact_status {
+	padding: 15px 0;
+	text-align: right;
 }
