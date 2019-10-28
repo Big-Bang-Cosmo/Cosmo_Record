@@ -17,5 +17,6 @@ class User < ApplicationRecord
   validates :gender, presence: :true
   validates :phone_number, presence: :true
 
+  acts_as_paranoid
 
 end
