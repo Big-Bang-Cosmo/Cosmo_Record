@@ -6,7 +6,7 @@ class User::ContactsController < ApplicationController
   	  @contact = Contact.new(contact_params)
       #バリデーションをつける場合newページで得た情報（ここなら@contact = Contact.new）をcreateアクションでも定義する必要がある
   	  if @contact.save
-  	    redirect_to user_items_path
+  	    redirect_to user_contact_completed_path(current_user)
       else
         render :new
       end
