@@ -27,6 +27,8 @@ class Item < ApplicationRecord
 	validates :introduction, presence: :true
 	validates :item_image, presence: :ture
 
+	acts_as_paranoid
+
 	def self.search(search)
 		if search
 			Item.where(['item_name LIKE ?', "%#{search}%"])
