@@ -37,7 +37,7 @@
       		<p><%= link_to '編集', edit_admin_user_path(user) %></p>
       	</div>
       	<div class="admin-user col-lg-2 user-text">
-      		<p><%= link_to '削除', admin_user_path(user), method: :delete %></p>
+      		<p><%= link_to '削除', admin_user_path(user), method: :delete,  "data-confirm" => "本当に削除しますか？" %></p>
       	</div>
       </div>
 	<% end %>

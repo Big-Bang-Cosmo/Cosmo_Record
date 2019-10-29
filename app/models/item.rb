@@ -9,6 +9,7 @@ class Item < ApplicationRecord
 	has_many  :arrivals, dependent: :destroy
 	has_many :discs, dependent: :destroy, inverse_of: :item
 	has_many :favorites, dependent: :destroy
+
     def favorited_by?(user)
       favorites.where(user_id: user.id).exists?
     end
@@ -24,6 +25,7 @@ class Item < ApplicationRecord
 	validates :item_name, presence: :true
 	validates :price, presence: :true
 	validates :introduction, presence: :true
+	validates :item_image, presence: :ture
 
 	def self.search(search)
 		if search
