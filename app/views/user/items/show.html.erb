@@ -117,10 +117,14 @@
 					<%= review.review_body %>
 				</td>
 				<td class="col-xs-1">
-					<b><%= link_to "編集する", edit_user_item_review_path(review.item.id, review.id) %></b>
+					<% if review.user.id == current_user.id %>
+						<b><%= link_to "編集する", edit_user_item_review_path(review.item.id, review.id) %></b>
+					<% end %>
 				</td>
 				<td class="col-xs-1">
-					<b><%= link_to "削除する", user_item_review_path(review.item.id, review.id), method: :delete %></b>
+					<% if review.user.id == current_user.id %>
+						<b><%= link_to "削除する", user_item_review_path(review.item.id, review.id), method: :delete %></b>
+					<% end %>
 				</td>
 			</tr>
 		</tbody>
