@@ -1,6 +1,6 @@
 
 <div class= "back_box clearfix">
-	<h4><%= link_to "購入履歴一覧に戻る", admin_orders_path, class: "back" %></h4>
+	<h4><%= link_to "購入履歴一覧に戻る", user_bought_items_path(current_user), class: "back" %></h4>
 </div>
 
 <h4 class="order_name"><%= @order.user.last_name + @order.user.first_name %>さんの<%= l @order.created_at, format: :short %>日の注文の詳細</h4>
@@ -44,13 +44,15 @@
 				<div class="col-lg-3">
 					<p><%= attachment_image_tag order_item.item, :item_image, :fill, 140, 140, fallback: "no_image.jpg" %></p>
 				</div>
+				<% if order_item.item.present?%>
 				<div class="order-item-text col-lg-3">
-					<p><%= order_item.item.item_name %></p>
-					<p><%= order_item.item.artist.artist_name %></p>
+						<p><%= order_item.item.item_name %></p>
+						<p><%= order_item.item.artist.artist_name %></p>
 				</div>
 				<div class="order-item-text col-lg-2">
 					<p>価格(税込)<br><%= number_to_currency(order_item.item.price * 1.1) %></p>
 				</div>
+				<% end %>
 				<div class="order-item-text col-lg-2">
 					<p><%= order_item.quantity %>枚</p>
 				</div>

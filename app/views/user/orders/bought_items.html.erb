@@ -10,8 +10,8 @@
 	<div class="order-product row">
 		<div class="order-items col-lg-9">
 		<% order.order_items.each do |order_item| %>
-	<% if order_item.item.present? %>
-			<div class="order-item col-lg-12">
+		<div class="order-item col-lg-12">
+			<% if order_item.item.present?%>
 				<div class="col-lg-3">
 					<p><%= attachment_image_tag order_item.item, :item_image, :fill, 140, 140, fallback: "no_image.jpg" %></p>
 				</div>
@@ -19,6 +19,14 @@
 					<p><b><%= link_to order_item.item.item_name, user_item_path(order_item.item) %></b></p>
 						<p><%= order_item.item.artist.artist_name %></p>
 				</div>
+		    <% else %>
+				<div class="col-lg-3">
+					<p><%= attachment_image_tag order_item.item, :item_image, :fill, 140, 140, fallback: "no_image.jpg" %></p>
+				</div>
+		        <div class="col-lg-3">
+				  <p class="treatment">現在取り扱っておりません</p>
+				</div>
+		    <% end %>
 				<div class="order-item-text col-lg-2">
 					<p>価格(税込)<br><%= number_to_currency(order_item.price * 1.1 ) %></p>
 				</div>
@@ -29,8 +37,7 @@
 					<p><%= order.delivery_status %></p>
 				</div>
 			</div>
-		  <% end %>
-		  <% end %>
+		<% end %>
 		</div>
 
 		<div class="order-date-link col-lg-3">
