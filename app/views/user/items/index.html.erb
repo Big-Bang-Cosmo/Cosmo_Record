@@ -9,7 +9,7 @@
 			<% end %>
 		</div>
 		<div>
-			<p class="item_name"><%= link_to truncate("#{item.item_name}",lenght: 8,omission:"..."), user_item_path(item)%></p>
+			<p class="item_name"><%= link_to truncate("#{item.item_name}",lenght: 8, omission:"..."), user_item_path(item)%></p>
 			<p><%= link_to truncate("#{item.artist.artist_name}",lenght: 8,omission:"..."), user_artist_path(item.artist) %></p>
 			<p>価格(税込)：<%= number_to_currency(item.price * 1.1) %></p>
 			<p>

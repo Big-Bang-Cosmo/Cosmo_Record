@@ -1,14 +1,17 @@
 <h3>お問い合わせ詳細</h3>
 <div class="top-link"><%= link_to 'お問い合わせ一覧へ戻る', admin_contacts_path%></div>
-<div contact_info>
-	<div class="row  contact_user_info clearfix">
-		<div class="col-lg-2">
+
+<div class="row">
+<div class="col-lg-1"></div>
+<div class="contact_info col-lg-10">
+	<div class="contact_user_info clearfix">
+		<div class="col-lg-3">
 			<%= l @contact.created_at, format: :short %>
 		</div>
-		<div class="col-lg-2">
+		<div class="col-lg-3">
 			<p>名前: <%= @contact.last_name + @contact.first_name %></p>
 		</div>
-		<div class="col-lg-5">
+		<div class="col-lg-3">
 			<p>メールアドレス: <%= @contact.email %></p>
 		</div>
 		<div class="col-lg-3">
@@ -19,15 +22,17 @@
 	<div class="contact_body">
 		<%= @contact.contact_body %>
 	</div>
+
+	<div class="contact_status">
+	  <% if @contact.status == "未対応" %>
+		<%= button_to "未対応", {controller: 'admin/contacts', action: 'update'}, {method: :patch} %>
+	  <% else %>
+		<%= button_to "応対完了", {controller: 'admin/contacts', action: 'update'}, {method: :patch} %>
+	  <% end %>
+	</div>
+</div>
+
+<div class="col-lg-1"></div>
 </div>
 
 
-
-
-
-
-  <% if @contact.status == "未対応" %>
-	<%= button_to "未対応", {controller: 'admin/contacts', action: 'update'}, {method: :patch} %>
-  <% else %>
-	<%= button_to "応対完了", {controller: 'admin/contacts', action: 'update'}, {method: :patch} %>
-  <% end %>

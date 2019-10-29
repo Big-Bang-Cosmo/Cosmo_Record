@@ -99,10 +99,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def delete
-    super
-    redirect_to user_user_destroy_completed
-  end
+
 
     private
    def user_params

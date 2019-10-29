@@ -25,6 +25,8 @@ class Item < ApplicationRecord
 	validates :price, presence: :true
 	validates :introduction, presence: :true
 
+	acts_as_paranoid
+
 	def self.search(search)
 		if search
 			Item.where(['item_name LIKE ?', "%#{search}%"])

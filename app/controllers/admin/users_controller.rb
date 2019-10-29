@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   def index
-  	  @users = User.page(params[:page]).reverse_order
+  	  @users = User.where(deleted_at: nil)page(params[:page]).reverse_order
   end
 
 # 元は　delivery_index
@@ -27,6 +27,8 @@ class Admin::UsersController < ApplicationController
       User.find(params[:id]).destroy
       redirect_to admin_users_path
   end
+
+
 
   private
   def user_params

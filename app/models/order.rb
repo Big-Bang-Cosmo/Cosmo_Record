@@ -6,4 +6,6 @@ class Order < ApplicationRecord
 	validates :delivery_adress, presence: :true
 	validates :payment_methods, presence: :true
 
+	acts_as_paranoid
+
 end

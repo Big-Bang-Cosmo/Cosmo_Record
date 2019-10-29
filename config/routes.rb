@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get 'users/:user_id/cart_items' => 'cart_items#user_cart_item_list', as:'user_cart_item_list'
     get 'users/:id/unsubscribe' => 'users#unsubscribe', as:'user_unsubscribe'
     get 'users/:id/user_reviews' => 'users#user_reviews', as: 'user_reviews'
+    get 'users/:id/delete' => 'users#delete', as: 'delete'
 
     get 'orders/:id/new' => 'orders#new', as: 'orders_new'
     get 'orders/:id/bought_items' => 'orders#bought_items', as: 'bought_items'
