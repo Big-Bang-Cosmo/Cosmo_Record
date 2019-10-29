@@ -3,7 +3,7 @@ class Item < ApplicationRecord
 	belongs_to :label
 	belongs_to :genre
 
-	has_many :order_items, dependent: :destroy
+	has_many :order_items
 	has_many :cart_items, dependent: :destroy
 	has_many  :reviews, dependent: :destroy
 	has_many  :arrivals, dependent: :destroy
@@ -26,6 +26,8 @@ class Item < ApplicationRecord
 	validates :price, presence: :true
 	validates :introduction, presence: :true
 	validates :item_image, presence: :ture
+
+	acts_as_paranoid
 
 	def self.search(search)
 		if search

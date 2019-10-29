@@ -77,3 +77,5 @@ gem 'rails-i18n'
 
 gem 'autonumeric-rails'
 
+gem "hirb"
+gem "hirb-unicode"

@@ -1,11 +1,9 @@
 
 <div class= "back_box clearfix">
-	<h4><%= link_to "購入履歴一覧に戻る", user_bought_items_path(current_user.id), class: "back" %></h4>
+	<h4><%= link_to "購入履歴一覧に戻る", admin_orders_path, class: "back" %></h4>
 </div>
 
-<h4 class="order_name"><%= @order.user.last_name + @order.user.first_name %>さんの
-<%= @order.created_at.strftime('%Y/%m/%d') %>の注文の詳細</h4>
-
+<h4 class="order_name"><%= @order.user.last_name + @order.user.first_name %>さんの<%= l @order.created_at, format: :short %>日の注文の詳細</h4>
 <div class = "row">
 	<div class= "col-lg-3">
 		<h4>お届け先住所</h4>
@@ -21,9 +19,9 @@
 
 	<div class= "col-lg-2">
 		<div><h4>購入明細</h4></div>
-		<h4>商品の小計(税込) :</h4>
+		<h4>商品の小計 :</h4>
 		<h4>配送料 :</h4>
-		<h4>ご請求額(税込) :</h4>
+		<h4>ご請求額 :</h4>
 	</div>
 	<div class="order_price">
 		<h4></h4>
@@ -51,7 +49,7 @@
 					<p><%= order_item.item.artist.artist_name %></p>
 				</div>
 				<div class="order-item-text col-lg-2">
-					<p>価格(税込)<br><%= number_to_currency(order_item.item.price) %></p>
+					<p>価格(税込)<br><%= number_to_currency(order_item.price) %></p>
 				</div>
 				<div class="order-item-text col-lg-2">
 					<p><%= order_item.quantity %>枚</p>
