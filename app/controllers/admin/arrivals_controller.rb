@@ -1,4 +1,5 @@
 class Admin::ArrivalsController < ApplicationController
+	before_action :authenticate_admin!
 
 	def index
 		@arrivals = Arrival.page(params[:page]).reverse_order

@@ -4,7 +4,7 @@
 <% @arrivals.each do |arrival| %>
 	<div class="arrival clearfix">
 		<div class="arrivai_item col-lg-2 text">
-			<p>入荷日：<%= arrival.created_at.strftime('%Y/%m/%d') %></p>
+			<p>入荷日：<%= l arrival.created_at, format: :short %></p>
 		</div>
 		<div class="arrivai_item col-lg-2 ">
 		 	<p><%= link_to user_item_path(arrival.item.id) do %>

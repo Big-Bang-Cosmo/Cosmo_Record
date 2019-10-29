@@ -32,15 +32,20 @@
 
 	<div class="col-lg-4 order_box">
 		<%= form_for(@order, url: user_orders_path, method: :post ) do |f| %>
+		<% if @total_price == 0  %>
+			<h3 class="no_item_message">カートに商品を入れてください</h3>
+		<% else %>
 			<div class= "order_bottun_box">
 				<%= f.submit '注文を確定する', class:"order_btn" %>
 			</div>
+		
 		<br>
 			<div>
 			    <h4>商品の合計金額(税込):<%= number_to_currency(@total_price) %>
 			    <h4>配送料：¥<%= @shipping_fee %></h4>
 				<h4>ご請求額：¥<%= number_to_currency(@total_price.to_i + @shipping_fee.to_i)  %></h4>
 			</div>
+		<% end %>
 
 			<div>
 				<h3>お届け先</h3>
@@ -61,19 +66,15 @@
 					<label><%= f.radio_button :payment_methods, :代引き %>代引き</label>
 					<br>
 					<label><%= f.radio_button :payment_methods ,:クレジットカード %>クレジットカード</label>
-						<ul>
-							<li>カード番号(ハイフンなし): 12345678</li>
-							<li>名前(半角スペースにご注意ください): BIGBANG COSMO</li>
-							<li>有効期限: 9月/22年</li>
-						</ul>
 			</div>
+		<% end %>
 
 		<hr>
 			<div>
 				<h4>支払い情報</h4>
 				<p>クレジットカード　visa下4桁 XXXX</p>
+				<button>情報を編集する</button>
 			</div>
 		<hr>
-		<% end %>
 	</div>
 </div>

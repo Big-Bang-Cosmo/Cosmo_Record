@@ -32,9 +32,10 @@
 .user-header{
 	width: 100%;
 	height: 150px;
-	background: image-url('header.png');
-  background-size: cover;
+	background-image: url('header.png');
+  backgrount-size: cover;
   position: relative;
+  background-size: cover;
 }
 
 .nav-list{
@@ -151,4 +152,9 @@
 
 .admin-user-delivery-filed {
   margin-bottom: 20px;
+}
+
+.no_item_message {
+  color: red;
+  margin-bottom: 30px;
 }
