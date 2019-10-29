@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     if params[:admin] == nil
        user_items_path
     else
-       admin_items_path
+       admin_home_top_path
     end
   end
 
