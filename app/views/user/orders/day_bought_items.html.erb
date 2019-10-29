@@ -1,6 +1,6 @@
 
 <div class= "back_box clearfix">
-	<h4><%= link_to "購入履歴一覧に戻る", admin_orders_path, class: "back" %></h4>
+	<h4><%= link_to "購入履歴一覧に戻る", user_bought_items_path(current_user), class: "back" %></h4>
 </div>
 
 <h4 class="order_name"><%= @order.user.last_name + @order.user.first_name %>さんの<%= l @order.created_at, format: :short %>日の注文の詳細</h4>
