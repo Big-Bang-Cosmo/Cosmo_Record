@@ -3,7 +3,7 @@ class Item < ApplicationRecord
 	belongs_to :label
 	belongs_to :genre
 
-	has_many :order_items, dependent: :destroy
+	has_many :order_items
 	has_many :cart_items, dependent: :destroy
 	has_many  :reviews, dependent: :destroy
 	has_many  :arrivals, dependent: :destroy

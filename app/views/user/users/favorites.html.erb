@@ -27,8 +27,8 @@
 			<% end %>
       	</div>
       	<div>
-      		<p class="item_name"><%= link_to "#{favorite.item.item_name}", user_item_path(favorite) %></p>
-      		<p><%= link_to "#{favorite.item.artist.artist_name}", user_artist_path(favorite.item.artist) %></p>
+      		<p class="item_name"><%= link_to truncate("#{favorite.item.item_name}",length: 25,omission:"..."),user_item_path(favorite) %></p>
+      		<p><%= link_to truncate("#{favorite.item.artist.artist_name}",length: 25,omission:"..."),user_artist_path(favorite.item.artist) %></p>
       	</div>
       	 <div>
       	 	<p>価格(税込)：<%= number_to_currency(favorite.item.price * 1.1) %></p>
