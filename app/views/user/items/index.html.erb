@@ -60,7 +60,7 @@
 				   <p><%= link_to user_item_path(item) do %>
 						<%= attachment_image_tag item, :item_image, :fill, 120, 120, fallback: "no_image.jpg", size:'120x120' %>
 						<% end %></p>
-				   <p class="item_name"><%= link_to truncate("#{item.item_name}",length: 8 ,omission:"..."), user_item_path(item)%></p>
+				   <p class="item_name"><%= link_to truncate("#{item.item_name}",length: 20,omission:"..."), user_item_path(item)%></p>
 				   <p><%= link_to truncate("#{item.artist.artist_name}",length: 8,omission:"..."), user_artist_path(item.artist) %></p>
 				   	<p><span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span><%= item.favorites.count %></p>
 				  </div>
